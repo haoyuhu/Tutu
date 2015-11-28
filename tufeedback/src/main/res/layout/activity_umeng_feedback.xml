@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/umeng_feedback_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/feedback_page" />
+
+    <mu.lab.tufeedback.widget.SwipeRefreshLayout
+        android:id="@+id/umeng_feedback_swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/upper_divider"
+        android:layout_below="@id/toolbar">
+
+        <ListView
+            android:id="@+id/feedback_conversation_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/TU_LIGHT_GRAY"
+            android:cacheColorHint="#00000000"
+            android:listSelector="#00000000"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll" />
+
+    </mu.lab.tufeedback.widget.SwipeRefreshLayout>
+
+    <ImageView
+        android:id="@+id/upper_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignTop="@+id/inputBox_root_view"
+        android:layout_marginTop="-1dp"
+        android:background="@color/TU_GRAY" />
+
+    <View
+        android:id="@+id/inputBox_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/inputBox_editText"
+        android:layout_marginTop="-6dp"
+        android:background="@color/feedback_inputBox_gray" />
+
+    <Button
+        android:id="@+id/send_message_button"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/feedback_btn_selector"
+        android:gravity="center"
+        android:text="@string/send_message_text"
+        android:textColor="@color/TU_GRAY"
+        android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/send_photo_imageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/send_message_button"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:padding="5dp"
+        android:src="@mipmap/send_photo_icon" />
+
+    <EditText
+        android:id="@+id/inputBox_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@id/send_message_button"
+        android:layout_toRightOf="@id/send_photo_imageView"
+        android:background="@drawable/feedback_inputbox_shape"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="@string/feedback_hint"
+        android:imeOptions="actionDone"
+        android:padding="7dp"
+        android:textColor="@color/BLACK"
+        android:textColorHint="@color/TU_GRAY"
+        android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/lower_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/contact_container"
+        android:background="@color/TU_GRAY" />
+
+    <RelativeLayout
+        android:id="@+id/contact_container"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_above="@id/upper_divider"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/feedback_inputBox_gray"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/contact_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/switchContactSpinner"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/contact_text"
+            android:textColor="@color/TU_DARK_GRAY"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/switchContactSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/contact_inputBox_editText"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/contact_text"
+            android:background="@drawable/spinner_feedback_background"
+            android:gravity="center"
+            android:popupBackground="@color/WHITE" />
+
+        <EditText
+            android:id="@+id/contact_inputBox_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/save_contact_button"
+            android:background="@drawable/feedback_inputbox_shape"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:hint="@string/contact_hint"
+            android:imeOptions="actionDone"
+            android:padding="7dp"
+            android:textColor="@color/BLACK"
+            android:textColorHint="@color/TU_GRAY"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/save_contact_button"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/feedback_btn_selector"
+            android:text="@string/save_contact_text"
+            android:textColor="@color/TU_GRAY"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+</RelativeLayout>
