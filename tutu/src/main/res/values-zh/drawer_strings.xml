@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_drawer_home">可用预约列表</string>
+    <string name="tutu_drawer_smart_reservation">智能预约</string>
+    <string name="tutu_drawer_auto_reservation">自动预约</string>
+    <string name="tutu_drawer_reservation_info">我的预约</string>
+    <string name="tutu_drawer_seat_state">文图座位查询</string>
+    <string name="tutu_drawer_switch_account">切换账户</string>
+    <string name="tutu_drawer_logout">退出登录</string>
+
+    <string name="tutu_drawer_about_tutu">关于TUTu</string>
+    <string name="tutu_drawer_feedback">问题反馈</string>
+    <string name="tutu_check_update">检查更新</string>
+    <string name="tutu_drawer_help">帮助</string>
+    <string name="tutu_drawer_donation">捐赠</string>
+
+    <string name="tutu_drawer_tsinghua_tu">清华小图</string>
+    <string name="tutu_drawer_click_to_login">(点击登录)</string>
+    <string name="tutu_drawer_total_reservation_count">共计%1$d个预约</string>
+    <string name="tutu_drawer_today_reservation_count">今日有%1$d个预约</string>
+
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_welcome">尽情享受阅读</string>
+    <string name="tutu_username">姓名</string>
+    <string name="tutu_student_id">学生证号</string>
+
+    <string-array name="tutu_resv_tab_title_array">
+        <item>今日空闲预约</item>
+        <item>明日空闲预约</item>
+        <item>后天空闲预约</item>
+        <item>我的预约</item>
+    </string-array>
+
+    <string name="tutu_morning">早间</string>
+    <string name="tutu_afternoon">午间</string>
+    <string name="tutu_evening">晚间</string>
+
+    <string name="tutu_max_interval_for_reservation">最长%1$d时%2$d分</string>
+    <string name="tutu_max_interval_for_reservation_without_mins">最长%1$d时</string>
+
+    <string name="tutu_reservation_summary">研读间预约总览</string>
+    <string name="tutu_refresh_time">刷新于</string>
+    <string name="tutu_second_floor">2层</string>
+    <string name="tutu_third_floor">3层</string>
+    <string name="tutu_reservation_count">%1$d个可预约</string>
+
+    <!-- Umeng Update Snackbars -->
+    <string name="tutu_already_up_to_date">您已经在使用最新版</string>
+    <string name="tutu_please_connect_wifi">请连接WiFi以便更新</string>
+    <string name="tutu_update_timeout">更新操作超时</string>
+    <string name="tutu_snackbar_reset_wifi">设置Wifi</string>
+
+    <string name="tutu_refresh_reservation_success">刷新成功</string>
+    <string name="tutu_refresh_reservation_failure">刷新失败，请检查网络</string>
+
+</resources>
