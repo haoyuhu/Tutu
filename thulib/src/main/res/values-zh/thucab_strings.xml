@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="thucab_ok">登录成功</string>
+    <string name="thucab_operation_success">操作成功</string>
+    <string name="thucab_id_failure">学生学号有误，请重试</string>
+    <string name="thucab_pwd_failure">账号密码有误，请重试</string>
+    <string name="thucab_json_failure">网络错误，请重试或向labmu反馈问题</string>
+    <string name="thucab_date_failure" translatable="false" formatted="false" />
+    <string name="thucab_timeout_failure">登录超时，请重新登录</string>
+    <string name="thucab_conflict_failure">与现有预约冲突</string>
+    <string name="thucab_no_ticket_failure">@string/thucab_json_failure</string>
+    <string name="thucab_other_failure">@string/thucab_json_failure</string>
+
+    <string name="thucab_third_floor_room">3层研读间</string>
+    <string name="thucab_second_floor_room">2层研读间</string>
+    <string name="thucab_morning">早间</string>
+    <string name="thucab_afternoon">午间</string>
+    <string name="thucab_evening">晚间</string>
+    <string name="thucab_allday">全天</string>
+
+    <string name="thucab_interval_for_reservation">持续%1$d时%2$d分</string>
+    <string name="thucab_interval_for_reservation_without_mins">持续%1$d时</string>
+
+</resources>
