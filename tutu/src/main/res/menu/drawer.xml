@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/drawer_home"
+            android:icon="@mipmap/ic_home_grey600"
+            android:title="@string/tutu_drawer_home" />
+        <item
+            android:id="@+id/drawer_smart_reservation"
+            android:icon="@mipmap/ic_dashboard_grey600"
+            android:title="@string/tutu_drawer_smart_reservation" />
+        <item
+            android:id="@+id/drawer_auto_reservation"
+            android:icon="@mipmap/ic_settings_applications_grey600"
+            android:title="@string/tutu_drawer_auto_reservation" />
+        <item
+            android:id="@+id/drawer_reservation_info"
+            android:icon="@mipmap/ic_visibility_grey600"
+            android:title="@string/tutu_drawer_reservation_info" />
+        <item
+            android:id="@+id/drawer_seat_state"
+            android:icon="@mipmap/ic_search_grey600"
+            android:title="@string/tutu_drawer_seat_state" />
+        <item
+            android:id="@+id/drawer_switch_account"
+            android:icon="@mipmap/ic_assignment_ind_grey600"
+            android:title="@string/tutu_drawer_switch_account"/>
+        <item
+            android:id="@+id/drawer_logout"
+            android:icon="@mipmap/ic_highlight_remove_grey600"
+            android:title="@string/tutu_drawer_logout" />
+    </group>
+    <item android:title="@string/tutu_drawer_about_tutu">
+        <menu>
+            <item
+                android:id="@+id/drawer_feedback"
+                android:icon="@mipmap/ic_speaker_notes_grey600"
+                android:title="@string/tutu_drawer_feedback" />
+            <item
+                android:id="@+id/drawer_check_update"
+                android:icon="@mipmap/ic_assignment_returned_grey600"
+                android:title="@string/tutu_check_update" />
+            <item
+                android:id="@+id/drawer_help"
+                android:icon="@mipmap/ic_help_grey600"
+                android:title="@string/tutu_drawer_help" />
+            <item
+                android:id="@+id/drawer_donation"
+                android:icon="@mipmap/ic_redeem_grey600"
+                android:title="@string/tutu_drawer_donation" />
+        </menu>
+    </item>
+</menu>

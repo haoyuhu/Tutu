@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_fab_refresh">Refresh</string>
+    <string name="tutu_fab_filter">Time Filter</string>
+    <string name="tutu_fab_auto_reservation">Auto Reservation</string>
+    <string name="tutu_fab_smart_reservation">Smart Reservation</string>
+
+</resources>

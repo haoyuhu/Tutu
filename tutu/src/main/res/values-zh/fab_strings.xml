@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_fab_refresh">刷新</string>
+    <string name="tutu_fab_filter">筛选预约</string>
+    <string name="tutu_fab_auto_reservation">自动预约</string>
+    <string name="tutu_fab_smart_reservation">智能预约</string>
+
+</resources>

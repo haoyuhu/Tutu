@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_date_pattern">yyyy年MM月dd日</string>
+
+</resources>
