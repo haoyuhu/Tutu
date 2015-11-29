@@ -44,8 +44,8 @@
     
     <style name="TutuLinearProgressBarStyle" parent="Material.Drawable.LinearProgress">
         <item name="lpd_strokeSize">5dp</item>
-        <item name="lpd_strokeColor">@color/md_blue_700</item>
-        <item name="lpd_strokeSecondaryColor">@color/md_blue_200</item>
+        <item name="lpd_strokeColor">@color/md_light_blue_800</item>
+        <item name="lpd_strokeSecondaryColor">@color/md_light_blue_100</item>
         <item name="lpd_strokeColors">@array/linear_progress_colors</item>
         <item name="lpd_travelDuration">1500</item>
         <item name="lpd_transformDuration">800</item>

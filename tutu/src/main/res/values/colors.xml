@@ -314,12 +314,13 @@
 
     <!--custom-->
     <color name="tutu_blue_grey_transparent">#99546e7a</color>
+    <color name="tutu_white_transparent_more">#33ffffff</color>
+    <color name="tutu_white_transparent_less">#11ffffff</color>
 
     <array name="linear_progress_colors">
-        <item>@color/md_purple_700</item>
-        <item>@color/md_blue_700</item>
+        <item>@color/md_purple_800</item>
+        <item>@color/md_light_blue_800</item>
         <item>@color/md_teal_800</item>
-        <item>@color/md_deep_orange_a700</item>
     </array>
 
 </resources>

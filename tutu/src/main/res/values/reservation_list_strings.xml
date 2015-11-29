@@ -33,4 +33,6 @@
 
     <string name="tutu_refresh_reservation_success">Refresh Success</string>
     <string name="tutu_refresh_reservation_failure">Failed to refresh, please check your network</string>
+
+    <string name="tutu_no_available_reservation">No Available Reservation Currently</string>
 </resources>
