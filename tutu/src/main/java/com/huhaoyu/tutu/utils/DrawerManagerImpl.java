@@ -69,7 +69,6 @@ public class DrawerManagerImpl extends DrawerManager
     }
 
     protected void showRecord() {
-        drawerHeaderTags.removeAllViews();
         ResvRecordStore.getResvRecords(account, false, this);
     }
 
@@ -163,6 +162,7 @@ public class DrawerManagerImpl extends DrawerManager
         TextView todayTv = (TextView) LayoutInflater.from(context).inflate(R.layout.drawer_header_tag, drawerHeaderTags, false);
         totalTv.setText(String.format(context.getString(R.string.tutu_drawer_total_reservation_count), total));
         todayTv.setText(String.format(context.getString(R.string.tutu_drawer_today_reservation_count), today));
+        drawerHeaderTags.removeAllViews();
         drawerHeaderTags.addView(totalTv);
         drawerHeaderTags.addView(todayTv);
     }
