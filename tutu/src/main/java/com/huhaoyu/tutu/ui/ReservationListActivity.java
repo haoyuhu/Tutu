@@ -23,6 +23,7 @@ import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.utils.DrawerManager;
 import com.huhaoyu.tutu.utils.DrawerManagerImpl;
 import com.huhaoyu.tutu.utils.SnackbarManager;
+import com.huhaoyu.tutu.utils.TutuConstants;
 import com.rey.material.widget.ProgressView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
@@ -93,6 +94,12 @@ public class ReservationListActivity extends BaseActivity
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        drawerManager.onResume();
     }
 
     @Override
@@ -198,6 +205,14 @@ public class ReservationListActivity extends BaseActivity
     }
 
     private void setFab() {
+        refreshFab();
+        fabRefresh.setOnClickListener(this);
+        fabFilter.setOnClickListener(this);
+        fabSmartReservation.setOnClickListener(this);
+        fabAutoReservation.setOnClickListener(this);
+    }
+
+    public void refreshFab() {
         if (PreferenceUtilities.hasStudentAccount()) {
             fabSmartReservation.setVisibility(View.VISIBLE);
             fabAutoReservation.setVisibility(View.VISIBLE);
@@ -205,10 +220,6 @@ public class ReservationListActivity extends BaseActivity
             fabSmartReservation.setVisibility(View.GONE);
             fabAutoReservation.setVisibility(View.GONE);
         }
-        fabRefresh.setOnClickListener(this);
-        fabFilter.setOnClickListener(this);
-        fabSmartReservation.setOnClickListener(this);
-        fabAutoReservation.setOnClickListener(this);
     }
 
     private void setRefresher() {
@@ -239,10 +250,10 @@ public class ReservationListActivity extends BaseActivity
     }
 
     enum TabImageLoader {
-        Today(R.color.blue, "http://pre07.deviantart.net/5717/th/pre/f/2015/030/e/c/_minflat__android_l_wallpaper_moonshine__4k__by_dakoder-d7uzmrv.jpg"),
-        Tomorrow(R.color.cyan, "http://i0.wp.com/androidlive.it/wp-content/uploads/2014/08/image_new-103.jpg"),
-        DayAfterTomorrow(R.color.red, "http://i2.wp.com/androidlive.it/wp-content/uploads/2014/08/image_new-92.jpg"),
-        MyReservation(R.color.purple, "http://www.lirent.net/wp-content/uploads/2014/10/Android-Lollipop-wallpapers-p-800x500.png");
+        Today(R.color.blue, TutuConstants.Constants.background[0]),
+        Tomorrow(R.color.cyan, TutuConstants.Constants.background[1]),
+        DayAfterTomorrow(R.color.red, TutuConstants.Constants.background[2]),
+        MyReservation(R.color.purple, TutuConstants.Constants.background[3]);
         int colorId;
         String url;
 
@@ -300,6 +311,20 @@ public class ReservationListActivity extends BaseActivity
         }
     }
 
+    public void openLoginFragment() {
+        StudentAccount account = null;
+        try {
+            account = PreferenceUtilities.getStudentAccount();
+        } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
+            Log.e(LogTag, error.toString(), error);
+        }
+        LoginFragment.show(getFragmentManager(), this, loginObserver, account);
+    }
+
+    public void clearDrawable() {
+        drawerManager.onClearUp();
+    }
+
     @Override
     public void onRefreshComplete(boolean result) {
         refresherManager.stop();
@@ -339,24 +364,6 @@ public class ReservationListActivity extends BaseActivity
             super.onLoginSuccess(details, account);
             drawerManager.onLogin(account);
             setFab();
-        }
-
-        @Override
-        public void onStudentIdFailure(int resId) {
-            SnackbarManager manager = new SnackbarManager(fabGroup);
-            manager.setContent(resId).show();
-        }
-
-        @Override
-        public void onPasswordFailure(int resId) {
-            SnackbarManager manager = new SnackbarManager(fabGroup);
-            manager.setContent(resId).show();
-        }
-
-        @Override
-        public void onNetworkFailure(int resId) {
-            SnackbarManager manager = new SnackbarManager(fabGroup);
-            manager.setContent(resId).show();
         }
     };
 
