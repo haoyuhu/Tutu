@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_login_username">Student ID</string>
+    <string name="tutu_login_password">Password</string>
+    <string name="tutu_login_username_helper">Student ID usually 10 digits</string>
+    <string name="tutu_login_username_error">Your student ID is incorrect!</string>
+    <string name="tutu_login_password_error">Your password is incorrect!</string>
+    <string name="tutu_login">Login</string>
+    <string name="tutu_logout">Logout</string>
+    <string name="tutu_activate">Activate</string>
+    <string name="tutu_login_tsinghua_tu">Login Tsinghua Tutu</string>
+    <string name="tutu_login_network_error">Network Error</string>
+    <string name="tutu_login_incorrect_student_id">Incorrect Student ID</string>
+    <string name="tutu_login_incorrect_password">Incorrect Password</string>
+    <string name="tutu_login_login_success">Login Success</string>
+    <string name="tutu_login_empty">studentID or password cannot be empty!</string>
+
+</resources>

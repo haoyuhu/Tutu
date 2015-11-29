@@ -34,4 +34,6 @@
     <string name="tutu_refresh_reservation_success">刷新成功</string>
     <string name="tutu_refresh_reservation_failure">刷新失败，请检查网络</string>
 
+    <string name="tutu_no_available_reservation">当前没有可用预约</string>
+
 </resources>
