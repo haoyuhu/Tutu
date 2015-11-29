@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import mu.lab.thulib.R;
 import mu.lab.thulib.thucab.entity.CabFilter;
 import mu.lab.thulib.thucab.entity.JsonReservationState;
 import mu.lab.thulib.thucab.entity.ReservationRecord;
@@ -24,11 +23,9 @@ import mu.lab.thulib.thucab.entity.RealmReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.entity.ReservationStateBuilder;
 import mu.lab.thulib.thucab.entity.StudentAccount;
-import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.thulib.thucab.httputils.CabArrayResponse;
 import mu.lab.thulib.thucab.httputils.CabHttpClient;
 import mu.lab.thulib.thucab.httputils.CabObjectResponse;
-import mu.lab.thulib.thucab.httputils.LoginStateObserver;
 import mu.lab.thulib.thucab.httputils.RequestAction;
 import mu.lab.thulib.thucab.httputils.ResponseState;
 import mu.lab.thulib.thucab.resvutils.CabModificationCommand;
@@ -166,37 +163,6 @@ public class CabUtilities {
         return makeReservationUrl(devKind, dev, date, labId);
     }
 
-    protected static void login(StudentAccount account, List<LoginStateObserver> observers) throws Exception {
-        HttpUrl url = getLoginUrl(account);
-        CabObjectResponse response = CabHttpClient.requestForJsonObject(url);
-        Object object = response.getData();
-        if (response.isRequestSuccess() && object != null) {
-            StudentDetails details = new Gson().fromJson(object.toString(), StudentDetails.class);
-            for (LoginStateObserver observer : observers) {
-                observer.onLoginSuccess(details, account);
-            }
-        } else {
-            switch (response.getState()) {
-                case IdFailure:
-                    for (LoginStateObserver observer : observers) {
-                        observer.onStudentIdFailure(response.getStateDetails());
-                    }
-                    break;
-                case PasswordFailure:
-                    for (LoginStateObserver observer : observers) {
-                        observer.onPasswordFailure(response.getStateDetails());
-                    }
-                    break;
-                case JsonFailure:
-                case OtherFailure:
-                default:
-                    for (LoginStateObserver observer : observers) {
-                        observer.onNetworkFailure(response.getStateDetails());
-                    }
-            }
-        }
-    }
-
     /**
      * Credential function for backend to login
      *
@@ -213,24 +179,22 @@ public class CabUtilities {
     /**
      * Credential function for ui to login
      *
-     * @param account  Student account with Student id and password
-     * @param observer Callback
+     * @param account Student account
+     * @return Observable of CabObjectResponse
      */
-    public static void cabLogin(final StudentAccount account, final List<LoginStateObserver> observers) {
-        Runnable runnable = new Runnable() {
+    public static Observable<CabObjectResponse> cabLogin(final StudentAccount account) {
+        return Observable.just(account).map(new Func1<StudentAccount, CabObjectResponse>() {
             @Override
-            public void run() {
+            public CabObjectResponse call(StudentAccount account) {
+                HttpUrl url = getLoginUrl(account);
                 try {
-                    login(account, observers);
+                    return CabHttpClient.requestForJsonObject(url);
                 } catch (Exception e) {
                     Log.e(LogTag, e.getMessage(), e);
-                    for (LoginStateObserver observer : observers) {
-                        observer.onNetworkFailure(R.string.thucab_other_failure);
-                    }
+                    throw OnErrorThrowable.from(e);
                 }
             }
-        };
-        new Thread(runnable).start();
+        });
     }
 
     /**
