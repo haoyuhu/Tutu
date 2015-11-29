@@ -31,6 +31,8 @@ public class ReservationSummaryItemHolder extends RecyclerView.ViewHolder {
     TextView[] thirdFloorAllCounts;
     @Bind({R.id.third_floor_morning_interval, R.id.third_floor_afternoon_interval, R.id.third_floor_evening_interval})
     TextView[] thirdFloorAllIntervals;
+    @Bind(R.id.empty_reservation_tv)
+    TextView empty;
 
     public ReservationSummaryItemHolder(View itemView) {
         super(itemView);
@@ -50,6 +52,12 @@ public class ReservationSummaryItemHolder extends RecyclerView.ViewHolder {
         }
         showInfoOnDifferentFloor(context, summary, HsLibFloor.Second, secondFloorAllCounts, secondFloorAllIntervals);
         showInfoOnDifferentFloor(context, summary, HsLibFloor.Third, thirdFloorAllCounts, thirdFloorAllIntervals);
+
+        if (summary.isValid()) {
+            empty.setVisibility(View.GONE);
+        } else {
+            empty.setVisibility(View.VISIBLE);
+        }
     }
 
     private void showInfoOnDifferentFloor(Context context, ReservationSummary summary, HsLibFloor floor,

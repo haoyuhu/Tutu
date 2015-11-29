@@ -24,4 +24,6 @@ public abstract class DrawerManager {
 
     public abstract void onClearUp();
 
+    public abstract void onResume();
+
 }

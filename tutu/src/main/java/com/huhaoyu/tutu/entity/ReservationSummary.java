@@ -78,4 +78,9 @@ public interface ReservationSummary {
      */
     List<String> getRecentReservation();
 
+    /**
+     * @return Has available reading rooms or not
+     */
+    boolean isValid();
+
 }
