@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huhaoyu.tutu.R;
+import com.huhaoyu.tutu.ui.ReservationListActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -26,7 +27,8 @@ import rx.Observer;
  * Drawer manager implement
  * Created by coderhuhy on 15/11/27.
  */
-public class DrawerManagerImpl extends DrawerManager implements Observer<List<ReservationRecord>> {
+public class DrawerManagerImpl extends DrawerManager
+        implements Observer<List<ReservationRecord>>, View.OnClickListener {
 
     private static final String LogTag = DrawerManagerImpl.class.getCanonicalName();
 
@@ -35,6 +37,7 @@ public class DrawerManagerImpl extends DrawerManager implements Observer<List<Re
     TextView studentIdTv;
     TextView departmentTv;
     LinearLayout drawerHeaderTags;
+    View clickableView;
     //drawer menu
     MenuItem smartReservation;
     MenuItem autoReservation;
@@ -42,9 +45,9 @@ public class DrawerManagerImpl extends DrawerManager implements Observer<List<Re
     MenuItem logout;
     MenuItem switchAccount;
 
-    Context context;
+    ReservationListActivity context;
 
-    public DrawerManagerImpl(StudentAccount account, NavigationView navigation, Context context) {
+    public DrawerManagerImpl(StudentAccount account, NavigationView navigation, ReservationListActivity context) {
         super(account, navigation);
         this.context = context;
 
@@ -59,7 +62,10 @@ public class DrawerManagerImpl extends DrawerManager implements Observer<List<Re
         usernameTv = (TextView) header.findViewById(R.id.username_tv);
         studentIdTv = (TextView) header.findViewById(R.id.student_id_tv);
         departmentTv = (TextView) header.findViewById(R.id.department_tv);
+        clickableView = header.findViewById(R.id.clickable_view);
         drawerHeaderTags = (LinearLayout) header.findViewById(R.id.drawer_header_tags_container);
+
+        clickableView.setOnClickListener(this);
     }
 
     protected void showRecord() {
@@ -117,6 +123,13 @@ public class DrawerManagerImpl extends DrawerManager implements Observer<List<Re
         reservationInfo.setEnabled(false);
         logout.setEnabled(false);
         switchAccount.setEnabled(false);
+
+        context.refreshFab();
+    }
+
+    @Override
+    public void onResume() {
+        showRecord();
     }
 
     @Override
@@ -152,5 +165,13 @@ public class DrawerManagerImpl extends DrawerManager implements Observer<List<Re
         todayTv.setText(String.format(context.getString(R.string.tutu_drawer_today_reservation_count), today));
         drawerHeaderTags.addView(totalTv);
         drawerHeaderTags.addView(todayTv);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.clickable_view:
+                context.openLoginFragment();
+        }
     }
 }

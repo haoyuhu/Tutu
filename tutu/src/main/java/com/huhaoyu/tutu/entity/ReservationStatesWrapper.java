@@ -171,4 +171,9 @@ public class ReservationStatesWrapper implements ReservationSummary {
     public List<String> getRecentReservation() {
         return null;
     }
+
+    @Override
+    public boolean isValid() {
+        return !(counts[0] == 0 && counts[1] == 0);
+    }
 }
