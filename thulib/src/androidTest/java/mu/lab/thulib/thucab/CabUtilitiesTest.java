@@ -27,6 +27,7 @@ import mu.lab.thulib.thucab.entity.ReservationStateBuilder;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.thulib.thucab.httputils.LoginStateObserver;
+import mu.lab.thulib.thucab.httputils.LoginSubscriber;
 import mu.lab.thulib.thucab.httputils.ResponseState;
 import mu.lab.thulib.thucab.resvutils.CabAutoResvCommand;
 import mu.lab.thulib.thucab.resvutils.CabCommand;
@@ -58,22 +59,13 @@ public class CabUtilitiesTest {
 
     @Test
     public void testLogin() throws Exception {
-        String studentId = account.getStudentId();
-        String wrongStudId = studentId + "wrong";
-        String rightPwd = account.getPassword();
-        String wrongPwd = rightPwd + "wrong";
-        StudentAccount rightAcc = new StudentAccount(studentId, rightPwd);
-        StudentAccount wrongIdAcc = new StudentAccount(wrongStudId, rightPwd);
-        StudentAccount wrongPwdAcc = new StudentAccount(studentId, wrongPwd);
-        LoginStateObserver rightObserver = new TestObserver(rightAcc);
-        LoginStateObserver wrongIdObserver = new TestObserver(wrongIdAcc);
-        LoginStateObserver wrongPwdObserver = new TestObserver(wrongPwdAcc);
-        CabUtilities.login(rightAcc, rightObserver);
-        CabUtilities.login(wrongIdAcc, wrongIdObserver);
-        CabUtilities.login(wrongPwdAcc, wrongPwdObserver);
+        LoginStateObserver observer = new TestObserver(account);
+        LoginSubscriber subscriber = new LoginSubscriber(account);
+        subscriber.add(observer);
+        CabUtilities.cabLogin(account).subscribe(subscriber);
     }
 
-    class TestObserver implements LoginStateObserver {
+    class TestObserver extends LoginStateObserver {
 
         private StudentAccount account;
 
@@ -82,7 +74,7 @@ public class CabUtilitiesTest {
         }
 
         @Override
-        public void onLoginSuccess(StudentDetails details) {
+        public void onLoginSuccess(StudentDetails details, StudentAccount account) {
             System.out.println(account.getStudentId()
                 + "-" + account.getPassword() + "-" + details.toString());
         }

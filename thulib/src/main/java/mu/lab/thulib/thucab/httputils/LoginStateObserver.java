@@ -8,7 +8,7 @@ import mu.lab.thulib.thucab.entity.StudentDetails;
  * Login State Observer
  * Created by coderhuhy on 15/11/12.
  */
-public abstract class LoginStateObserver {
+public abstract class LoginStateObserver implements AbstractLoginObserver {
 
     public void onLoginSuccess(StudentDetails details, StudentAccount account) {
         PreferenceUtilities.saveStudenId(account.getStudentId());
@@ -17,10 +17,13 @@ public abstract class LoginStateObserver {
         PreferenceUtilities.saveDepartment(details.getDepartment());
     }
 
-    public abstract void onStudentIdFailure(int resId);
+    public void onStudentIdFailure(int resId) {
+    }
 
-    public abstract void onPasswordFailure(int resId);
+    public void onPasswordFailure(int resId) {
+    }
 
-    public abstract void onNetworkFailure(int resId);
+    public void onNetworkFailure(int resId) {
+    }
 
 }
