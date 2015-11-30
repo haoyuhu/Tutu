@@ -1,6 +1,7 @@
 package mu.lab.thulib.thucab.httputils;
 
 import mu.lab.thulib.thucab.PreferenceUtilities;
+import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;
 
@@ -11,10 +12,9 @@ import mu.lab.thulib.thucab.entity.StudentDetails;
 public abstract class LoginStateObserver implements AbstractLoginObserver {
 
     public void onLoginSuccess(StudentDetails details, StudentAccount account) {
-        PreferenceUtilities.saveStudenId(account.getStudentId());
-        PreferenceUtilities.savePassword(account.getPassword());
-        PreferenceUtilities.saveUsername(details.getName());
-        PreferenceUtilities.saveDepartment(details.getDepartment());
+        UserAccountManager manager = UserAccountManager.getInstance();
+        manager.save(account);
+        manager.save(details);
     }
 
     public void onStudentIdFailure(int resId) {

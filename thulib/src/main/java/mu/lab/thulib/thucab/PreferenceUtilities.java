@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import mu.lab.thulib.thucab.entity.StudentAccount;
+import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.util.Log;
 
 /**
@@ -21,7 +22,8 @@ public class PreferenceUtilities {
     enum PreferenceKey {
 
         StudentId("student_id"), Password("password"),
-        Name("username"), Department("department");
+        Name("username"), Department("department"),
+        Phone("phone"), Email("email");
         String string;
 
         PreferenceKey(String string) {
@@ -46,7 +48,7 @@ public class PreferenceUtilities {
         preferences = pref;
     }
 
-    public static StudentAccount getStudentAccount() throws StudentAccountNotFoundError {
+    static StudentAccount getStudentAccount() throws StudentAccountNotFoundError {
         return new StudentAccount(getStudentId(), getPassword());
     }
 
@@ -68,7 +70,16 @@ public class PreferenceUtilities {
         }
     }
 
-    public static String getUsername() throws StudentAccountNotFoundError {
+    static StudentDetails getStudentDetails() throws StudentAccountNotFoundError {
+        String studentId = getStudentId();
+        String name = getUsername();
+        String department = getDepartment();
+        String phone = getPhone();
+        String email = getEmail();
+        return new StudentDetails(studentId, name, phone, email, department);
+    }
+
+    protected static String getUsername() throws StudentAccountNotFoundError {
         String username = preferences.getString(PreferenceKey.Name.toString(), "");
         if (!TextUtils.isEmpty(username)) {
             return username;
@@ -77,7 +88,7 @@ public class PreferenceUtilities {
         }
     }
 
-    public static String getDepartment() throws StudentAccountNotFoundError {
+    protected static String getDepartment() throws StudentAccountNotFoundError {
         String department = preferences.getString(PreferenceKey.Department.toString(), "");
         if (!TextUtils.isEmpty(department)) {
             return department;
@@ -86,7 +97,15 @@ public class PreferenceUtilities {
         }
     }
 
-    public static synchronized boolean saveStudenId(String studentId) {
+    protected static String getPhone() {
+        return preferences.getString(PreferenceKey.Phone.toString(), "");
+    }
+
+    protected static String getEmail() {
+        return preferences.getString(PreferenceKey.Email.toString(), "");
+    }
+
+    static synchronized boolean saveStudenId(String studentId) {
         if (!TextUtils.isEmpty(studentId)) {
             preferences.edit().putString(PreferenceKey.StudentId.toString(), studentId).apply();
         } else {
@@ -96,7 +115,7 @@ public class PreferenceUtilities {
         return true;
     }
 
-    public static synchronized boolean savePassword(String password) {
+    static synchronized boolean savePassword(String password) {
         if (!TextUtils.isEmpty(password)) {
             preferences.edit().putString(PreferenceKey.Password.toString(), password).apply();
         } else {
@@ -106,7 +125,7 @@ public class PreferenceUtilities {
         return true;
     }
 
-    public static synchronized boolean saveUsername(String name) {
+    static synchronized boolean saveUsername(String name) {
         if(!TextUtils.isEmpty(name)) {
             preferences.edit().putString(PreferenceKey.Name.toString(), name).apply();
         } else {
@@ -116,7 +135,7 @@ public class PreferenceUtilities {
         return true;
     }
 
-    public static synchronized boolean saveDepartment(String department) {
+    static synchronized boolean saveDepartment(String department) {
         if (!TextUtils.isEmpty(department)) {
             preferences.edit().putString(PreferenceKey.Department.toString(), department).apply();
         } else {
@@ -126,14 +145,21 @@ public class PreferenceUtilities {
         return true;
     }
 
-    /**
-     * @return Has student account in preferences or not
-     */
-    public static boolean hasStudentAccount() {
-        try {
-            getStudentAccount();
-        } catch (StudentAccountNotFoundError error) {
-            Log.e(LogTag, error.toString(), error);
+    static synchronized boolean savePhone(String phone) {
+        if (phone != null) {
+            preferences.edit().putString(PreferenceKey.Phone.toString(), phone).apply();
+        } else {
+            Log.i(LogTag, "phone is null, cannot save to preference...");
+            return false;
+        }
+        return true;
+    }
+
+    static synchronized boolean saveEmail(String email) {
+        if (email != null) {
+            preferences.edit().putString(PreferenceKey.Email.toString(), email).apply();
+        } else {
+            Log.i(LogTag, "email is null, cannot save to preference...");
             return false;
         }
         return true;
@@ -142,7 +168,7 @@ public class PreferenceUtilities {
     /**
      * Clear user preferences
      */
-    public static synchronized void clear() {
+    static synchronized void clear() {
         preferences.edit().clear().apply();
     }
 

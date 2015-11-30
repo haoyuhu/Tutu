@@ -16,6 +16,14 @@ public class StudentDetails {
     @SerializedName("dept")
     private String department;
 
+    public StudentDetails(String studentId, String name, String phone, String email, String department) {
+        this.studentId = studentId;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.department = department;
+    }
+
     public String getStudentId() {
         return studentId;
     }

@@ -19,8 +19,10 @@ import java.util.List;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.ResvRecordStore;
+import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.StudentAccount;
+import mu.lab.thulib.thucab.entity.StudentDetails;
 import rx.Observer;
 
 /**
@@ -46,10 +48,12 @@ public class DrawerManagerImpl extends DrawerManager
     MenuItem switchAccount;
 
     ReservationListActivity context;
+    UserAccountManager manager;
 
     public DrawerManagerImpl(StudentAccount account, NavigationView navigation, ReservationListActivity context) {
         super(account, navigation);
         this.context = context;
+        this.manager = UserAccountManager.getInstance();
 
         Menu menu = navigation.getMenu();
         smartReservation = menu.findItem(R.id.drawer_smart_reservation);
@@ -74,8 +78,9 @@ public class DrawerManagerImpl extends DrawerManager
 
     protected void showStudentInfo() throws PreferenceUtilities.StudentAccountNotFoundError {
         String studentId = account.getStudentId();
-        String name = PreferenceUtilities.getUsername();
-        String department = PreferenceUtilities.getDepartment();
+        StudentDetails details = manager.getDetails();
+        String name = details.getName();
+        String department = details.getDepartment();
 
         usernameTv.setText(name);
         studentIdTv.setText(studentId);

@@ -73,8 +73,6 @@ public class ReservationListFragment extends Fragment
         mAdapter = new RecyclerViewMaterialAdapter(new HeaderRecyclerViewAdapter(mStates, getActivity()));
         mRecyclerView.setAdapter(new AlphaInAnimationAdapter(mAdapter));
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
-
-        refresh(false, mRefreshCallback);
     }
 
     private void refreshState(CabFilter filter) {

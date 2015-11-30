@@ -12,7 +12,7 @@ import mu.lab.thulib.thucab.resvutils.CabCmdExecutorImpl;
 public class ThuCab {
 
     public static void init(Context context) {
-        PreferenceUtilities.init(context);
+        UserAccountManager.getInstance().init(context);
     }
 
     /**
@@ -24,7 +24,7 @@ public class ThuCab {
         CabCmdExecutorImpl.getInstance().clear();
         ResvRecordStore.clear(account);
         AutoResvStore.clear(account);
-        PreferenceUtilities.clear();
+        UserAccountManager.getInstance().clear();
     }
 
 }
