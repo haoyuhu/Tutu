@@ -41,6 +41,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.PreferenceUtilities;
+import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.thulib.thucab.httputils.LoginStateObserver;
@@ -74,6 +75,7 @@ public class ReservationListActivity extends BaseActivity
     private DrawerManager drawerManager;
     private RefresherManager refresherManager;
     private List<ReservationListFragment> fragments = new ArrayList<>();
+    private UserAccountManager accountManager = UserAccountManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,10 @@ public class ReservationListActivity extends BaseActivity
     protected void onResume() {
         super.onResume();
         drawerManager.onResume();
+
+        for (RefreshableFragment fragment : fragments) {
+            fragment.refresh(false, this);
+        }
     }
 
     @Override
@@ -179,7 +185,7 @@ public class ReservationListActivity extends BaseActivity
     private void setDrawerHeaderAndMenu() {
         StudentAccount account = null;
         try {
-            account = PreferenceUtilities.getStudentAccount();
+            account = accountManager.getAccount();
         } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
             Log.e(LogTag, error.toString(), error);
         }
@@ -213,7 +219,7 @@ public class ReservationListActivity extends BaseActivity
     }
 
     public void refreshFab() {
-        if (PreferenceUtilities.hasStudentAccount()) {
+        if (accountManager.hasAccount()) {
             fabSmartReservation.setVisibility(View.VISIBLE);
             fabAutoReservation.setVisibility(View.VISIBLE);
         } else {
@@ -314,7 +320,7 @@ public class ReservationListActivity extends BaseActivity
     public void openLoginFragment() {
         StudentAccount account = null;
         try {
-            account = PreferenceUtilities.getStudentAccount();
+            account = accountManager.getAccount();
         } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
             Log.e(LogTag, error.toString(), error);
         }
@@ -416,7 +422,7 @@ public class ReservationListActivity extends BaseActivity
         public void run() {
             super.run();
             try {
-                StudentAccount account = PreferenceUtilities.getStudentAccount();
+                StudentAccount account = accountManager.getAccount();
                 PushAgent pushAgent = PushAgent.getInstance(context);
                 pushAgent.addAlias(account.getStudentId(), ALIAS_TYPE);
             } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
