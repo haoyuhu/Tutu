@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_filter">预约筛选器</string>
+    <string name="tutu_filter_time_period">时段</string>
+    <string name="tutu_filter_morning">早间</string>
+    <string name="tutu_filter_afternoon">午间</string>
+    <string name="tutu_filter_evening">晚间</string>
+    <string name="tutu_filter_min_interval">最小持时</string>
+    <string name="tutu_filter_interval_picked">当前选择%1$d时</string>
+    <string name="tutu_filter_clear">清空</string>
+    <string name="tutu_filter_confirm">确认</string>
+
+</resources>
