@@ -1,6 +1,7 @@
-package com.huhaoyu.tutu.ui;
+package com.huhaoyu.tutu.utils;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.rey.material.widget.ProgressView;
 
@@ -9,6 +10,8 @@ import com.rey.material.widget.ProgressView;
  * Created by coderhuhy on 15/11/28.
  */
 public class RefresherManager {
+
+    private static final String LogTag = RefresherManager.class.getCanonicalName();
 
     protected ProgressView progress;
     protected boolean refreshing = false;
@@ -23,6 +26,7 @@ public class RefresherManager {
     }
 
     public boolean start() {
+        Log.d(LogTag, "refresh start...");
         synchronized (RefresherManager.this) {
             refreshing = true;
             if (++count == 1) {
@@ -34,11 +38,14 @@ public class RefresherManager {
     }
 
     public boolean stop() {
+        Log.d(LogTag, "refresh stop...");
         synchronized (RefresherManager.this) {
             if (--count == 0) {
                 refreshing = false;
                 progress.stop();
                 return true;
+            } else if (count < 0) {
+                count = 0;
             }
             return false;
         }

@@ -15,7 +15,7 @@ import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapte
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.ReservationStatesWrapper;
 import com.huhaoyu.tutu.utils.TutuConstants;
-import com.huhaoyu.tutu.widget.HeaderRecyclerViewAdapter;
+import com.huhaoyu.tutu.widget.ReservationListAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,9 +70,17 @@ public class ReservationListFragment extends Fragment
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new RecyclerViewMaterialAdapter(new HeaderRecyclerViewAdapter(mStates, getActivity()));
+        mAdapter = new RecyclerViewMaterialAdapter(new ReservationListAdapter(mStates, getActivity()));
         mRecyclerView.setAdapter(new AlphaInAnimationAdapter(mAdapter));
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
+    }
+
+    public void resetFilter(List<DateTimeUtilities.TimePeriod> periods, int minInterval) {
+        this.mFilter.refresh(periods, minInterval);
+    }
+
+    public CabFilter getFilter() {
+        return this.mFilter;
     }
 
     private void refreshState(CabFilter filter) {
@@ -111,7 +119,9 @@ public class ReservationListFragment extends Fragment
     @Override
     public void onNext(List<ReservationState> states) {
         mStates.refresh(states);
-        mAdapter.notifyDataSetChanged();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
         this.mTimeStamp = System.currentTimeMillis();
         if (mRefreshCallback != null) {
             mRefreshCallback.onRefreshComplete(true);
