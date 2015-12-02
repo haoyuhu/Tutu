@@ -30,6 +30,7 @@ import mu.lab.thulib.thucab.httputils.RequestAction;
 import mu.lab.thulib.thucab.httputils.ResponseState;
 import mu.lab.thulib.thucab.resvutils.CabModificationCommand;
 import mu.lab.thulib.thucab.resvutils.CabReservationCommand;
+import mu.lab.thulib.thucab.resvutils.ErrorTagManager;
 import mu.lab.thulib.thucab.resvutils.ExecutorResultObserver;
 import mu.lab.util.Log;
 import rx.Observable;
@@ -167,13 +168,13 @@ public class CabUtilities {
      * Credential function for backend to login
      *
      * @param account Student account with student id and password
-     * @return Is request success
+     * @return Login result
      * @throws Exception
      */
-    public static boolean login(StudentAccount account) throws Exception {
+    public static ResponseState login(StudentAccount account) throws Exception {
         HttpUrl url = getLoginUrl(account);
         CabObjectResponse response = CabHttpClient.requestForJsonObject(url);
-        return response.isRequestSuccess() && response.getData() != null;
+        return response.getState();
     }
 
     /**
@@ -300,12 +301,14 @@ public class CabUtilities {
     }
 
     protected static List<RealmReservationRecord> getReservationRecords(StudentAccount account) throws Exception {
-        if (login(account)) {
+        ResponseState resp = login(account);
+        if (resp.equals(ResponseState.Success)) {
             HttpUrl url = getRecordUrl();
             String response = CabHttpClient.requestForText(url);
             return parseRecords(response);
         } else {
-            throw new Exception("cannot login cab system...");
+            String error = ErrorTagManager.from(resp);
+            throw new Exception(error);
         }
     }
 
