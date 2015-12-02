@@ -10,4 +10,8 @@ public interface RefreshCallback {
 
     void onRefreshStart();
 
+    void onAccountError();
+
+    void onAccountNeedActivate();
+
 }
