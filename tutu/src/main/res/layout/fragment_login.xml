@@ -130,7 +130,7 @@
             android:id="@+id/login_button"
             android:layout_width="80dp"
             android:layout_height="36dp"
-            android:background="@drawable/selector_login_clickable_button"
+            android:background="@drawable/selector_blue_clickable_button"
             android:gravity="center"
             android:text="@string/tutu_login"
             android:textAllCaps="false"
