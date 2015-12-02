@@ -6,7 +6,7 @@ package mu.lab.thulib.thucab.resvutils;
  */
 public interface CabCommand {
 
-    void executeCommand() throws Exception;
+    ExecuteResult executeCommand() throws Exception;
 
     class CabCommandException extends Exception {
 

@@ -16,14 +16,14 @@ public class CabAutoResvCommand extends CabAbstractCommand {
     private AutoReservationItem item;
 
     public CabAutoResvCommand(AutoReservationItem item) {
-        super(null);
+        super(null, CommandKind.AutoReservation);
         this.item = item;
     }
 
     @Override
-    public void executeCommand() throws Exception {
+    public ExecuteResult executeCommand() throws Exception {
         if (!item.shouldMakeReservation()) {
-            return;
+            return new ExecuteResult(this.cmdKind, this.observer, ExecuteResult.CommandResultState.Success);
         }
         int increment = item.getIncrement();
         boolean success = false;
@@ -38,11 +38,15 @@ public class CabAutoResvCommand extends CabAbstractCommand {
                     && DateTimeUtilities.calculateInterval(item.getEnd(), end) <= 0) {
                     CabCommand command =
                         CabCommandCreator.createReservationCommand(s, item);
-                    command.executeCommand();
-                    success = true;
-                    break;
+                    if (command.executeCommand().getResultState()
+                            .equals(ExecuteResult.CommandResultState.Success)) {
+                        success = true;
+                        break;
+                    }
                 }
             }
         }
+        return new ExecuteResult(cmdKind, observer,
+                success ? ExecuteResult.CommandResultState.Success : ExecuteResult.CommandResultState.Conflict);
     }
 }

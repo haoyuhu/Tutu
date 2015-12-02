@@ -1,6 +1,5 @@
 package mu.lab.thulib.thucab.httputils;
 
-import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;

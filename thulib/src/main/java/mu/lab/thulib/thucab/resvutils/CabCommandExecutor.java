@@ -14,6 +14,10 @@ public interface CabCommandExecutor {
 
     void addCommands(List<CabCommand> commands);
 
+    void registerCallback(ReservationLoginCallback callback);
+
+    void unregisterCallback(ReservationLoginCallback callback);
+
     void remove(CabCommand command);
 
     void remove();

@@ -1,6 +1,7 @@
 package mu.lab.thulib.thucab.resvutils;
 
 import mu.lab.thulib.thucab.CabUtilities;
+import mu.lab.thulib.thucab.httputils.ResponseState;
 
 /**
  * Cab deletion command
@@ -11,16 +12,24 @@ public class CabDeletionCommand extends CabAbstractCommand {
     private String reservationId;
 
     public CabDeletionCommand(String reservationId, ExecutorResultObserver observer) {
-        super(observer);
+        super(observer, CommandKind.Deletion);
         this.reservationId = reservationId;
     }
 
     @Override
-    public void executeCommand() throws Exception {
-        if (observer != null) {
-            CabUtilities.deleteReservation(this.reservationId, this.observer);
-        } else {
-            CabUtilities.deleteReservation(this.reservationId);
+    public ExecuteResult executeCommand() throws Exception {
+        ResponseState result = CabUtilities.deleteReservation(this.reservationId);
+        ExecuteResult.CommandResultState ret;
+        switch (result) {
+            case ReservationSuccess:
+                ret = ExecuteResult.CommandResultState.Success;
+                break;
+            case DateFailure:
+                ret = ExecuteResult.CommandResultState.Local;
+                break;
+            default:
+                ret = ExecuteResult.CommandResultState.NetworkFailure;
         }
+        return new ExecuteResult(cmdKind, observer, ret);
     }
 }

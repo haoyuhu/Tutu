@@ -7,9 +7,11 @@ package mu.lab.thulib.thucab.resvutils;
 public abstract class CabAbstractCommand implements CabCommand {
 
     protected ExecutorResultObserver observer;
+    protected CommandKind cmdKind;
 
-    public CabAbstractCommand(ExecutorResultObserver observer) {
+    public CabAbstractCommand(ExecutorResultObserver observer, CommandKind cmdKind) {
         this.observer = observer;
+        this.cmdKind = cmdKind;
     }
 
 }

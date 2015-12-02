@@ -31,7 +31,6 @@ import mu.lab.thulib.thucab.httputils.ResponseState;
 import mu.lab.thulib.thucab.resvutils.CabModificationCommand;
 import mu.lab.thulib.thucab.resvutils.CabReservationCommand;
 import mu.lab.thulib.thucab.resvutils.ErrorTagManager;
-import mu.lab.thulib.thucab.resvutils.ExecutorResultObserver;
 import mu.lab.util.Log;
 import rx.Observable;
 import rx.exceptions.OnErrorThrowable;
@@ -384,77 +383,31 @@ public class CabUtilities {
     /**
      * Modify existing reservation, should run on work thread
      *
-     * @param command  Cab modification command
-     * @param observer Executor result observer
-     * @return success or not
-     * @throws Exception
-     */
-    public static boolean modifyReservation(CabModificationCommand command,
-                                            ExecutorResultObserver observer) throws Exception {
-        try {
-            HttpUrl url = modifyReservationUrl(command);
-            CabObjectResponse response = CabHttpClient.requestForJsonObject(url);
-            if (response.isRequestSuccess()) {
-                observer.onSuccess();
-                return true;
-            } else {
-                observer.onError(response.getState());
-                return false;
-            }
-        } catch (DateTimeUtilities.DateTimeException e) {
-            Log.e(LogTag, e.getDetails(), e);
-            observer.onError(ResponseState.DateFailure);
-            return false;
-        }
-    }
-
-    /**
-     * Modify existing reservation, should run on work thread
-     *
      * @param command Cab modification command
-     * @return success or not
+     * @return Response state
      * @throws Exception
      */
-    public static boolean modifyReservation(CabModificationCommand command) throws Exception {
+    public static ResponseState modifyReservation(CabModificationCommand command) throws Exception {
         try {
             HttpUrl url = modifyReservationUrl(command);
-            return CabHttpClient.requestForJsonObject(url).isRequestSuccess();
+            return CabHttpClient.requestForJsonObject(url).getState();
         } catch (DateTimeUtilities.DateTimeException e) {
             Log.e(LogTag, e.getDetails(), e);
-            return false;
-        }
-    }
-
-    /**
-     * @param reservationId Reservation id
-     * @param observer      Executor result observer
-     * @return success or not
-     * @throws Exception
-     */
-    public static boolean deleteReservation(String reservationId, ExecutorResultObserver observer)
-        throws Exception {
-        HttpUrl url = deleteReservationUrl(reservationId);
-        CabObjectResponse response = CabHttpClient.requestForJsonObject(url);
-        if (response.isRequestSuccess()) {
-            observer.onSuccess();
-            return true;
-        } else {
-            observer.onError(response.getState());
-            return false;
+            return ResponseState.DateFailure;
         }
     }
 
     /**
      * @param reservationId reservation id
-     * @return success or not
+     * @return Response state
      * @throws Exception
      */
-    public static boolean deleteReservation(String reservationId) throws Exception {
+    public static ResponseState deleteReservation(String reservationId) throws Exception {
         HttpUrl url = deleteReservationUrl(reservationId);
-        return CabHttpClient.requestForJsonObject(url).isRequestSuccess();
+        return CabHttpClient.requestForJsonObject(url).getState();
     }
 
-    protected static String getReservationTicket(CabReservationCommand command, ExecutorResultObserver observer)
+    protected static String getReservationTicket(CabReservationCommand command)
         throws Exception {
         HttpUrl url = getTicketUrl(command);
         String response = CabHttpClient.requestForText(url);
@@ -462,9 +415,6 @@ public class CabUtilities {
         if (matcher.find()) {
             return matcher.group(1);
         } else {
-            if (observer != null) {
-                observer.onError(ResponseState.NoTicketFailure);
-            }
             throw new Exception(String.format("cannot parse ticket from %s", url.toString()));
         }
     }
@@ -483,47 +433,23 @@ public class CabUtilities {
     }
 
     /**
-     * Make reservation for ui
-     *
-     * @param command  Cab reservation command
-     * @param observer Executor result observer
-     * @return Make reservation success or not
-     * @throws Exception
-     */
-    public static boolean makeReservation(CabReservationCommand command, ExecutorResultObserver observer)
-        throws Exception {
-        String ticket = getReservationTicket(command, observer);
-        List<ReservationRecord> pre = getReservationRecordsWithoutLogin();
-        if (!checkConflict(command.getDate(), pre)) {
-            makeReservation(ticket, command);
-            List<ReservationRecord> current = getReservationRecordsWithoutLogin();
-            if (checkConflict(command.getDate(), current)) {
-                observer.onSuccess();
-                return true;
-            }
-        }
-        observer.onError(ResponseState.ConflictFailure);
-        return false;
-    }
-
-    /**
      * Make reservation for backend
      *
      * @param command Cab reservation command
-     * @return Make reservation success or not
+     * @return Response state
      * @throws Exception
      */
-    public static boolean makeReservation(CabReservationCommand command) throws Exception {
-        String ticket = getReservationTicket(command, null);
+    public static ResponseState makeReservation(CabReservationCommand command) throws Exception {
+        String ticket = getReservationTicket(command);
         List<ReservationRecord> pre = getReservationRecordsWithoutLogin();
         if (!checkConflict(command.getDate(), pre)) {
             makeReservation(ticket, command);
             List<ReservationRecord> current = getReservationRecordsWithoutLogin();
             if (checkConflict(command.getDate(), current)) {
-                return true;
+                return ResponseState.ReservationSuccess;
             }
         }
-        return false;
+        return ResponseState.ConflictFailure;
     }
 
     /**

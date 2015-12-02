@@ -7,6 +7,7 @@ import mu.lab.thulib.thucab.CabUtilities;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.AutoReservationItem;
 import mu.lab.thulib.thucab.entity.ReservationState;
+import mu.lab.thulib.thucab.httputils.ResponseState;
 
 /**
  * Cab reservation command
@@ -24,7 +25,7 @@ public class CabReservationCommand extends CabAbstractCommand {
     public CabReservationCommand(ReservationState record, Calendar date,
                                  ReservationState.TimeRange range, ExecutorResultObserver observer)
         throws CabCommandException {
-        super(observer);
+        super(observer, CommandKind.Reservation);
         if (range.getIntervalInMillis() > CabConstants.ReservationConstants.MAX_RESERVATION_MILLIS
             + CabConstants.DateTimeConstants.ALLOWABLE_ERROR
             || range.getIntervalInMillis() < CabConstants.ReservationConstants.MIN_RESERVATION_MILLIS
@@ -68,11 +69,22 @@ public class CabReservationCommand extends CabAbstractCommand {
     }
 
     @Override
-    public void executeCommand() throws Exception {
-        if (observer != null) {
-            CabUtilities.makeReservation(this, observer);
-        } else {
-            CabUtilities.makeReservation(this);
+    public ExecuteResult executeCommand() throws Exception {
+        ResponseState result = CabUtilities.makeReservation(this);
+        ExecuteResult.CommandResultState ret;
+        switch (result) {
+            case ReservationSuccess:
+                ret = ExecuteResult.CommandResultState.Success;
+                break;
+            case ConflictFailure:
+                ret = ExecuteResult.CommandResultState.Conflict;
+                break;
+            case DateFailure:
+                ret = ExecuteResult.CommandResultState.Local;
+                break;
+            default:
+                ret = ExecuteResult.CommandResultState.NetworkFailure;
         }
+        return new ExecuteResult(cmdKind, observer, ret);
     }
 }
