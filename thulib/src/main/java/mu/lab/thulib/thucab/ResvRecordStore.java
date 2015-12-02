@@ -3,6 +3,7 @@ package mu.lab.thulib.thucab;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.realm.Realm;
@@ -28,6 +29,12 @@ public class ResvRecordStore {
 
     private final static String LogTag = ResvRecordStore.class.getSimpleName();
 
+    private final static Observer<Void> emptyObserver = new EmptyObserver();
+
+    public static void init() {
+        cleanResvRecordsRealm();
+    }
+
     /**
      * Get reservation records from realm
      *
@@ -39,7 +46,7 @@ public class ResvRecordStore {
             @Override
             public RealmResults<RealmReservationRecord> call(Realm realm) {
                 return realm.where(RealmReservationRecord.class)
-                    .equalTo("studentId", account.getStudentId()).findAll();
+                        .equalTo("studentId", account.getStudentId()).findAll();
             }
         }).map(new Func1<RealmResults<RealmReservationRecord>, List<ReservationRecord>>() {
             @Override
@@ -54,22 +61,51 @@ public class ResvRecordStore {
         });
     }
 
+    /**
+     * Clean the old useless records data
+     */
+    protected static void cleanResvRecordsRealm() {
+        RealmDatabase.exec(new Exec() {
+            @Override
+            public void run(Realm realm) {
+                RealmResults<RealmReservationRecord> records = realm.where(RealmReservationRecord.class).findAll();
+                List<Integer> rmList = new ArrayList<>();
+                for (int i = 0; i != records.size(); ++i) {
+                    RealmReservationRecord rc = records.get(i);
+                    try {
+                        Calendar dt = DateTimeUtilities.dateTimeToCalendar(rc.getEnd());
+                        Calendar current = Calendar.getInstance();
+                        if (DateTimeUtilities.calculateInterval(dt, current) <= 0) {
+                            rmList.add(i);
+                        }
+                    } catch (DateTimeUtilities.DateTimeException e) {
+                        Log.e(LogTag, e.getDetails(), e);
+                        rmList.add(i);
+                    }
+                }
+                for (int i = rmList.size() - 1; i >= 0; --i) {
+                    records.remove(rmList.get(i).intValue());
+                }
+            }
+        }).subscribeOn(Schedulers.io()).subscribe(emptyObserver);
+    }
+
     protected static Observable<List<ReservationRecord>> getResvRecords(StudentAccount account, final boolean update) {
         return CabUtilities.getReservationRecords(account, 10, update)
-            .map(new Func1<List<RealmReservationRecord>, List<ReservationRecord>>() {
-                @Override
-                public List<ReservationRecord> call(List<RealmReservationRecord> records) {
-                    List<ReservationRecord> ret = new ArrayList<>();
-                    for (RealmReservationRecord record : records) {
-                        if (update) {
-                            RealmDatabase.insertOrUpdate(record).subscribeOn(Schedulers.io()).subscribe();
+                .map(new Func1<List<RealmReservationRecord>, List<ReservationRecord>>() {
+                    @Override
+                    public List<ReservationRecord> call(List<RealmReservationRecord> records) {
+                        List<ReservationRecord> ret = new ArrayList<>();
+                        for (RealmReservationRecord record : records) {
+                            if (update) {
+                                RealmDatabase.insertOrUpdate(record).subscribeOn(Schedulers.io()).subscribe(emptyObserver);
+                            }
+                            ReservationRecordBuilder builder = new ReservationRecordBuilder();
+                            ret.add(builder.from(record).build());
                         }
-                        ReservationRecordBuilder builder = new ReservationRecordBuilder();
-                        ret.add(builder.from(record).build());
+                        return ret;
                     }
-                    return ret;
-                }
-            });
+                });
     }
 
     /**
@@ -81,9 +117,9 @@ public class ResvRecordStore {
      */
     public static void getResvRecords(StudentAccount account, boolean update, Observer<List<ReservationRecord>> observer) {
         getResvRecords(account, update)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(observer);
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
     }
 
     /**
@@ -93,21 +129,21 @@ public class ResvRecordStore {
      */
     public static void refresh(StudentAccount account) {
         getResvRecords(account, true)
-            .subscribeOn(Schedulers.io())
-            .subscribe(new Observer<List<ReservationRecord>>() {
-                @Override
-                public void onCompleted() {
-                }
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<List<ReservationRecord>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    Log.e(LogTag, e.getMessage(), e);
-                }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(LogTag, e.getMessage(), e);
+                    }
 
-                @Override
-                public void onNext(List<ReservationRecord> reservationRecords) {
-                }
-            });
+                    @Override
+                    public void onNext(List<ReservationRecord> reservationRecords) {
+                    }
+                });
     }
 
     /**
@@ -120,10 +156,25 @@ public class ResvRecordStore {
             @Override
             public void run(Realm realm) {
                 RealmResults<RealmReservationRecord> results = realm
-                    .where(RealmReservationRecord.class).equalTo("studentId", account.getStudentId()).findAll();
+                        .where(RealmReservationRecord.class).equalTo("studentId", account.getStudentId()).findAll();
                 results.clear();
             }
-        }, RealmReservationRecord.class).subscribeOn(Schedulers.io()).subscribe();
+        }, RealmReservationRecord.class).subscribeOn(Schedulers.io()).subscribe(emptyObserver);
+    }
+
+    private static class EmptyObserver implements Observer<Void> {
+        @Override
+        public void onCompleted() {
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            Log.e(LogTag, e.getMessage(), e);
+        }
+
+        @Override
+        public void onNext(Void aVoid) {
+        }
     }
 
 }
