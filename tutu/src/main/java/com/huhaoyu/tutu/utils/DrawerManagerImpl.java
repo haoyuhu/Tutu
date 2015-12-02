@@ -50,8 +50,8 @@ public class DrawerManagerImpl extends DrawerManager
     ReservationListActivity context;
     UserAccountManager manager;
 
-    public DrawerManagerImpl(StudentAccount account, NavigationView navigation, ReservationListActivity context) {
-        super(account, navigation);
+    public DrawerManagerImpl(NavigationView navigation, ReservationListActivity context) {
+        super(navigation);
         this.context = context;
         this.manager = UserAccountManager.getInstance();
 
@@ -73,10 +73,17 @@ public class DrawerManagerImpl extends DrawerManager
     }
 
     protected void showRecord() {
-        ResvRecordStore.getResvRecords(account, false, this);
+        if (manager.hasAccount()) {
+            try {
+                StudentAccount account = manager.getAccount();
+                ResvRecordStore.getResvRecords(account, false, this);
+            } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
+                Log.e(LogTag, error.toString(), error);
+            }
+        }
     }
 
-    protected void showStudentInfo() throws PreferenceUtilities.StudentAccountNotFoundError {
+    protected void showStudentInfo(StudentAccount account) throws PreferenceUtilities.StudentAccountNotFoundError {
         String studentId = account.getStudentId();
         StudentDetails details = manager.getDetails();
         String name = details.getName();
@@ -90,9 +97,8 @@ public class DrawerManagerImpl extends DrawerManager
 
     @Override
     public void onLogin(StudentAccount account) {
-        this.account = account;
         try {
-            showStudentInfo();
+            showStudentInfo(account);
             showRecord();
 
             smartReservation.setEnabled(true);
@@ -108,8 +114,13 @@ public class DrawerManagerImpl extends DrawerManager
 
     @Override
     public void onInit() {
-        if (account != null) {
-            onLogin(account);
+        if (manager.hasAccount()) {
+            try {
+                onLogin(manager.getAccount());
+            } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
+                Log.e(LogTag, error.toString(), error);
+                onClearUp();
+            }
         } else {
             onClearUp();
         }
