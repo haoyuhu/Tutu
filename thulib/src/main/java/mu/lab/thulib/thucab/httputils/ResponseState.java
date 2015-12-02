@@ -13,6 +13,7 @@ public enum ResponseState {
 
     Success("ok", R.string.thucab_ok),
     ReservationSuccess("操作成功", R.string.thucab_operation_success),
+    ActivateFailure("新用户请先激活", R.string.thucab_activate_failure),
     IdFailure("数据库没此账号", R.string.thucab_id_failure),
     PasswordFailure("统一登录认证返回失败", R.string.thucab_pwd_failure),
     JsonFailure("json_failure", R.string.thucab_json_failure),
