@@ -13,6 +13,7 @@ public class ThuCab {
 
     public static void init(Context context) {
         UserAccountManager.getInstance().init(context);
+        ResvRecordStore.init();
     }
 
     /**
