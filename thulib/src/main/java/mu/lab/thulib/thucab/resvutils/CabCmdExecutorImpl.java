@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import mu.lab.thulib.thucab.CabUtilities;
 import mu.lab.thulib.thucab.ResvRecordStore;
 import mu.lab.thulib.thucab.entity.StudentAccount;
+import mu.lab.thulib.thucab.httputils.ResponseState;
 
 /**
  * Implement of Cab command executor
@@ -86,7 +87,7 @@ public class CabCmdExecutorImpl implements CabCommandExecutor {
             @Override
             public void run() {
                 try {
-                    if (CabUtilities.login(account)) {
+                    if (CabUtilities.login(account).equals(ResponseState.Success)) {
                         for (CabCommand command : cmds) {
                             command.executeCommand();
                         }
@@ -103,7 +104,7 @@ public class CabCmdExecutorImpl implements CabCommandExecutor {
             @Override
             public void run() {
                 try {
-                    if (CabUtilities.login(account)) {
+                    if (CabUtilities.login(account).equals(ResponseState.Success)) {
                         for (CabCommand command : cmds) {
                             command.executeCommand();
                         }
