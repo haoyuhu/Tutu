@@ -13,7 +13,7 @@ import com.huhaoyu.tutu.entity.ReservationStatesWrapper;
  * Header recycler view adapter
  * Created by coderhuhy on 15/11/21.
  */
-public class HeaderRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ReservationListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     ReservationStatesWrapper states;
     Context context;
@@ -21,7 +21,7 @@ public class HeaderRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
 
-    public HeaderRecyclerViewAdapter(ReservationStatesWrapper states, Context context) {
+    public ReservationListAdapter(ReservationStatesWrapper states, Context context) {
         this.states = states;
         this.context = context;
     }
@@ -43,16 +43,14 @@ public class HeaderRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = null;
-
         switch (viewType) {
             case TYPE_HEADER: {
-                view = LayoutInflater.from(parent.getContext())
+                View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.reservation_summary_item, parent, false);
                 return new ReservationSummaryItemHolder(view);
             }
             case TYPE_CELL: {
-                view = LayoutInflater.from(parent.getContext())
+                View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.reservation_state_item, parent, false);
                 return new ReservationItemHolder(view);
             }
