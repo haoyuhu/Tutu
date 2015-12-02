@@ -1,7 +1,6 @@
 package mu.lab.thulib.thucab.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import mu.lab.thulib.thucab.DateTimeUtilities;
@@ -12,6 +11,7 @@ import mu.lab.thulib.thucab.DateTimeUtilities;
  */
 public class CabFilter {
 
+    public static final int DefaultMinInterval = 1;
     List<DateTimeUtilities.TimePeriod> periods = new ArrayList<>();
     int intervalInHour = 0;
 
@@ -34,16 +34,14 @@ public class CabFilter {
 
     protected void clear() {
         periods.clear();
-        intervalInHour = 0;
+        intervalInHour = DefaultMinInterval;
     }
 
     protected void change(List<DateTimeUtilities.TimePeriod> list, int interval) {
         if (list == null || list.isEmpty()) {
-            this.periods = Arrays.asList(
-                    DateTimeUtilities.TimePeriod.Morning,
-                    DateTimeUtilities.TimePeriod.Afternoon,
-                    DateTimeUtilities.TimePeriod.Night,
-                    DateTimeUtilities.TimePeriod.AllDay);
+            for (DateTimeUtilities.TimePeriod period : DateTimeUtilities.TimePeriod.values()) {
+                this.periods.add(period);
+            }
         } else {
             this.periods.addAll(list);
         }
