@@ -190,7 +190,7 @@ public class CabUtilitiesTest {
                 System.out.println("modify reservation success...");
             }
         });
-        if (CabUtilities.login(account)) {
+        if (CabUtilities.login(account).equals(ResponseState.Success)) {
             command.executeCommand();
         }
     }
@@ -210,7 +210,7 @@ public class CabUtilitiesTest {
                 System.out.println("delete reservation success...");
             }
         });
-        if (CabUtilities.login(account)) {
+        if (CabUtilities.login(account).equals(ResponseState.Success)) {
             command.executeCommand();
         }
     }
@@ -242,7 +242,7 @@ public class CabUtilitiesTest {
                 System.out.println("make reservation success...");
             }
         });
-        if (CabUtilities.login(account)) {
+        if (CabUtilities.login(account).equals(ResponseState.Success)) {
             command.executeCommand();
         }
     }
@@ -275,7 +275,7 @@ public class CabUtilitiesTest {
                     System.out.println("smart reservation success...");
                 }
             });
-        if (CabUtilities.login(account)) {
+        if (CabUtilities.login(account).equals(ResponseState.Success)) {
             command.executeCommand();
         }
     }
@@ -330,7 +330,7 @@ public class CabUtilitiesTest {
         List<AutoReservationItem> list = Arrays.asList(mon, wed, thu, sat, sun);
         for (AutoReservationItem item : list) {
             CabCommand command = new CabAutoResvCommand(item);
-            if (CabUtilities.login(account)) {
+            if (CabUtilities.login(account).equals(ResponseState.Success)) {
                 command.executeCommand();
             }
         }
