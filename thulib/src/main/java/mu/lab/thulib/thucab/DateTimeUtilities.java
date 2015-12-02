@@ -16,19 +16,42 @@ public class DateTimeUtilities {
     }
 
     public enum DayRound {
-        Today(0), Tomorrow(1), DayAfterTomorrow(2);
+        Today(0, R.string.thucab_today),
+        Tomorrow(1, R.string.thucab_tomorrow),
+        DayAfterTomorrow(2, R.string.thucab_day_after_tomorrow);
         private int increment;
+        private int resId;
 
-        DayRound(int increment) {
+        DayRound(int increment, int resId) {
             this.increment = increment;
+            this.resId = resId;
         }
 
         int getIncrement() {
             return this.increment;
         }
 
+        public int getResId() {
+            return resId;
+        }
+
         boolean isToday() {
             return getIncrement() == 0;
+        }
+
+        /**
+         * @param calendar Calendar
+         * @return Day round
+         * @throws DateTimeException
+         */
+        public static DayRound from(Calendar calendar) throws DateTimeException {
+            for (DayRound round : DayRound.values()) {
+                Calendar c = dayRoundToCalendar(round);
+                if (isTheSameDay(c, calendar)) {
+                    return round;
+                }
+            }
+            throw new DateTimeException("the calendar cannot be transform to day round..." + calendar.toString());
         }
     }
 
@@ -47,6 +70,17 @@ public class DateTimeUtilities {
             this.end = end;
             this.resId = resId;
             this.imageId = imageId;
+        }
+
+        public static TimePeriod from(Calendar calendar) throws DateTimeException {
+            String pattern = "HH:mm";
+            String time = formatReservationDate(calendar, pattern);
+            for (TimePeriod period : TimePeriod.values()) {
+                if (period.inPeriod(time)) {
+                    return period;
+                }
+            }
+            throw new DateTimeException("the calendar cannot be transform to time period..." + calendar.toString());
         }
 
         /**
@@ -106,6 +140,17 @@ public class DateTimeUtilities {
         } else {
             return dt[0];
         }
+    }
+
+    public static boolean isTheSameDay(Calendar calendar, Calendar another) {
+        int y1, m1, d1, y2, m2, d2;
+        y1 = calendar.get(Calendar.YEAR);
+        m1 = calendar.get(Calendar.MONTH);
+        d1 = calendar.get(Calendar.DAY_OF_MONTH);
+        y2 = another.get(Calendar.YEAR);
+        m2 = another.get(Calendar.MONTH);
+        d2 = another.get(Calendar.DAY_OF_MONTH);
+        return y1 == y2 && m1 == m2 && d1 == d2;
     }
 
     /**
