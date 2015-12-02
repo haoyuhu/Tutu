@@ -154,7 +154,7 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
                 if (isLogin) {
                     CabUtilities.cabLogout();
                     clear();
-                    context.clearDrawable();
+                    context.clear();
                 } else {
                     if (validate(studentIdEt) && validate(passwordEt)) {
                         refreshProgress.start();
@@ -201,10 +201,15 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
     }
 
     @Override
+    public void onActivateFailure(int resId) {
+        refreshProgress.stop();
+        studentIdEt.setError(context.getString(R.string.tutu_login_activate_error));
+    }
+
+    @Override
     public void onNetworkFailure(int resId) {
         refreshProgress.stop();
         studentIdEt.setError(context.getString(R.string.tutu_login_network_error));
-        passwordEt.setError(context.getString(R.string.tutu_login_network_error));
     }
 
 }
