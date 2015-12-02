@@ -10,20 +10,20 @@ import mu.lab.thulib.thucab.DateTimeUtilities;
  */
 public interface ReservationRecord {
 
-    public String getReservationId();
+    String getReservationId();
 
-    public String getStudentId();
+    String getStudentId();
 
-    public String getName();
+    String getName();
 
-    public String getRoomName();
+    String getRoomName();
 
-    public String getState();
+    String getState();
 
-    public Calendar getStartDateTime() throws DateTimeUtilities.DateTimeException;
+    Calendar getStartDateTime() throws DateTimeUtilities.DateTimeException;
 
-    public Calendar getEndDateTime() throws DateTimeUtilities.DateTimeException;
+    Calendar getEndDateTime() throws DateTimeUtilities.DateTimeException;
 
-    public Calendar getDate() throws DateTimeUtilities.DateTimeException;
+    Calendar getDate() throws DateTimeUtilities.DateTimeException;
 
 }
