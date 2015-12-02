@@ -30,7 +30,7 @@ public class CabSmartResvCommand extends CabAbstractCommand {
 
     public CabSmartResvCommand(DateTimeUtilities.DayRound round, ReservationState.TimeRange range,
                                int minInterval, @NonNull SmartReservationObserver observer) throws CabCommandException {
-        super(observer);
+        super(observer, CommandKind.SmartReservation);
         this.smartObserver = observer;
         this.round = round;
         this.range = range;
@@ -38,10 +38,11 @@ public class CabSmartResvCommand extends CabAbstractCommand {
     }
 
     @Override
-    public void executeCommand() throws Exception {
+    public ExecuteResult executeCommand() throws Exception {
         boolean success = false;
         List<RecommendResvImpl> rest = new ArrayList<>();
         List<ReservationState> list = CabUtilities.queryRoomState(round);
+        ExecuteResult.CommandResultState state = ExecuteResult.CommandResultState.Recommendation;
         for (int i = 0; i < list.size() && !success; ++i) {
             ReservationState s = list.get(i);
             List<ReservationState.TimeRange> ranges = s.getAvailableTimeRanges(minInterval);
@@ -49,20 +50,23 @@ public class CabSmartResvCommand extends CabAbstractCommand {
                 String start = r.getStart();
                 String end = r.getEnd();
                 if (DateTimeUtilities.calculateInterval(start, range.getStart()) <= 0
-                    && DateTimeUtilities.calculateInterval(range.getEnd(), end) <= 0) {
+                        && DateTimeUtilities.calculateInterval(range.getEnd(), end) <= 0) {
                     Calendar date = DateTimeUtilities.dayRoundToCalendar(round);
                     CabCommand command =
-                        CabCommandCreator.createReservationCommand(s, date, range, smartObserver);
-                    command.executeCommand();
-                    success = true;
+                            CabCommandCreator.createReservationCommand(s, date, range, smartObserver);
+                    if (command.executeCommand().getResultState()
+                            .equals(ExecuteResult.CommandResultState.Success)) {
+                        success = true;
+                        state = ExecuteResult.CommandResultState.Success;
+                    }
                     break;
                 } else {
                     RecommendResvBuilder builder = new RecommendResvBuilder();
                     RecommendResvImpl resv = builder
-                        .setDevId(s.getDevId())
-                        .setRoomName(s.getRoomName())
-                        .setKind(s.getKind())
-                        .setRange(r).build();
+                            .setDevId(s.getDevId())
+                            .setRoomName(s.getRoomName())
+                            .setKind(s.getKind())
+                            .setRange(r).build();
                     try {
                         resv.calculatePriority(range);
                     } catch (DateTimeUtilities.DateTimeException error) {
@@ -79,13 +83,24 @@ public class CabSmartResvCommand extends CabAbstractCommand {
             for (RecommendResvImpl resv : rest) {
                 ret.add(resv.memorandum());
             }
-            smartObserver.onNoMatchedRoom(ret);
+            smartObserver.setRecommendList(ret);
         }
+        return new ExecuteResult(cmdKind, smartObserver, state);
     }
 
     public abstract static class SmartReservationObserver implements ExecutorResultObserver {
 
+        protected List<RecommendResv> list;
+
         public abstract void onNoMatchedRoom(List<RecommendResv> list);
+
+        void setRecommendList(List<RecommendResv> list) {
+            this.list = list;
+        }
+
+        public List<RecommendResv> getRecommandList() {
+            return this.list;
+        }
 
     }
 }

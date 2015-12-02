@@ -54,8 +54,8 @@ public class CabCommandCreator {
         return new CabSmartResvCommand(round, range, minInterval, observer);
     }
 
-    public static CabCommand createAutoResvCmdGroup(StudentAccount account) {
-        return new CabAutoResvCmdGroup(account);
+    public static CabCommand createAutoResvCmdGroup() {
+        return new CabAutoResvCmdGroup();
     }
 
 }

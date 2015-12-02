@@ -7,6 +7,7 @@ import mu.lab.thulib.thucab.CabUtilities;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
+import mu.lab.thulib.thucab.httputils.ResponseState;
 
 /**
  * Cab modification command
@@ -22,16 +23,16 @@ public class CabModificationCommand extends CabAbstractCommand {
 
     public CabModificationCommand(ReservationRecord record, ReservationState.TimeRange range,
                                   ExecutorResultObserver observer) throws CabCommandException {
-        super(observer);
+        super(observer, CommandKind.Modification);
         if (range.getIntervalInMillis() > CabConstants.ReservationConstants.MAX_RESERVATION_MILLIS
-            + CabConstants.DateTimeConstants.ALLOWABLE_ERROR
-            || range.getIntervalInMillis() < CabConstants.ReservationConstants.MIN_RESERVATION_MILLIS
-            - CabConstants.DateTimeConstants.ALLOWABLE_ERROR) {
+                + CabConstants.DateTimeConstants.ALLOWABLE_ERROR
+                || range.getIntervalInMillis() < CabConstants.ReservationConstants.MIN_RESERVATION_MILLIS
+                - CabConstants.DateTimeConstants.ALLOWABLE_ERROR) {
             throw new CabCommandException("cannot make reservation more than 4 hours or less than 0.5 hour...");
         }
         this.record = record;
         this.start = range.getStart();
-        this.end  = range.getEnd();
+        this.end = range.getEnd();
     }
 
     public String getReservationId() {
@@ -57,13 +58,23 @@ public class CabModificationCommand extends CabAbstractCommand {
     }
 
     @Override
-    public void executeCommand() throws Exception {
-        if (this.observer != null) {
-            CabUtilities.modifyReservation(this, this.observer);
-        } else {
-            CabUtilities.modifyReservation(this);
+    public ExecuteResult executeCommand() throws Exception {
+        ResponseState result = CabUtilities.modifyReservation(this);
+        ExecuteResult.CommandResultState ret;
+        switch (result) {
+            case ReservationSuccess:
+                ret = ExecuteResult.CommandResultState.Success;
+                break;
+            case ConflictFailure:
+                ret = ExecuteResult.CommandResultState.Conflict;
+                break;
+            case DateFailure:
+                ret = ExecuteResult.CommandResultState.Local;
+                break;
+            default:
+                ret = ExecuteResult.CommandResultState.NetworkFailure;
         }
-
+        return new ExecuteResult(cmdKind, observer, ret);
     }
 
 }

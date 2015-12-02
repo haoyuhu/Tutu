@@ -24,7 +24,6 @@ public class ThuCab {
     public static void clear(StudentAccount account) {
         CabCmdExecutorImpl.getInstance().clear();
         ResvRecordStore.clear(account);
-        AutoResvStore.clear(account);
         UserAccountManager.getInstance().clear();
     }
 
