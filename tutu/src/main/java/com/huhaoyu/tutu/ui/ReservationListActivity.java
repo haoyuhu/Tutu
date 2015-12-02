@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,8 +23,10 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.utils.DrawerManager;
 import com.huhaoyu.tutu.utils.DrawerManagerImpl;
+import com.huhaoyu.tutu.utils.RefresherManager;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
+import com.huhaoyu.tutu.widget.FilterCallback;
 import com.rey.material.widget.ProgressView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
@@ -41,9 +44,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.PreferenceUtilities;
+import mu.lab.thulib.thucab.ThuCab;
 import mu.lab.thulib.thucab.UserAccountManager;
+import mu.lab.thulib.thucab.entity.CabFilter;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;
+import mu.lab.thulib.thucab.httputils.CabHttpClient;
 import mu.lab.thulib.thucab.httputils.LoginStateObserver;
 import mu.lab.tufeedback.common.TUFeedback;
 import mu.lab.util.Log;
@@ -74,7 +80,7 @@ public class ReservationListActivity extends BaseActivity
     private ActionBarDrawerToggle drawerToggle;
     private DrawerManager drawerManager;
     private RefresherManager refresherManager;
-    private List<ReservationListFragment> fragments = new ArrayList<>();
+    private List<RefreshableFragment> fragments = new ArrayList<>();
     private UserAccountManager accountManager = UserAccountManager.getInstance();
 
     @Override
@@ -124,6 +130,26 @@ public class ReservationListActivity extends BaseActivity
             list.add(item);
             fragments.add(fragment);
         }
+        InfoListFragment fragment = InfoListFragment.newInstance(fabGroup, this);
+        FragmentTitle info = new FragmentTitle(fragment, tabs[3]);
+        list.add(info);
+        fragments.add(fragment);
+
+        materialViewPager.getViewPager().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                final int myReservationPos = fragments.size() - 1;
+                fabFilter.setVisibility(position == myReservationPos ? View.GONE : View.VISIBLE);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
         materialViewPager.getViewPager().setAdapter(new FragmentPagerAdapter(getSupportFragmentManager(), list));
         materialViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
@@ -156,8 +182,11 @@ public class ReservationListActivity extends BaseActivity
                     case R.id.drawer_seat_state:
                         break;
                     case R.id.drawer_switch_account:
+                        clear();
+                        openLoginFragment();
                         break;
                     case R.id.drawer_logout:
+                        clear();
                         break;
                     case R.id.drawer_feedback:
                         TUFeedback.openFeedbackActivity(ReservationListActivity.this);
@@ -183,13 +212,7 @@ public class ReservationListActivity extends BaseActivity
     }
 
     private void setDrawerHeaderAndMenu() {
-        StudentAccount account = null;
-        try {
-            account = accountManager.getAccount();
-        } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
-            Log.e(LogTag, error.toString(), error);
-        }
-        drawerManager = new DrawerManagerImpl(account, navigation, this);
+        drawerManager = new DrawerManagerImpl(navigation, this);
         drawerManager.onInit();
     }
 
@@ -310,11 +333,8 @@ public class ReservationListActivity extends BaseActivity
     }
 
     private void refresh() {
-        int count = DateTimeUtilities.DayRound.values().length;
         int current = materialViewPager.getViewPager().getCurrentItem();
-        if (current < count) {
-            fragments.get(current).refresh(true, this);
-        }
+        fragments.get(current).refresh(true, this);
     }
 
     public void openLoginFragment() {
@@ -327,8 +347,18 @@ public class ReservationListActivity extends BaseActivity
         LoginFragment.show(getFragmentManager(), this, loginObserver, account);
     }
 
-    public void clearDrawable() {
+    public void clear() {
+        try {
+            StudentAccount account = accountManager.getAccount();
+            ThuCab.clear(account);
+        } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
+            Log.e(LogTag, error.toString(), error);
+        }
+        final int myReservationPos = fragments.size() - 1;
+        CabHttpClient.cancel();
         drawerManager.onClearUp();
+        refreshFab();
+        ((InfoListFragment) fragments.get(myReservationPos)).clear();
     }
 
     @Override
@@ -338,6 +368,19 @@ public class ReservationListActivity extends BaseActivity
             SnackbarManager manager = new SnackbarManager(fabGroup);
             manager.setContent(R.string.tutu_refresh_reservation_failure).show();
         }
+    }
+
+    @Override
+    public void onAccountError() {
+        refresherManager.stop();
+        onAccountNeedActivate();
+        openLoginFragment();
+    }
+
+    @Override
+    public void onAccountNeedActivate() {
+        refresherManager.stop();
+        this.clear();
     }
 
     @Override
@@ -353,6 +396,26 @@ public class ReservationListActivity extends BaseActivity
                 fabGroup.collapse();
                 break;
             case R.id.fab_filter:
+                int current = materialViewPager.getViewPager().getCurrentItem();
+                int count = DateTimeUtilities.DayRound.values().length;
+                if (current >= 0 && current < count) {
+                    final ReservationListFragment fragment = (ReservationListFragment) fragments.get(current);
+                    CabFilter old = fragment.getFilter();
+                    FilterFragment filterFrg = FilterFragment.newInstance(old, new FilterCallback() {
+                        @Override
+                        public void onConfirm(List<DateTimeUtilities.TimePeriod> periods, int minInterval) {
+                            fragment.resetFilter(periods, minInterval);
+                            refresh();
+                        }
+
+                        @Override
+                        public void onClear() {
+                            fragment.resetFilter(null, CabFilter.DefaultMinInterval);
+                            refresh();
+                        }
+                    });
+                    filterFrg.show(getSupportFragmentManager(), R.id.bottom_sheet);
+                }
                 fabGroup.collapse();
                 break;
             case R.id.fab_smart_reservation:
@@ -368,8 +431,10 @@ public class ReservationListActivity extends BaseActivity
         @Override
         public void onLoginSuccess(StudentDetails details, StudentAccount account) {
             super.onLoginSuccess(details, account);
+            final int myReservationPos = fragments.size() - 1;
             drawerManager.onLogin(account);
-            setFab();
+            refreshFab();
+            fragments.get(myReservationPos).refresh(true, ReservationListActivity.this);
         }
     };
 
