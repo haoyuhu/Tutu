@@ -3,6 +3,7 @@
 
     <string name="thucab_ok">登录成功</string>
     <string name="thucab_operation_success">操作成功</string>
+    <string name="thucab_activate_success">首次使用请先激活账号</string>
     <string name="thucab_id_failure">学生学号有误，请重试</string>
     <string name="thucab_pwd_failure">账号密码有误，请重试</string>
     <string name="thucab_json_failure">网络错误，请重试或向labmu反馈问题</string>
@@ -21,5 +22,9 @@
 
     <string name="thucab_interval_for_reservation">持续%1$d时%2$d分</string>
     <string name="thucab_interval_for_reservation_without_mins">持续%1$d时</string>
+
+    <string name="thucab_today">今天</string>
+    <string name="thucab_tomorrow">明天</string>
+    <string name="thucab_day_after_tomorrow">后天</string>
 
 </resources>
