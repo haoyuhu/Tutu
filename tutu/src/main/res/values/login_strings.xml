@@ -6,6 +6,7 @@
     <string name="tutu_login_username_helper">Student ID usually 10 digits</string>
     <string name="tutu_login_username_error">Your student ID is incorrect!</string>
     <string name="tutu_login_password_error">Your password is incorrect!</string>
+    <string name="tutu_login_activate_error">Please activate your account!</string>
     <string name="tutu_login">Login</string>
     <string name="tutu_logout">Logout</string>
     <string name="tutu_activate">Activate</string>

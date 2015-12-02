@@ -6,6 +6,7 @@
     <string name="tutu_login_username_helper">学号一般是10位数字</string>
     <string name="tutu_login_username_error">您的学号有误!</string>
     <string name="tutu_login_password_error">您的密码有误!</string>
+    <string name="tutu_login_activate_error">请激活您的账号!</string>
     <string name="tutu_login">登录</string>
     <string name="tutu_logout">退出登录</string>
     <string name="tutu_activate">激活</string>
