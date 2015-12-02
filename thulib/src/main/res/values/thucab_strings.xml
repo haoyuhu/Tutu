@@ -3,6 +3,7 @@
 
     <string name="thucab_ok">Login success.</string>
     <string name="thucab_operation_success">Operation success.</string>
+    <string name="thucab_activate_failure">You should activate account.</string>
     <string name="thucab_id_failure">Your studentId is incorrect, please try again.</string>
     <string name="thucab_pwd_failure">Your password is incorrect, please try again.</string>
     <string name="thucab_json_failure">Network failure, please try again.</string>
@@ -21,5 +22,9 @@
 
     <string name="thucab_interval_for_reservation">last %1$d hours %2$d minutes</string>
     <string name="thucab_interval_for_reservation_without_mins">last %1$d hours</string>
+
+    <string name="thucab_today">Today</string>
+    <string name="thucab_tomorrow">Tomorrow</string>
+    <string name="thucab_day_after_tomorrow">DAT</string>
 
 </resources>
