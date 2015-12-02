@@ -10,11 +10,9 @@ import mu.lab.thulib.thucab.entity.StudentAccount;
  */
 public abstract class DrawerManager {
 
-    protected StudentAccount account;
     protected NavigationView navigation;
 
-    public DrawerManager(StudentAccount account, NavigationView navigation) {
-        this.account = account;
+    public DrawerManager(NavigationView navigation) {
         this.navigation = navigation;
     }
 
