@@ -26,4 +26,7 @@ public abstract class LoginStateObserver implements AbstractLoginObserver {
     public void onNetworkFailure(int resId) {
     }
 
+    public void onActivateFailure(int resId) {
+    }
+
 }

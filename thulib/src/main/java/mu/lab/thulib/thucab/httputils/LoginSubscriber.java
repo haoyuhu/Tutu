@@ -68,6 +68,11 @@ public class LoginSubscriber implements Observer<CabObjectResponse>{
                         observer.onPasswordFailure(response.getStateDetails());
                     }
                     break;
+                case ActivateFailure:
+                    for (AbstractLoginObserver observer : observers) {
+                        observer.onActivateFailure(response.getStateDetails());
+                    }
+                    break;
                 case JsonFailure:
                 case OtherFailure:
                 default:

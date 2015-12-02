@@ -17,4 +17,6 @@ public interface AbstractLoginObserver {
 
     void onNetworkFailure(int resId);
 
+    void onActivateFailure(int resId);
+
 }
