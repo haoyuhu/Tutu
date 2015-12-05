@@ -10,11 +10,13 @@ public class CabConstants {
         int MAX_RESERVATION_HOURS = 4;
         long MAX_RESERVATION_MILLIS = MAX_RESERVATION_HOURS * DateTimeConstants.MINUTE_OF_HOUR
             * DateTimeConstants.SECOND_OF_MINUTE * DateTimeConstants.MILLIS_OF_SECOND;
-        double MIN_RESERVATION_HOURS = 0.5;
-        long MIN_RESERVATION_MILLIS = (long) (MIN_RESERVATION_HOURS * DateTimeConstants.MINUTE_OF_HOUR
-            * DateTimeConstants.SECOND_OF_MINUTE * DateTimeConstants.MILLIS_OF_SECOND);
+        int MIN_RESERVATION_MINUTES = 30;
+        long MIN_RESERVATION_MILLIS = MIN_RESERVATION_MINUTES * DateTimeConstants.SECOND_OF_MINUTE
+                * DateTimeConstants.MILLIS_OF_SECOND;
         int MINUTE_OF_RESERVATION_INTERVAL = 10;
         int LIMIT_RESERVATION_DAYS = 3;
+        String START_TIME = "8:00";
+        String END_TIME = "22:00";
     }
 
     public interface DateTimeConstants {

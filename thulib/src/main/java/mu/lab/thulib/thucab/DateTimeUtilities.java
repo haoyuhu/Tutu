@@ -164,6 +164,26 @@ public class DateTimeUtilities {
     }
 
     /**
+     * @param calendar Calendar
+     * @param hours Interval
+     * @return Calendar after interval
+     */
+    public static Calendar getCalendarAfterIntervalInHour(Calendar calendar, int hours) {
+        calendar.roll(Calendar.HOUR_OF_DAY, hours);
+        return calendar;
+    }
+
+    /**
+     * @param calendar Calendar
+     * @param minutes Interval
+     * @return Calendar after interval
+     */
+    public static Calendar getCalendarAfterIntervalInMinute(Calendar calendar, int minutes) {
+        calendar.roll(Calendar.MINUTE, minutes);
+        return calendar;
+    }
+
+    /**
      * @param round Today, tomorrow or day after tomorrow
      * @return format date as yyyyMMdd(20150113)
      */
@@ -284,6 +304,31 @@ public class DateTimeUtilities {
         Calendar calendar = timeToCalendar(t1);
         Calendar another = timeToCalendar(t2);
         return calculateInterval(calendar, another);
+    }
+
+    /**
+     * @param start Start time format as HH:mm
+     * @param end End time format as HH:mm
+     * @return Max of optional end time
+     * @throws DateTimeException
+     */
+    public static String getMaxOptionalEnd(String start, String end) throws DateTimeException {
+        final long maxInterval = CabConstants.ReservationConstants.MAX_RESERVATION_MILLIS;
+        if (calculateInterval(end, start) <= maxInterval) {
+            return end;
+        } else {
+            final String pattern = "HH:mm";
+            Calendar startCal = timeToCalendar(start);
+            Calendar endCal = getCalendarAfterIntervalInHour(startCal, CabConstants.ReservationConstants.MAX_RESERVATION_HOURS);
+            return formatReservationDate(endCal, pattern);
+        }
+    }
+
+    public static String getMinOptionalEnd(String start) throws DateTimeException {
+        final String pattern = "HH:mm";
+        Calendar startCal = timeToCalendar(start);
+        Calendar endCal = getCalendarAfterIntervalInMinute(startCal, CabConstants.ReservationConstants.MIN_RESERVATION_MINUTES);
+        return formatReservationDate(endCal, pattern);
     }
 
     public static long calculateInterval(Calendar calendar, Calendar another) {
