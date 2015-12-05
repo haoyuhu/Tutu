@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.ReservationStateDecorator;
+import com.huhaoyu.tutu.ui.ReservationListActivity;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class ReservationItemHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(ReservationStateDecorator decorator, Context context) {
+    public void bind(final ReservationStateDecorator decorator, final Context context) {
         reservationTagsLl.removeAllViews();
         timeListLl.removeAllViews();
         Resources rs = context.getResources();
@@ -73,7 +74,7 @@ public class ReservationItemHolder extends RecyclerView.ViewHolder {
                 .inflate(R.layout.reservation_tag_item, reservationTagsLl, false);
         intervalTag.setText(interval);
         reservationTagsLl.addView(intervalTag);
-        for (ReservationState.TimeRange range : ranges) {
+        for (final ReservationState.TimeRange range : ranges) {
             View view = LayoutInflater.from(context).inflate(R.layout.reservation_time_item, timeListLl, false);
             ImageView icon = (ImageView) view.findViewById(R.id.time_icon);
             TextView timeTv = (TextView) view.findViewById(R.id.time_tv);
@@ -107,7 +108,8 @@ public class ReservationItemHolder extends RecyclerView.ViewHolder {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: 15/11/25 start reservation popup window
+                    ReservationListActivity activity = (ReservationListActivity) context;
+                    activity.openReservationFragment(decorator, range);
                 }
             });
             timeListLl.addView(view);
