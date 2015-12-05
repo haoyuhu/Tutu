@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_reservation">Reservation</string>
+    <string name="tutu_reservation_quit">Quit</string>
+    <string name="tutu_reservation_confirm">Confirm</string>
+    <string name="tutu_reservation_base_tag">Base Settings</string>
+    <string name="tutu_reservation_more_tag">More Settings</string>
+    <string name="tutu_reservation_start">Start From</string>
+    <string name="tutu_reservation_end">End To</string>
+    <string name="tutu_reservation_reason">Reservation Reason</string>
+    <string name="tutu_reservation_complete">Completed</string>
+    <string name="tutu_reservation_network_failure">Network failure lead to Reservation Failure.</string>
+    <string name="tutu_reservation_conflict">Reservation conflict, please refresh and do again.</string>
+    <string name="tutu_reservation_unknown_failure">Unknown failure, please contact developers.</string>
+    <string name="tutu_reservation_account_failure">Account incorrect, please login again.</string>
+
+</resources>
