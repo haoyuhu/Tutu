@@ -21,12 +21,15 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.huhaoyu.tutu.R;
+import com.huhaoyu.tutu.entity.ReservationRecordDecorator;
+import com.huhaoyu.tutu.entity.ReservationStateDecorator;
 import com.huhaoyu.tutu.utils.DrawerManager;
 import com.huhaoyu.tutu.utils.DrawerManagerImpl;
 import com.huhaoyu.tutu.utils.RefresherManager;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
 import com.huhaoyu.tutu.widget.FilterCallback;
+import com.huhaoyu.tutu.widget.ReservationObserver;
 import com.rey.material.widget.ProgressView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
@@ -47,6 +50,8 @@ import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.ThuCab;
 import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.CabFilter;
+import mu.lab.thulib.thucab.entity.ReservationRecord;
+import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.thulib.thucab.httputils.CabHttpClient;
@@ -55,7 +60,7 @@ import mu.lab.tufeedback.common.TUFeedback;
 import mu.lab.util.Log;
 
 public class ReservationListActivity extends BaseActivity
-        implements View.OnClickListener, RefreshCallback {
+        implements View.OnClickListener {
 
     private static final String LogTag = ReservationListActivity.class.getCanonicalName();
     @Bind(R.id.material_view_pager)
@@ -110,7 +115,7 @@ public class ReservationListActivity extends BaseActivity
         drawerManager.onResume();
 
         for (RefreshableFragment fragment : fragments) {
-            fragment.refresh(false, this);
+            fragment.refresh(false, refreshObserver);
         }
     }
 
@@ -125,12 +130,12 @@ public class ReservationListActivity extends BaseActivity
         List<FragmentTitle> list = new ArrayList<>();
         DateTimeUtilities.DayRound[] rounds = DateTimeUtilities.DayRound.values();
         for (int i = 0; i != 3; ++i) {
-            ReservationListFragment fragment = ReservationListFragment.newInstance(rounds[i], this);
+            ReservationListFragment fragment = ReservationListFragment.newInstance(rounds[i], refreshObserver);
             FragmentTitle item = new FragmentTitle(fragment, tabs[i]);
             list.add(item);
             fragments.add(fragment);
         }
-        InfoListFragment fragment = InfoListFragment.newInstance(fabGroup, this);
+        InfoListFragment fragment = InfoListFragment.newInstance(fabGroup, refreshObserver);
         FragmentTitle info = new FragmentTitle(fragment, tabs[3]);
         list.add(info);
         fragments.add(fragment);
@@ -189,7 +194,7 @@ public class ReservationListActivity extends BaseActivity
                         clear();
                         break;
                     case R.id.drawer_feedback:
-                        TUFeedback.openFeedbackActivity(ReservationListActivity.this);
+                        openFeedbackActivity();
                         break;
                     case R.id.drawer_check_update:
                         checkUmengAppUpdate(fabGroup);
@@ -334,7 +339,16 @@ public class ReservationListActivity extends BaseActivity
 
     private void refresh() {
         int current = materialViewPager.getViewPager().getCurrentItem();
-        fragments.get(current).refresh(true, this);
+        refresh(current);
+    }
+
+    private void refresh(int index) {
+        fragments.get(index).refresh(true, refreshObserver);
+    }
+
+    private void refreshInfo() {
+        final int myInfoPos = 3;
+        fragments.get(myInfoPos).refresh(true, refreshObserver);
     }
 
     public void openLoginFragment() {
@@ -345,6 +359,73 @@ public class ReservationListActivity extends BaseActivity
             Log.e(LogTag, error.toString(), error);
         }
         LoginFragment.show(getFragmentManager(), this, loginObserver, account);
+    }
+
+    public void openFilterFragment() {
+        int current = materialViewPager.getViewPager().getCurrentItem();
+        int count = DateTimeUtilities.DayRound.values().length;
+        if (current >= 0 && current < count) {
+            final ReservationListFragment fragment = (ReservationListFragment) fragments.get(current);
+            CabFilter old = fragment.getFilter();
+            FilterFragment filterFrg = FilterFragment.newInstance(old, new FilterCallback() {
+                @Override
+                public void onConfirm(List<DateTimeUtilities.TimePeriod> periods, int minInterval) {
+                    fragment.resetFilter(periods, minInterval);
+                    refresh();
+                }
+
+                @Override
+                public void onClear() {
+                    fragment.resetFilter(null, CabFilter.DefaultMinInterval);
+                    refresh();
+                }
+            });
+            filterFrg.show(getSupportFragmentManager(), R.id.bottom_sheet);
+        }
+    }
+
+    public void openReservationFragment(ReservationStateDecorator state, ReservationState.TimeRange range) {
+        int current = materialViewPager.getViewPager().getCurrentItem();
+        DateTimeUtilities.DayRound[] rounds = DateTimeUtilities.DayRound.values();
+        if (current >= 0 && current < rounds.length) {
+            DateTimeUtilities.DayRound round = rounds[current];
+            ReservationFragment fragment = ReservationFragment.newInstance(state, range, round, reservationObserver);
+            fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
+        }
+    }
+
+    public void openAutoReservationActivity() {
+
+    }
+
+    public void openSmartReservationActivity() {
+
+    }
+
+    public void openModificationFragment(ReservationRecordDecorator record) {
+        ModificationFragment fragment = ModificationFragment.newInstance(record, reservationObserver);
+        fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
+    }
+
+    public void openDeletionFragment(ReservationRecordDecorator record) {
+        DeletionFragment fragment = DeletionFragment.newInstance(record, reservationObserver);
+        fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
+    }
+
+    public void openHelpActivity() {
+
+    }
+
+    public void openCheckSeatsActivity() {
+
+    }
+
+    public void openDonationFragment() {
+
+    }
+
+    public void openFeedbackActivity() {
+        TUFeedback.openFeedbackActivity(ReservationListActivity.this);
     }
 
     public void clear() {
@@ -362,33 +443,6 @@ public class ReservationListActivity extends BaseActivity
     }
 
     @Override
-    public void onRefreshComplete(boolean result) {
-        refresherManager.stop();
-        if (!result) {
-            SnackbarManager manager = new SnackbarManager(fabGroup);
-            manager.setContent(R.string.tutu_refresh_reservation_failure).show();
-        }
-    }
-
-    @Override
-    public void onAccountError() {
-        refresherManager.stop();
-        onAccountNeedActivate();
-        openLoginFragment();
-    }
-
-    @Override
-    public void onAccountNeedActivate() {
-        refresherManager.stop();
-        this.clear();
-    }
-
-    @Override
-    public void onRefreshStart() {
-        refresherManager.start();
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_refresh:
@@ -396,26 +450,7 @@ public class ReservationListActivity extends BaseActivity
                 fabGroup.collapse();
                 break;
             case R.id.fab_filter:
-                int current = materialViewPager.getViewPager().getCurrentItem();
-                int count = DateTimeUtilities.DayRound.values().length;
-                if (current >= 0 && current < count) {
-                    final ReservationListFragment fragment = (ReservationListFragment) fragments.get(current);
-                    CabFilter old = fragment.getFilter();
-                    FilterFragment filterFrg = FilterFragment.newInstance(old, new FilterCallback() {
-                        @Override
-                        public void onConfirm(List<DateTimeUtilities.TimePeriod> periods, int minInterval) {
-                            fragment.resetFilter(periods, minInterval);
-                            refresh();
-                        }
-
-                        @Override
-                        public void onClear() {
-                            fragment.resetFilter(null, CabFilter.DefaultMinInterval);
-                            refresh();
-                        }
-                    });
-                    filterFrg.show(getSupportFragmentManager(), R.id.bottom_sheet);
-                }
+                openFilterFragment();
                 fabGroup.collapse();
                 break;
             case R.id.fab_smart_reservation:
@@ -427,6 +462,56 @@ public class ReservationListActivity extends BaseActivity
         }
     }
 
+    private ReservationObserver reservationObserver = new ReservationObserver() {
+        @Override
+        public void onAccountError() {
+            ReservationListActivity.this.clear();
+            openLoginFragment();
+        }
+
+        @Override
+        public void onNetworkError() {
+        }
+
+        @Override
+        public void onReservationSuccess() {
+            refresh();
+            final int myInfoPos = 3;
+            int current = materialViewPager.getViewPager().getCurrentItem();
+            if (current != myInfoPos) {
+                refreshInfo();
+            }
+        }
+    };
+
+    private RefreshObserver refreshObserver = new RefreshObserver() {
+        @Override
+        public void onRefreshComplete(boolean result) {
+            refresherManager.stop();
+            if (!result) {
+                SnackbarManager manager = new SnackbarManager(fabGroup);
+                manager.setContent(R.string.tutu_refresh_reservation_failure).show();
+            }
+        }
+
+        @Override
+        public void onAccountError() {
+            onAccountNeedActivate();
+            openLoginFragment();
+        }
+
+        @Override
+        public void onAccountNeedActivate() {
+            refresherManager.stop();
+            ReservationListActivity.this.clear();
+        }
+
+        @Override
+        public void onRefreshStart() {
+            refresherManager.start();
+        }
+    };
+
     private LoginStateObserver loginObserver = new LoginStateObserver() {
         @Override
         public void onLoginSuccess(StudentDetails details, StudentAccount account) {
@@ -434,7 +519,7 @@ public class ReservationListActivity extends BaseActivity
             final int myReservationPos = fragments.size() - 1;
             drawerManager.onLogin(account);
             refreshFab();
-            fragments.get(myReservationPos).refresh(true, ReservationListActivity.this);
+            fragments.get(myReservationPos).refresh(true, refreshObserver);
         }
     };
 

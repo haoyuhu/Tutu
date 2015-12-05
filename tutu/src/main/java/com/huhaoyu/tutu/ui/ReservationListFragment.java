@@ -45,13 +45,13 @@ public class ReservationListFragment extends Fragment
 
     private DateTimeUtilities.DayRound mRound;
     private CabFilter mFilter;
-    private RefreshCallback mRefreshCallback;
+    private RefreshObserver mRefreshObserver;
     private long mTimeStamp = 0;
 
-    public static ReservationListFragment newInstance(DateTimeUtilities.DayRound round, RefreshCallback callback) {
+    public static ReservationListFragment newInstance(DateTimeUtilities.DayRound round, RefreshObserver callback) {
         ReservationListFragment fragment = new ReservationListFragment();
         fragment.mRound = round;
-        fragment.mRefreshCallback = callback;
+        fragment.mRefreshObserver = callback;
         fragment.mFilter = new CabFilter(null, DEFAULT_MIN_INTERVAL_IN_HOUR);
         fragment.mStates = new ReservationStatesWrapper(round);
         return fragment;
@@ -91,13 +91,13 @@ public class ReservationListFragment extends Fragment
     }
 
     @Override
-    public void refresh(boolean force, RefreshCallback callback) {
+    public void refresh(boolean force, RefreshObserver callback) {
         if (callback != null) {
-            mRefreshCallback = callback;
+            mRefreshObserver = callback;
         }
         if (force || System.currentTimeMillis() - this.mTimeStamp >= TutuConstants.Constants.REFRESH_INTERVAL) {
-            if (mRefreshCallback != null) {
-                mRefreshCallback.onRefreshStart();
+            if (mRefreshObserver != null) {
+                mRefreshObserver.onRefreshStart();
             }
             refreshState(this.mFilter);
         }
@@ -111,8 +111,8 @@ public class ReservationListFragment extends Fragment
     @Override
     public void onError(Throwable e) {
         Log.e(LogTag, e.getMessage(), e);
-        if (mRefreshCallback != null) {
-            mRefreshCallback.onRefreshComplete(false);
+        if (mRefreshObserver != null) {
+            mRefreshObserver.onRefreshComplete(false);
         }
     }
 
@@ -123,8 +123,8 @@ public class ReservationListFragment extends Fragment
             mAdapter.notifyDataSetChanged();
         }
         this.mTimeStamp = System.currentTimeMillis();
-        if (mRefreshCallback != null) {
-            mRefreshCallback.onRefreshComplete(true);
+        if (mRefreshObserver != null) {
+            mRefreshObserver.onRefreshComplete(true);
         }
     }
 }

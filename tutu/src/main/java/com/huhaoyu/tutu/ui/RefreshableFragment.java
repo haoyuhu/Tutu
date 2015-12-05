@@ -6,6 +6,6 @@ package com.huhaoyu.tutu.ui;
  */
 public interface RefreshableFragment {
 
-    void refresh(boolean force, RefreshCallback callback);
+    void refresh(boolean force, RefreshObserver callback);
 
 }

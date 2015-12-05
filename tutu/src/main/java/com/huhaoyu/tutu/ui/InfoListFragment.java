@@ -53,16 +53,16 @@ public class InfoListFragment extends Fragment
     private View fab;
     private long mTimeStamp = 0;
 
-    private RefreshCallback mRefreshCallback;
+    private RefreshObserver mRefreshObserver;
     private ReservationInfoWrapper mInfos;
     private RecyclerView.Adapter mAdapter;
     private UserAccountManager mManager;
 
     private Observer<List<ReservationRecord>> realmSubscriber;
 
-    public static InfoListFragment newInstance(FloatingActionsMenu fab, RefreshCallback callback) {
+    public static InfoListFragment newInstance(FloatingActionsMenu fab, RefreshObserver callback) {
         InfoListFragment fragment = new InfoListFragment();
-        fragment.mRefreshCallback = callback;
+        fragment.mRefreshObserver = callback;
         fragment.mInfos = new ReservationInfoWrapper();
         fragment.mManager = UserAccountManager.getInstance();
         fragment.fab = fab;
@@ -136,8 +136,8 @@ public class InfoListFragment extends Fragment
         if (mManager.hasAccount()) {
             try {
                 StudentAccount account = mManager.getAccount();
-                if (mRefreshCallback != null) {
-                    mRefreshCallback.onRefreshStart();
+                if (mRefreshObserver != null) {
+                    mRefreshObserver.onRefreshStart();
                 }
                 ResvRecordStore.getResvRecords(account, true, this);
             } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
@@ -147,9 +147,9 @@ public class InfoListFragment extends Fragment
     }
 
     @Override
-    public void refresh(boolean force, RefreshCallback callback) {
+    public void refresh(boolean force, RefreshObserver callback) {
         if (callback != null) {
-            mRefreshCallback = callback;
+            mRefreshObserver = callback;
         }
         if (force || System.currentTimeMillis() - this.mTimeStamp >= TutuConstants.Constants.REFRESH_INTERVAL) {
             refreshRecords();
@@ -177,19 +177,19 @@ public class InfoListFragment extends Fragment
                                 getActivity().startActivity(intent);
                             }
                         });
-                if (mRefreshCallback != null) {
-                    mRefreshCallback.onAccountNeedActivate();
+                if (mRefreshObserver != null) {
+                    mRefreshObserver.onAccountNeedActivate();
                 }
                 break;
             case IdFailure:
             case PasswordFailure:
-                if (mRefreshCallback != null) {
-                    mRefreshCallback.onAccountError();
+                if (mRefreshObserver != null) {
+                    mRefreshObserver.onAccountError();
                 }
                 break;
             default:
-                if (mRefreshCallback != null) {
-                    mRefreshCallback.onRefreshComplete(false);
+                if (mRefreshObserver != null) {
+                    mRefreshObserver.onRefreshComplete(false);
                 }
         }
         manager.show();
@@ -206,7 +206,7 @@ public class InfoListFragment extends Fragment
             }
         }
         mInfos.refresh(records, details);
-        mRefreshCallback.onRefreshComplete(true);
+        mRefreshObserver.onRefreshComplete(true);
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
         }
