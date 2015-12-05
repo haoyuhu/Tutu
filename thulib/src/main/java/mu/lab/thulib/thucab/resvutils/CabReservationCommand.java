@@ -5,6 +5,7 @@ import java.util.Calendar;
 import mu.lab.thulib.thucab.CabConstants;
 import mu.lab.thulib.thucab.CabUtilities;
 import mu.lab.thulib.thucab.DateTimeUtilities;
+import mu.lab.thulib.thucab.entity.AbstractState;
 import mu.lab.thulib.thucab.entity.AutoReservationItem;
 import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.httputils.ResponseState;
@@ -15,14 +16,14 @@ import mu.lab.thulib.thucab.httputils.ResponseState;
  */
 public class CabReservationCommand extends CabAbstractCommand {
 
-    private ReservationState record;
+    private AbstractState record;
     private Calendar date;
     // format as HH:mm
     private String start;
     // format as HH:mm
     private String end;
 
-    public CabReservationCommand(ReservationState record, Calendar date,
+    public CabReservationCommand(AbstractState record, Calendar date,
                                  ReservationState.TimeRange range, ExecutorResultObserver observer)
         throws CabCommandException {
         super(observer, CommandKind.Reservation);

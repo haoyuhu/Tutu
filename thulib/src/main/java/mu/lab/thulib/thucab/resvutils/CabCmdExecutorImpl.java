@@ -14,6 +14,7 @@ import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.httputils.ResponseState;
 import rx.Observable;
 import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.exceptions.OnErrorThrowable;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -131,7 +132,9 @@ public class CabCmdExecutorImpl implements CabCommandExecutor, Observer<ExecuteR
                 }
                 return Observable.from(results);
             }
-        }).subscribeOn(Schedulers.io()).subscribe(this);
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this);
     }
 
     @Override

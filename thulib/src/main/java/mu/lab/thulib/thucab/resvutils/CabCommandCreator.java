@@ -3,6 +3,7 @@ package mu.lab.thulib.thucab.resvutils;
 import java.util.Calendar;
 
 import mu.lab.thulib.thucab.DateTimeUtilities;
+import mu.lab.thulib.thucab.entity.AbstractState;
 import mu.lab.thulib.thucab.entity.AutoReservationItem;
 import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
@@ -15,7 +16,7 @@ import mu.lab.thulib.thucab.entity.StudentAccount;
 public class CabCommandCreator {
 
     public static CabCommand createReservationCommand(
-        ReservationState record, Calendar date, ReservationState.TimeRange range,
+        AbstractState record, Calendar date, ReservationState.TimeRange range,
         ExecutorResultObserver observer) throws CabCommand.CabCommandException {
         return new CabReservationCommand(record, date, range, observer);
     }
