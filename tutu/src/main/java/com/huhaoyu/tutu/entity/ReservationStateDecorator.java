@@ -154,6 +154,10 @@ public class ReservationStateDecorator implements AbstractState {
         return 0l;
     }
 
+    public AbstractState getOrigin() {
+        return this.state;
+    }
+
     public long getTotalInterval() {
         return this.interval;
     }
