@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.ReservationRecordDecorator;
+import com.huhaoyu.tutu.ui.ReservationListActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
  * info item holder
  * Created by coderhuhy on 15/11/30.
  */
-public class InfoItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class InfoItemHolder extends RecyclerView.ViewHolder {
 
 
     @Bind(R.id.info_image)
@@ -48,7 +49,7 @@ public class InfoItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(ReservationRecordDecorator record, int position, Context context) {
+    public void bind(final ReservationRecordDecorator record, int position, final Context context) {
         String roomName, round, happen, perioid, time;
         roomName = record.getRoomName();
         round = record.getDayRound(context);
@@ -70,17 +71,18 @@ public class InfoItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         happenTagTv.setTextColor(background);
 
         buttonContainerLl.setVisibility(record.isHasStarted() ? View.GONE : View.VISIBLE);
-        modifyButton.setOnClickListener(this);
-        deleteButton.setOnClickListener(this);
+        modifyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ReservationListActivity) context).openModificationFragment(record);
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ReservationListActivity) context).openDeletionFragment(record);
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.modify_button:
-                break;
-            case R.id.delete_button:
-                break;
-        }
-    }
 }
