@@ -5,6 +5,8 @@
     <string name="tutu_smart_today">今天</string>
     <string name="tutu_smart_tomorrow">明天</string>
     <string name="tutu_smart_day_after_tomorrow">后天</string>
-    <string name="tutu_smart_view_recommendation">推荐</string>
+    <string name="tutu_smart_view_recommendation">推荐预约</string>
+    <string name="tutu_smart_conflict_reservation">预约冲突，您已有当天的预约</string>
+    <string name="tutu_smart_no_match_reservation">没有符合时间的预约，请查看推荐</string>
 
 </resources>

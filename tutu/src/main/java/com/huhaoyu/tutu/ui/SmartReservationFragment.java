@@ -73,6 +73,7 @@ public class SmartReservationFragment extends BottomSheetFragment
     private UserAccountManager accountManager;
     private CabCommandExecutor executor;
     private boolean available = true;
+    private List<RecommendResv> recommendation;
 
     private CabSmartResvCommand.SmartReservationObserver callback = new CabSmartResvCommand.SmartReservationObserver() {
         @Override
@@ -81,6 +82,9 @@ public class SmartReservationFragment extends BottomSheetFragment
             confirmButton.setEnabled(true);
             available = false;
             confirmButton.setText(getContext().getString(R.string.tutu_smart_view_recommendation));
+            recommendation = list;
+            SnackbarManager snackbar = new SnackbarManager(titleTv);
+            snackbar.setContent(R.string.tutu_smart_no_match_reservation).show();
         }
 
         @Override
@@ -88,7 +92,7 @@ public class SmartReservationFragment extends BottomSheetFragment
             refresherManager.stop();
             confirmButton.setEnabled(true);
             SnackbarManager snackbar = new SnackbarManager(titleTv);
-            snackbar.setContent(R.string.tutu_reservation_conflict).show();
+            snackbar.setContent(R.string.tutu_smart_conflict_reservation).show();
         }
 
         @Override
@@ -188,7 +192,10 @@ public class SmartReservationFragment extends BottomSheetFragment
                 if (available) {
                     sendReservation();
                 } else {
-                    openRecommendation();
+                    if (recommendation != null) {
+                        ((ReservationListActivity) getActivity()).openRecommendationActivity(recommendation);
+                    }
+                    dismiss();
                 }
                 break;
             case R.id.start_time_tv:
@@ -198,10 +205,6 @@ public class SmartReservationFragment extends BottomSheetFragment
                 getTime(false);
                 break;
         }
-    }
-
-    private void openRecommendation() {
-
     }
 
     private void click(DateTimeUtilities.DayRound round) {

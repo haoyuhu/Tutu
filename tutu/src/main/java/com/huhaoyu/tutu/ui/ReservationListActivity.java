@@ -50,6 +50,7 @@ import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.ThuCab;
 import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.CabFilter;
+import mu.lab.thulib.thucab.entity.RecommendResv;
 import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.entity.StudentAccount;
@@ -412,6 +413,10 @@ public class ReservationListActivity extends BaseActivity
     public void openDeletionFragment(ReservationRecordDecorator record) {
         DeletionFragment fragment = DeletionFragment.newInstance(record, reservationObserver);
         fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
+    }
+
+    public void openRecommendationActivity(List<RecommendResv> list) {
+
     }
 
     public void openHelpActivity() {

@@ -13,6 +13,7 @@ import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.RecommendResv;
 import mu.lab.thulib.thucab.entity.RecommendResvBuilder;
 import mu.lab.thulib.thucab.entity.RecommendResvImpl;
+import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
 
 /**
@@ -40,6 +41,14 @@ public class CabSmartResvCommand extends CabAbstractCommand {
     @Override
     public ExecuteResult executeCommand() throws Exception {
         boolean success = false;
+        Calendar resvCal = DateTimeUtilities.dayRoundToCalendar(round);
+        List<ReservationRecord> records = CabUtilities.getReservationRecordsWithoutLogin();
+        for (ReservationRecord record : records) {
+            Calendar c = record.getDate();
+            if (DateTimeUtilities.isTheSameDay(resvCal, c)) {
+                return new ExecuteResult(cmdKind, smartObserver, ExecuteResult.CommandResultState.Conflict);
+            }
+        }
         List<RecommendResvImpl> rest = new ArrayList<>();
         List<ReservationState> list = CabUtilities.queryRoomState(round);
         ExecuteResult.CommandResultState state = ExecuteResult.CommandResultState.Recommendation;
