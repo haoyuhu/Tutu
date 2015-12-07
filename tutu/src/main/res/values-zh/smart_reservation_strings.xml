@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_smart_reservation">智能预约研读间</string>
+    <string name="tutu_smart_today">今天</string>
+    <string name="tutu_smart_tomorrow">明天</string>
+    <string name="tutu_smart_day_after_tomorrow">后天</string>
+    <string name="tutu_smart_view_recommendation">推荐</string>
+
+</resources>
