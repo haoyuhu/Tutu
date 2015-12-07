@@ -1,6 +1,7 @@
 package com.huhaoyu.tutu.widget;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -50,10 +51,10 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final ReservationRecordDecorator record, int position, final Context context) {
-        String roomName, round, happen, perioid, time;
+        String roomName, round, happen, period, time;
         roomName = record.getRoomName();
         round = record.getDayRound(context);
-        perioid = record.getPeriod(context);
+        period = record.getPeriod(context);
         happen = record.getState(context);
 
         time = record.getStart2End();
@@ -62,13 +63,14 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
         infoImage.setImageResource(record.getPeriodImageRes());
         roomNameTv.setText(roomName);
         roundTagTv.setText(round);
-        periodTagTv.setText(perioid);
+        periodTagTv.setText(period);
         happenTagTv.setText(happen);
         timeTv.setText(time);
-        infoBackgroundLl.setBackgroundColor(background);
-        roundTagTv.setTextColor(background);
-        periodTagTv.setTextColor(background);
-        happenTagTv.setTextColor(background);
+        Resources res = context.getResources();
+        infoBackgroundLl.setBackgroundColor(res.getColor(background));
+        roundTagTv.setTextColor(res.getColor(background));
+        periodTagTv.setTextColor(res.getColor(background));
+        happenTagTv.setTextColor(res.getColor(background));
 
         buttonContainerLl.setVisibility(record.isHasStarted() ? View.GONE : View.VISIBLE);
         modifyButton.setOnClickListener(new View.OnClickListener() {

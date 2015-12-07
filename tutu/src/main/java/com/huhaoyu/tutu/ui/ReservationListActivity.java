@@ -178,6 +178,7 @@ public class ReservationListActivity extends BaseActivity
                         materialViewPager.getViewPager().setCurrentItem(DEFAULT_PAGE, true);
                         break;
                     case R.id.drawer_smart_reservation:
+                        openSmartReservationFragment();
                         break;
                     case R.id.drawer_auto_reservation:
                         break;
@@ -398,8 +399,9 @@ public class ReservationListActivity extends BaseActivity
 
     }
 
-    public void openSmartReservationActivity() {
-
+    public void openSmartReservationFragment() {
+        SmartReservationFragment fragment = SmartReservationFragment.newInstance(reservationObserver);
+        fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
     }
 
     public void openModificationFragment(ReservationRecordDecorator record) {
@@ -454,6 +456,7 @@ public class ReservationListActivity extends BaseActivity
                 fabGroup.collapse();
                 break;
             case R.id.fab_smart_reservation:
+                openSmartReservationFragment();
                 fabGroup.collapse();
                 break;
             case R.id.fab_auto_reservation:
