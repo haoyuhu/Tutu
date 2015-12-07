@@ -9,6 +9,7 @@ import mu.lab.thulib.thucab.CabConstants;
 public class TutuConstants {
 
     public interface Constants {
+        int DEFAULT_SMART_RESERVATION_INTERVAL_IN_HOUR = 1;
         long REFRESH_INTERVAL = CabConstants.DateTimeConstants.MINUTE_OF_HOUR
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE;
