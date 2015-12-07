@@ -10,6 +10,8 @@ import mu.lab.thulib.thucab.DateTimeUtilities;
  */
 public class RecommendResvImpl implements Comparable<RecommendResv>, RecommendResv {
 
+    private static final double PRIORITY_INTERVAL_WEIGHT = 0.5;
+
     private String roomName;
     private String devId;
     private RoomLabKind kind;
@@ -65,7 +67,8 @@ public class RecommendResvImpl implements Comparable<RecommendResv>, RecommendRe
 
     public void calculatePriority(ReservationState.TimeRange r) throws DateTimeUtilities.DateTimeException {
         this.priority = DateTimeUtilities.calculateAbsInterval(r.getStart(), range.getStart())
-            + DateTimeUtilities.calculateAbsInterval(r.getEnd(), range.getEnd());
+                + DateTimeUtilities.calculateAbsInterval(r.getEnd(), range.getEnd())
+                - (long) (range.getIntervalInMillis() * PRIORITY_INTERVAL_WEIGHT);
     }
 
     public void setMaxPriority() {
