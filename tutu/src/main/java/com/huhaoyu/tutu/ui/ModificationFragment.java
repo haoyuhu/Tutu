@@ -330,7 +330,6 @@ public class ModificationFragment extends BottomSheetFragment
     @Override
     public void onNetworkError() {
         callback.onNetworkFailure();
-        refresherManager.stop();
     }
 
     @Override

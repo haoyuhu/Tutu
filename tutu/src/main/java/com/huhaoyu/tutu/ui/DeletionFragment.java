@@ -190,7 +190,6 @@ public class DeletionFragment extends BottomSheetFragment
     @Override
     public void onNetworkError() {
         callback.onNetworkFailure();
-        refresherManager.stop();
     }
 
     @Override
