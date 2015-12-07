@@ -30,8 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:alpha="0.8"
         android:orientation="horizontal">
@@ -44,7 +44,7 @@
             android:layout_weight="1"
             android:background="@drawable/shape_grey_solid"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="@string/tutu_smart_today"
             android:textColor="@color/md_white"
             android:textSize="16sp" />
@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:background="@drawable/shape_grey_solid"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="@string/tutu_smart_tomorrow"
             android:textColor="@color/md_white"
             android:textSize="16sp" />
@@ -71,7 +71,7 @@
             android:background="@drawable/shape_green_solid"
             android:ellipsize="middle"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="5dp"
             android:singleLine="true"
             android:text="@string/tutu_smart_day_after_tomorrow"
             android:textColor="@color/md_white"
