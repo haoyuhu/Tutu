@@ -28,6 +28,7 @@
     <color name="primary_dark_orange">#F57C00</color>
     <color name="primary_red">#F44336</color>
     <color name="primary_dark_red">#D32F2F</color>
+    <color name="primary_black_transparent">#55000000</color>
 
     <color name="gray_300">#E0E0E0</color>
     <color name="gray_400">#BDBDBD</color>
