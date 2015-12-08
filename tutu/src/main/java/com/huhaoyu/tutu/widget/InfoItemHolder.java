@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
  */
 public class InfoItemHolder extends RecyclerView.ViewHolder {
 
-
     @Bind(R.id.info_image)
     ImageView infoImage;
     @Bind(R.id.room_name_tv)
