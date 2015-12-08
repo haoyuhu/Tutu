@@ -2,6 +2,7 @@ package com.huhaoyu.tutu.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -51,13 +54,13 @@ import mu.lab.thulib.thucab.ThuCab;
 import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.CabFilter;
 import mu.lab.thulib.thucab.entity.RecommendResv;
-import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.thulib.thucab.httputils.CabHttpClient;
 import mu.lab.thulib.thucab.httputils.LoginStateObserver;
 import mu.lab.tufeedback.common.TUFeedback;
+import mu.lab.tufeedback.utils.SystemBarTintManager;
 import mu.lab.util.Log;
 
 public class ReservationListActivity extends BaseActivity
@@ -238,6 +241,27 @@ public class ReservationListActivity extends BaseActivity
                 actionBar.setHomeButtonEnabled(true);
             }
         }
+        if (toolbar != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintResource(R.color.tutu_black_transparent);
+            SystemBarTintManager.SystemBarConfig config = tintManager.getConfig();
+            toolbar.setPadding(0, config.getPixelInsetTop(false), 0, config.getPixelInsetBottom());
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        }
+    }
+
+    protected void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
     }
 
     private void setFab() {
@@ -339,6 +363,12 @@ public class ReservationListActivity extends BaseActivity
         UmengUpdateAgent.forceUpdate(getApplicationContext());
     }
 
+    private void refreshAll() {
+        for (RefreshableFragment fragment : fragments) {
+            fragment.refresh(true, refreshObserver);
+        }
+    }
+
     private void refresh() {
         int current = materialViewPager.getViewPager().getCurrentItem();
         refresh(current);
@@ -415,8 +445,16 @@ public class ReservationListActivity extends BaseActivity
         fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
     }
 
-    public void openRecommendationActivity(List<RecommendResv> list) {
-
+    public void openRecommendationActivity(List<RecommendResv> list, DateTimeUtilities.DayRound round) {
+        ArrayList<RecommendResv> data = new ArrayList<>();
+        for (RecommendResv resv : list) {
+            data.add(resv);
+        }
+        int increment = round.ordinal();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(TutuConstants.BundleKey.BUNDLE_KEY, data);
+        bundle.putInt(TutuConstants.BundleKey.EXTRA_BUNDLE_KEY, increment);
+        startOtherActivityForResult(RecommendationActivity.class, bundle, TutuConstants.RequestCode.REQUEST_CODE);
     }
 
     public void openHelpActivity() {
