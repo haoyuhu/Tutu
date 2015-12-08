@@ -41,7 +41,6 @@ public class CabReservationCommand extends CabAbstractCommand {
 
     public CabReservationCommand(ReservationState record, AutoReservationItem item) throws CabCommandException {
         this(record, item.getDate(), item.getRange(), null);
-
     }
 
     public String getDevKind() {

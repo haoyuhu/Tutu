@@ -1,27 +1,29 @@
 package mu.lab.thulib.thucab.entity;
 
+import android.os.Parcelable;
+
 /**
  * Recommand reservation record
  * Created by coderhuhy on 15/11/18.
  */
-public interface RecommendResv {
+public abstract class RecommendResv implements Parcelable {
 
     long MAX_PRIORITY = Long.MAX_VALUE;
 
-    String getRoomName();
+    public abstract String getRoomName();
 
-    String getDevId();
+    public abstract String getDevId();
 
-    String getStart();
+    public abstract String getStart();
 
-    String getEnd();
+    public abstract String getEnd();
 
-    String getDevKind();
+    public abstract String getDevKind();
 
-    String getLabId();
+    public abstract String getLabId();
 
-    int getFloorStringId();
+    public abstract int getFloorStringId();
 
-    long getPriority();
+    public abstract long getPriority();
 
 }

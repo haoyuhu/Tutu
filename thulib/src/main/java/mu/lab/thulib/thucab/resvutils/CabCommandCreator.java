@@ -5,6 +5,7 @@ import java.util.Calendar;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.AbstractState;
 import mu.lab.thulib.thucab.entity.AutoReservationItem;
+import mu.lab.thulib.thucab.entity.RecommendResv;
 import mu.lab.thulib.thucab.entity.ReservationRecord;
 import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.entity.StudentAccount;
@@ -29,6 +30,11 @@ public class CabCommandCreator {
     public static CabCommand createReservationCommand(ReservationState record, AutoReservationItem item)
         throws CabCommand.CabCommandException {
         return new CabReservationCommand(record, item);
+    }
+
+    public static CabCommand createRecommendationCommand(RecommendResv item, Calendar date, ReservationState.TimeRange range,
+                                                         ExecutorResultObserver observer) throws CabCommand.CabCommandException {
+        return new CabRecommendationCommand(item, date, range, observer);
     }
 
     public static CabCommand createModificationCommand(ReservationRecord record, ReservationState.TimeRange range,
