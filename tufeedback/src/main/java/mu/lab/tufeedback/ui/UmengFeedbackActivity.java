@@ -172,7 +172,7 @@ public class UmengFeedbackActivity extends AppCompatActivity implements UmengFee
             setTranslucentStatus(true);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.action_bar_color);
+            tintManager.setStatusBarTintResource(R.color.primary_black_transparent);
             SystemBarTintManager.SystemBarConfig config = tintManager.getConfig();
             toolbar.setPadding(0, config.getPixelInsetTop(false), 0, config.getPixelInsetBottom());
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
