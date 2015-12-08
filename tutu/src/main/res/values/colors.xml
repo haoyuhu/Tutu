@@ -317,6 +317,7 @@
     <color name="tutu_white_transparent_more">#77ffffff</color>
     <color name="tutu_white_transparent_middle">#44ffffff</color>
     <color name="tutu_white_transparent_less">#11ffffff</color>
+    <color name="tutu_black_transparent">#55000000</color>
 
     <array name="linear_progress_colors">
         <item>@color/md_purple_800</item>
