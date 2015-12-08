@@ -24,7 +24,12 @@ public class TutuConstants {
     }
 
     public interface BundleKey {
+        String BUNDLE_KEY = "TUTU_BUNDLE_KEY";
+        String EXTRA_BUNDLE_KEY = "TUTU_EXTRA_BUNDLE_KEY";
+    }
 
+    public interface RequestCode {
+        int REQUEST_CODE = 0;
     }
 
 }
