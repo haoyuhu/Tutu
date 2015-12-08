@@ -193,7 +193,7 @@ public class SmartReservationFragment extends BottomSheetFragment
                     sendReservation();
                 } else {
                     if (recommendation != null) {
-                        ((ReservationListActivity) getActivity()).openRecommendationActivity(recommendation);
+                        ((ReservationListActivity) getActivity()).openRecommendationActivity(recommendation, round);
                     }
                     dismiss();
                 }
