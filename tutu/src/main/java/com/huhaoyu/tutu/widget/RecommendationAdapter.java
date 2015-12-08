@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huhaoyu.tutu.R;
+import com.huhaoyu.tutu.ui.RecommendationActivity;
 
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(RecommendResv recommend) {
+        public void bind(final RecommendResv recommend) {
             String room = recommend.getRoomName();
             long priority = recommend.getPriority() / CabConstants.DateTimeConstants.MILLIS_OF_SECOND
                     / CabConstants.DateTimeConstants.SECOND_OF_MINUTE;
@@ -93,7 +94,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             infoBackgroundLl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    ((RecommendationActivity) context).openReservationFragment(recommend);
                 }
             });
         }

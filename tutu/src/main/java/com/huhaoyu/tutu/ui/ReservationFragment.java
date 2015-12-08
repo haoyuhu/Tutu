@@ -33,6 +33,7 @@ import mu.lab.thulib.thucab.CabConstants;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.UserAccountManager;
+import mu.lab.thulib.thucab.entity.RecommendResv;
 import mu.lab.thulib.thucab.entity.ReservationState;
 import mu.lab.thulib.thucab.entity.StudentAccount;
 import mu.lab.thulib.thucab.resvutils.CabCmdExecutorImpl;
@@ -51,6 +52,8 @@ public class ReservationFragment extends BottomSheetFragment
 
     private static final String LogTag = ReservationFragment.class.getCanonicalName();
 
+    private enum ReservationType {Reservation, Recommendation}
+
     @Bind(R.id.start_time_tv)
     TextView startTimeTv;
     @Bind(R.id.end_time_tv)
@@ -65,6 +68,7 @@ public class ReservationFragment extends BottomSheetFragment
     ProgressView refreshProgress;
 
     private ReservationStateDecorator state;
+    private RecommendResv recommend;
     private ReservationState.TimeRange range;
     private DateTimeUtilities.DayRound round;
     private ReservationObserver observer;
@@ -72,6 +76,7 @@ public class ReservationFragment extends BottomSheetFragment
     private Handler handler;
     private UserAccountManager accountManager;
     private CabCommandExecutor executor;
+    private ReservationType type;
 
     private ExecutorResultObserver callback = new ExecutorResultObserver() {
         @Override
@@ -114,6 +119,18 @@ public class ReservationFragment extends BottomSheetFragment
         fragment.range = range;
         fragment.round = round;
         fragment.observer = observer;
+        fragment.type = ReservationType.Reservation;
+        return fragment;
+    }
+
+    public static ReservationFragment newInstance(RecommendResv recommend, DateTimeUtilities.DayRound round,
+                                                  ReservationObserver observer) {
+        ReservationFragment fragment = new ReservationFragment();
+        fragment.recommend = recommend;
+        fragment.range = new ReservationState.TimeRange(recommend.getStart(), recommend.getEnd());
+        fragment.round = round;
+        fragment.observer = observer;
+        fragment.type = ReservationType.Recommendation;
         return fragment;
     }
 
@@ -129,7 +146,7 @@ public class ReservationFragment extends BottomSheetFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String room = state.getRoomName();
+        String room = type.equals(ReservationType.Reservation) ? state.getRoomName() : recommend.getRoomName();
         String title = getContext().getString(R.string.tutu_reservation) + " " + room;
         String start = range.getStart();
         String end = range.getEnd();
@@ -187,8 +204,18 @@ public class ReservationFragment extends BottomSheetFragment
             refresherManager.start();
             confirmButton.setEnabled(false);
             try {
-                CabCommand command = CabCommandCreator.createReservationCommand(state, DateTimeUtilities.dayRoundToCalendar(round),
-                        new ReservationState.TimeRange(start, end), callback);
+                CabCommand command = type.equals(ReservationType.Reservation)
+                        ? CabCommandCreator.createReservationCommand(
+                        state,
+                        DateTimeUtilities.dayRoundToCalendar(round),
+                        new ReservationState.TimeRange(start, end),
+                        callback)
+                        : CabCommandCreator.createRecommendationCommand(
+                        recommend,
+                        DateTimeUtilities.dayRoundToCalendar(round),
+                        new ReservationState.TimeRange(start, end),
+                        callback);
+
                 if (accountManager.hasAccount()) {
                     StudentAccount account = accountManager.getAccount();
                     executor.execute(account, command);
