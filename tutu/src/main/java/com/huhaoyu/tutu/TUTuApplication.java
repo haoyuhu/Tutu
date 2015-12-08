@@ -22,10 +22,16 @@ public class TUTuApplication extends Application {
 
     private static final String REALM_NAME = "com.huhaoyu.tutu.realm";
     private static final long REALM_VERSION = 1L;
+    private static TUTuApplication instance;
+
+    public static TUTuApplication getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         RealmDatabase.init(new RealmConfiguration.Builder(this)
                 .name(REALM_NAME)
                 .schemaVersion(REALM_VERSION)

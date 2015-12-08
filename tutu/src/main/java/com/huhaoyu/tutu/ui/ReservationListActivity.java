@@ -129,6 +129,29 @@ public class ReservationListActivity extends BaseActivity
                 super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == TutuConstants.RequestCode.REQUEST_CODE_RECOMMENDATION && resultCode == RESULT_OK) {
+            int result = data.getIntExtra(TutuConstants.BundleKey.BUNDLE_KEY, -1);
+            if (result == -1) return;
+            switch (result) {
+                case RecommendationActivity.RESULT_CODE_ACCOUNT_ERROR:
+                    ReservationListActivity.this.clear();
+                    openLoginFragment();
+                    break;
+                case RecommendationActivity.RESULT_CODE_SUCCESS:
+                    int index = data.getIntExtra(TutuConstants.BundleKey.EXTRA_BUNDLE_KEY, -1);
+                    int myInfoPos = fragments.size() - 1;
+                    if (index >= 0 && index < myInfoPos) {
+                        refresh(index);
+                        refresh(myInfoPos);
+                    }
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void setViewPager() {
         String[] tabs = getResources().getStringArray(R.array.tutu_resv_tab_title_array);
         List<FragmentTitle> list = new ArrayList<>();
@@ -445,16 +468,24 @@ public class ReservationListActivity extends BaseActivity
         fragment.show(getSupportFragmentManager(), R.id.bottom_sheet);
     }
 
-    public void openRecommendationActivity(List<RecommendResv> list, DateTimeUtilities.DayRound round) {
+    public void openRecommendationActivity(List<RecommendResv> list, DateTimeUtilities.DayRound round, long priorityFilter) {
         ArrayList<RecommendResv> data = new ArrayList<>();
         for (RecommendResv resv : list) {
-            data.add(resv);
+            if (resv.getPriority() <= priorityFilter) {
+                data.add(resv);
+            } else {
+                break;
+            }
         }
         int increment = round.ordinal();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(TutuConstants.BundleKey.BUNDLE_KEY, data);
         bundle.putInt(TutuConstants.BundleKey.EXTRA_BUNDLE_KEY, increment);
-        startOtherActivityForResult(RecommendationActivity.class, bundle, TutuConstants.RequestCode.REQUEST_CODE);
+        startOtherActivityForResult(RecommendationActivity.class, bundle, TutuConstants.RequestCode.REQUEST_CODE_RECOMMENDATION);
+    }
+
+    public void openRecommendationActivity(List<RecommendResv> list, DateTimeUtilities.DayRound round) {
+        openRecommendationActivity(list, round, TutuConstants.Constants.DEFAULT_PRIORITY_FILTER_VALUE);
     }
 
     public void openHelpActivity() {

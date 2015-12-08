@@ -328,6 +328,7 @@
     <color name="tutu_blue_transparent">#aa0277bd</color>
     <color name="tutu_orange_transparent">#aaf4511e</color>
     <color name="tutu_pink_transparent">#aaad1457</color>
+    <color name="tutu_purple_transparent">#cc6a1b9a</color>
     <color name="tutu_green_transparent">#aa558b2f</color>
 
 </resources>

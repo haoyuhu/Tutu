@@ -4,5 +4,7 @@
     <string name="tutu_recommendation">Recommendation Reservation</string>
     <string name="tutu_recommendation_unknown_error">Unknown failure, please contact developers.</string>
     <string name="tutu_recommendation_deviation">Deviation</string>
+    <string name="tutu_recommendation_load_more">Load More</string>
+    <string name="tutu_recommendation_no_more">No More Recommendation</string>
 
 </resources>

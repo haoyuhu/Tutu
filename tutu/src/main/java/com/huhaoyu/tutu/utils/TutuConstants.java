@@ -9,7 +9,9 @@ import mu.lab.thulib.thucab.CabConstants;
 public class TutuConstants {
 
     public interface Constants {
-        int DEFAULT_SMART_RESERVATION_INTERVAL_IN_HOUR = 1;
+        int DEFAULT_SMART_RESERVATION_INTERVAL_IN_HOUR = 2;
+        long DEFAULT_PRIORITY_FILTER_VALUE = 950l * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+                * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         long REFRESH_INTERVAL = CabConstants.DateTimeConstants.MINUTE_OF_HOUR
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE;
@@ -29,7 +31,7 @@ public class TutuConstants {
     }
 
     public interface RequestCode {
-        int REQUEST_CODE = 0;
+        int REQUEST_CODE_RECOMMENDATION = 0;
     }
 
 }
