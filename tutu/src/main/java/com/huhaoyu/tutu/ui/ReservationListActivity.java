@@ -2,6 +2,7 @@ package com.huhaoyu.tutu.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -33,6 +34,7 @@ import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
 import com.huhaoyu.tutu.widget.FilterCallback;
 import com.huhaoyu.tutu.widget.ReservationObserver;
+import com.huhaoyu.tutu.widget.TemplateFragment;
 import com.rey.material.widget.ProgressView;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
@@ -149,6 +151,14 @@ public class ReservationListActivity extends BaseActivity
                     break;
             }
         }
+        if (requestCode == TutuConstants.RequestCode.REQUEST_CODE_AUTO_SETTINGS && resultCode == RESULT_OK) {
+            int result = data.getIntExtra(TutuConstants.BundleKey.BUNDLE_KEY,
+                    AutoReservationActivity.RESULT_CODE_DEFAULT_VALUE);
+            if (result == AutoReservationActivity.RESULT_CODE_ACCOUNT_ERROR_VALUE) {
+                ReservationListActivity.this.clear();
+                openLoginFragment();
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -208,11 +218,13 @@ public class ReservationListActivity extends BaseActivity
                         openSmartReservationFragment();
                         break;
                     case R.id.drawer_auto_reservation:
+                        openAutoReservationActivity();
                         break;
                     case R.id.drawer_reservation_info:
                         materialViewPager.getViewPager().setCurrentItem(MY_RESERVATION_PAGE, true);
                         break;
                     case R.id.drawer_seat_state:
+                        openCheckSeatsActivity();
                         break;
                     case R.id.drawer_switch_account:
                         clear();
@@ -228,8 +240,10 @@ public class ReservationListActivity extends BaseActivity
                         checkUmengAppUpdate(fabGroup);
                         break;
                     case R.id.drawer_help:
+                        openHelpFragment();
                         break;
                     case R.id.drawer_donation:
+                        openDonationFragment();
                         break;
                 }
                 drawerLayout.closeDrawers();
@@ -450,7 +464,7 @@ public class ReservationListActivity extends BaseActivity
     }
 
     public void openAutoReservationActivity() {
-
+        startOtherActivityForResult(AutoReservationActivity.class, TutuConstants.RequestCode.REQUEST_CODE_AUTO_SETTINGS);
     }
 
     public void openSmartReservationFragment() {
@@ -488,16 +502,37 @@ public class ReservationListActivity extends BaseActivity
         openRecommendationActivity(list, round, TutuConstants.Constants.DEFAULT_PRIORITY_FILTER_VALUE);
     }
 
-    public void openHelpActivity() {
-
+    public void openHelpFragment() {
+        HelperFragment fragment = HelperFragment.newInstance(this);
+        fragment.show();
     }
 
     public void openCheckSeatsActivity() {
-
+        startOtherActivity(SeatStateActivity.class);
     }
 
     public void openDonationFragment() {
+        TemplateFragment.TutuFragmentBuilder builder = new TemplateFragment.TutuFragmentBuilder(this);
+        builder.title(R.string.tutu_donation)
+                .titleBackground(R.drawable.shape_login_background)
+                .content(R.string.tutu_donation_details)
+                .rightButton(R.string.tutu_donate)
+                .rightButtonBackground(R.drawable.selector_blue_clickable_button)
+                .leftButton(R.string.tutu_donation_quit)
+                .callback(new TemplateFragment.ButtonClickCallback() {
+                    @Override
+                    public void onLeftButtonClicked(View view) {
+                    }
 
+                    @Override
+                    public void onRightButtonClicked(View view) {
+                        String url = "http://www.huhaoyu.com";
+                        Uri uri = Uri.parse(url);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                });
+        builder.show();
     }
 
     public void openFeedbackActivity() {
@@ -534,6 +569,7 @@ public class ReservationListActivity extends BaseActivity
                 fabGroup.collapse();
                 break;
             case R.id.fab_auto_reservation:
+                openAutoReservationActivity();
                 fabGroup.collapse();
                 break;
         }

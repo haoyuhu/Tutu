@@ -42,21 +42,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name=".ui.RecommendationActivity"
             android:label="@string/tutu_recommendation"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="mu.lab.tufeedback.ui.UmengFeedbackActivity"
             android:label="@string/title_activity_umeng_feedback"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.SeatStateActivity"
+            android:label="@string/tutu_seat"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.AutoReservationActivity"
+            android:label="@string/tutu_auto_reservation_settings"
+            android:screenOrientation="portrait" />
 
         <!-- Umeng -->
         <!-- 监听通知点击或者忽略处理的广播 -->
@@ -183,7 +189,7 @@
         <!-- Umeng update -->
         <service
             android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService"></service>
+            android:process=":DownloadingService" />
 
     </application>
 
