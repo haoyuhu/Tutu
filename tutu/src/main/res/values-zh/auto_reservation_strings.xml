@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="tutu_auto_reservation_settings">自动预约设置</string>
+    <string name="tutu_auto_to">到</string>
+
+    <string-array name="tutu_auto_weeks">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期天</item>
+    </string-array>
+
+    <string name="tutu_auto_save">保存</string>
+    <string name="tutu_auto_clear">清空</string>
+    <string name="tutu_auto_confirm">确定</string>
+    <string name="tutu_auto_warning">使用须知</string>
+    <string name="tutu_auto_warning_details">研读间为稀缺资源，请按需预约。目前小图只允许一周设置最多2个自动预约，
+        以避免资源的浪费。</string>
+
+</resources>

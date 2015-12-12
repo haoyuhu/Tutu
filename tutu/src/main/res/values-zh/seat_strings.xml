@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_seat">文图座位查询</string>
+    <string name="tutu_seat_loading">玩命加载中</string>
+    <string name="tutu_seat_load_failure">玩命地加载失败中</string>
+    <string name="tutu_seat_refresh" >刷新于</string>
+    <string name="tutu_seat_load_snackbar_failure">加载失败，请检查网络后重试</string>
+    <string name="tutu_seat_state_idle">空闲</string>
+    <string name="tutu_seat_state_well">良好</string>
+    <string name="tutu_seat_state_busy">繁忙</string>
+    <string name="tutu_seat_unknown_state">未知</string>
+    <string name="tutu_seat_area">座位区域</string>
+    <string name="tutu_seat_occupied_count">占用</string>
+    <string name="tutu_seat_rest_count">空闲</string>
+
+</resources>
