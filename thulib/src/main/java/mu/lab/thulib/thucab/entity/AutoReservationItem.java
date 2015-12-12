@@ -34,7 +34,8 @@ public class AutoReservationItem {
     }
 
     public boolean shouldMakeReservation() {
-        for (int increment = 0; increment != CabConstants.ReservationConstants.LIMIT_RESERVATION_DAYS; ++increment) {
+        // cannot book today's reading room to avoid unexpected situations.
+        for (int increment = 1; increment != CabConstants.ReservationConstants.LIMIT_RESERVATION_DAYS; ++increment) {
             Calendar calendar = Calendar.getInstance();
             calendar.roll(Calendar.DAY_OF_YEAR, increment);
             if (calendar.get(Calendar.DAY_OF_WEEK) == dayOfWeek) {

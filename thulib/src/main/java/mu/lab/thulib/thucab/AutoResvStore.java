@@ -52,7 +52,7 @@ public class AutoResvStore {
      * Get auto reservation record list
      *
      * @param account   Student account
-     * @param subcriber Observer of auto reservation item list
+     * @param subscriber Observer of auto reservation item list
      */
     public static void getAutoResvItems(final StudentAccount account, Observer<List<AutoReservationItem>> subscriber) {
         getAutoResvItems(account)
@@ -67,11 +67,19 @@ public class AutoResvStore {
      * @param list    List of auto reservation item list
      * @param account Student account
      */
-    public static void saveAutoResvItemsToRealm(List<AutoReservationItem> list, StudentAccount account) {
-        for (AutoReservationItem item : list) {
-            AutoResvRealmItem rsv = item.toRealm(account);
-            RealmDatabase.insertOrUpdate(rsv).subscribeOn(Schedulers.io()).subscribe();
-        }
+    public static void saveAutoResvItemsToRealm(final List<AutoReservationItem> list, final StudentAccount account) {
+        RealmDatabase.exec(new Exec() {
+            @Override
+            public void run(Realm realm) {
+                RealmResults<AutoResvRealmItem> results = realm.where(AutoResvRealmItem.class)
+                        .equalTo("username", account.getStudentId()).findAll();
+                results.clear();
+                for (AutoReservationItem item : list) {
+                    AutoResvRealmItem realmItem = item.toRealm(account);
+                    realm.copyToRealm(realmItem);
+                }
+            }
+        }, AutoResvRealmItem.class).subscribeOn(Schedulers.io()).subscribe();
     }
 
     /**
