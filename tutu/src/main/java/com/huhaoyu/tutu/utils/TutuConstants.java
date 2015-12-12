@@ -16,6 +16,7 @@ public class TutuConstants {
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE;
         long DELAY_DURATION = CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
+        int DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT = 2;
 
         String background[] = {
                 "http://git.oschina.net/huhaoyu/picture/raw/master/tutu_main_background_1.jpg",
@@ -32,6 +33,7 @@ public class TutuConstants {
 
     public interface RequestCode {
         int REQUEST_CODE_RECOMMENDATION = 0;
+        int REQUEST_CODE_AUTO_SETTINGS = 1;
     }
 
 }
