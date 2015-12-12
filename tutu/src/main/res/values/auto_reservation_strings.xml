@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="tutu_auto_reservation_settings">Auto-Reservation Settings</string>
+    <string name="tutu_auto_to">To</string>
+
+    <string-array name="tutu_auto_weeks">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <string name="tutu_auto_save">Save</string>
+    <string name="tutu_auto_clear">Clear</string>
+    <string name="tutu_auto_confirm">Confirm</string>
+    <string name="tutu_auto_warning">Terms and Conditions</string>
+    <string name="tutu_auto_warning_details">Reading room is a scarce resource, please make a reservation on-demand.
+    In order to ensure a fair, reasonable and efficient atmosphere of usage, Tsinghua Tutu allowed only two automatic
+        reservations to avoid unnecessary looting.</string>
+
+</resources>

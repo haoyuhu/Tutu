@@ -2,5 +2,6 @@
 <resources>
 
     <string name="tutu_date_pattern">yyyy年MM月dd日</string>
+    <string name="tutu_refresh">刷新</string>
 
 </resources>

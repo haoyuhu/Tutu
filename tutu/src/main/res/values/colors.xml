@@ -314,6 +314,7 @@
 
     <!--custom-->
     <color name="tutu_blue_grey_transparent">#99546e7a</color>
+    <color name="tutu_white_transparent_most">#aaffffff</color>
     <color name="tutu_white_transparent_more">#77ffffff</color>
     <color name="tutu_white_transparent_middle">#44ffffff</color>
     <color name="tutu_white_transparent_less">#11ffffff</color>

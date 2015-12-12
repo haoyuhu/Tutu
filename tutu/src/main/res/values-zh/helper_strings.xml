@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_helper">使用帮助</string>
+    <string name="tutu_helper_confirm">确定</string>
+
+    <string-array name="tutu_helper_questions">
+        <item>如何登录清华小图？</item>
+        <item>什么是智能预约功能？</item>
+        <item>什么是自动预约功能？</item>
+        <item>如何筛选预约？</item>
+        <item>遇到未知响应怎么办？</item>
+        <item>我喜欢清华小图我应该由衷地感谢那些人？</item>
+    </string-array>
+
+    <string-array name="tutu_helper_answers">
+        <item>在侧滑栏中点击顶部区域弹出登录窗口，可以用个人10位学号和密码登录清华小图。登录成功后就会开启各类预约功能。</item>
+        <item>智能预约可以让你摆脱筛选预约的烦恼，小图会帮你去寻找空闲研读间中最适合你的房间。如果没有合适的研读间，
+            小图还会为你智能推荐类似的时段。</item>
+        <item>只要你预设了所需的预约时段，小图会定期检查空闲研读间中是否有合适的房间并为你预约。由于研读间资源有限，
+            小图只允许一周中设置2天自动预约。</item>
+        <item>点击悬浮小球，就能看到筛选预约功能。可以按时段和最小时间间隔来筛选出你需要的研读间。</item>
+        <item>当然是去用户反馈中找小图的开发者了，必要的话请说明bug出现的条件并附上截图。</item>
+        <item>Flipboard(bottomsheet)\nflorent37(MaterialViewPager)\nrey5137(material)\n
+            wdullaer(MaterialDateTimePicker)\nrengwuxian(MaterialEditText)\n
+            futuresimple(android-floating-action-button)\n当然还有我啦:D</item>
+    </string-array>
+
+</resources>
