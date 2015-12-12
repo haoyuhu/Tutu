@@ -23,7 +23,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.RecommendResv;
 import mu.lab.tufeedback.utils.SystemBarTintManager;
@@ -124,7 +123,7 @@ public class RecommendationActivity extends BaseActivity {
         recyclerView.setHasFixedSize(true);
 
         adapter = new RecommendationAdapter(list, round, this);
-        recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
+        recyclerView.setAdapter(adapter);
 
         if (list.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
