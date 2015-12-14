@@ -43,7 +43,7 @@ import mu.lab.tufeedback.widget.SwipeRefreshLayout;
 import mu.lab.tufeedback.widget.UmengFeedbackAdapter;
 import mu.lab.util.Log;
 
-public class UmengFeedbackActivity extends AppCompatActivity implements UmengFeedbackAdapter.UmengViewCallback {
+public class UmengFeedbackActivity extends AppCompatActivity {
 
     static final String LogTag = UmengFeedbackActivity.class.getName();
     Toolbar toolbar;
@@ -64,7 +64,21 @@ public class UmengFeedbackActivity extends AppCompatActivity implements UmengFee
     private FeedbackAgent mFeedbackAgent = null;
 
     protected final void beforeSetViews() {
-        mFeedbackAdapter = new UmengFeedbackAdapter(this);
+        UmengFeedbackAdapter.UmengViewCallback callback = new UmengFeedbackAdapter.UmengViewCallback() {
+            @Override
+            public final void onLoadOldDataSuccess(int dataNum) {
+                swipeRefreshLayout.setRefreshing(false);
+                if (dataNum >= 1) {
+                    Toast.makeText(UmengFeedbackActivity.this, getString(R.string.refresh_success), Toast.LENGTH_SHORT).show();
+                    conversationList.setSelection(dataNum - 1);
+                } else {
+                    Toast.makeText(UmengFeedbackActivity.this, getString(R.string.on_head), Toast.LENGTH_SHORT).show();
+                    conversationList.setSelection(0);
+                }
+                conversationList.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+            }
+        };
+        mFeedbackAdapter = new UmengFeedbackAdapter(callback);
     }
 
     protected final void findView() {
@@ -379,19 +393,6 @@ public class UmengFeedbackActivity extends AppCompatActivity implements UmengFee
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public final void onLoadOldDataSuccess(int dataNum) {
-        swipeRefreshLayout.setRefreshing(false);
-        if (dataNum >= 1) {
-            Toast.makeText(this, getString(R.string.refresh_success), Toast.LENGTH_SHORT).show();
-            conversationList.setSelection(dataNum - 1);
-        } else {
-            Toast.makeText(this, getString(R.string.on_head), Toast.LENGTH_SHORT).show();
-            conversationList.setSelection(0);
-        }
-        conversationList.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
     }
 
     private void hideInputPad() {
