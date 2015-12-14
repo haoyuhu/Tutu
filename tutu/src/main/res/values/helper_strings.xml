@@ -8,6 +8,8 @@
         <item>How to login Tsinghua Tutu?</item>
         <item>What is smart reservation?</item>
         <item>What is automatic reservation?</item>
+        <item>Why my app cannot use automatic reservation?</item>
+        <item>Why I cannot receive notification before reservation start?</item>
         <item>How to use reservation filter?</item>
         <item>What should I do with unknown error?</item>
         <item>Who should I be grateful to?</item>
@@ -21,11 +23,13 @@
         <item>As long as you present the required reservation slots, Tutu will regularly check whether there
          are suitable rooms for you. Due to the limited resources between reading rooms, we only allowed
          2 automatic reservation in advance.</item>
+        <item>Maybe app is killed by your android system or other apps, please make sure that tsinghua tutu is running at backend.</item>
+        <item>Maybe app is killed by your android system or other apps, please make sure that tsinghua tutu is running at backend.</item>
         <item>Click the floating action balls, you can filter reservation by time periods and minimal interval.</item>
         <item>You can tell me the bugs in feedback activity, best to attach screenshots.</item>
         <item>Flipboard(bottomsheet)\nflorent37(MaterialViewPager)\nrey5137(material)\n
-        wdullaer(MaterialDateTimePicker)\nrengwuxian(MaterialEditText)\n
-        futuresimple(android-floating-action-button)\ncoderhuhy(tutu):D</item>
+            wdullaer(MaterialDateTimePicker)\nrengwuxian(MaterialEditText)\nfuturesimple(android-floating-action-button)\n
+            coderhuhy(tutu):D</item>
     </string-array>
 
 </resources>

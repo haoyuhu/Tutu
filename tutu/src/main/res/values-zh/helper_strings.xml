@@ -8,6 +8,8 @@
         <item>如何登录清华小图？</item>
         <item>什么是智能预约功能？</item>
         <item>什么是自动预约功能？</item>
+        <item>为什么已经设置了自动预约，却没有成功自动预约？</item>
+        <item>为什么预约开始前没有通知提醒？</item>
         <item>如何筛选预约？</item>
         <item>遇到未知响应怎么办？</item>
         <item>我喜欢清华小图我应该由衷地感谢那些人？</item>
@@ -19,10 +21,12 @@
             小图还会为你智能推荐类似的时段。</item>
         <item>只要你预设了所需的预约时段，小图会定期检查空闲研读间中是否有合适的房间并为你预约。由于研读间资源有限，
             小图只允许一周中设置2天自动预约。</item>
+        <item>可能是小图的后台进程被系统或其他第三方软件清理导致的，建议将小图列为白名单保证后台运行，就可以保证为您自动预约。</item>
+        <item>可能是小图的后台进程被系统或其他第三方软件清理导致的，建议将小图列为白名单保证后台运行，就可以在预约开始前通知您啦。</item>
         <item>点击悬浮小球，就能看到筛选预约功能。可以按时段和最小时间间隔来筛选出你需要的研读间。</item>
         <item>当然是去用户反馈中找小图的开发者了，必要的话请说明bug出现的条件并附上截图。</item>
-        <item>Flipboard(bottomsheet)\nflorent37(MaterialViewPager)\nrey5137(material)\n
-            wdullaer(MaterialDateTimePicker)\nrengwuxian(MaterialEditText)\n
+        <item>Flipboard(bottomsheet)\nflorent37(MaterialViewPager)\nrey5137(material)\nwdullaer(MaterialDateTimePicker)\n
+            rengwuxian(MaterialEditText)\n
             futuresimple(android-floating-action-button)\n当然还有我啦:D</item>
     </string-array>
 
