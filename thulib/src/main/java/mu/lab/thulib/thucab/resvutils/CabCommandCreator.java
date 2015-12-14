@@ -65,4 +65,9 @@ public class CabCommandCreator {
         return new CabAutoResvCmdGroup();
     }
 
+    public static CabCommand createPostponeCommand(ReservationRecord record, int minutes)
+            throws DateTimeUtilities.DateTimeException {
+        return new CabDelayCommand(record, minutes, null);
+    }
+
 }
