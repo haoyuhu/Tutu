@@ -17,6 +17,14 @@ public class TutuConstants {
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE;
         long DELAY_DURATION = CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         int DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT = 2;
+        long DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS = 30 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+                * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
+        long ALARM_INTERVAL_IN_MILLIS = 15 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+                * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
+        int DEFAULT_POSTPONE_INTERVAL_IN_MINUTE = 10;
+        int TUTU_RESERVATION_NOTIFICATION_ID = 100;
+        int TUTU_MESSAGE_NOTIFICATION_ID = 101;
+        int TUTU_TEST_NOTIFICATION_ID = 102;
 
         String background[] = {
                 "http://git.oschina.net/huhaoyu/picture/raw/master/tutu_main_background_1.jpg",
