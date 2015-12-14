@@ -29,16 +29,18 @@ public class ErrorTagManager {
     public static ResponseState toState(String error) {
         ResponseState[] list = ResponseState.values();
         int position = ResponseState.OtherFailure.ordinal();
-        Matcher matcher = Pattern.compile("#(\\d+)").matcher(error);
-        if (matcher.find()) {
-            try {
-                position = Integer.valueOf(matcher.group(1));
-            } catch (NumberFormatException e) {
-                Log.e(LogTag, e.getMessage(), e);
+        if (error != null) {
+            Matcher matcher = Pattern.compile("#(\\d+)").matcher(error);
+            if (matcher.find()) {
+                try {
+                    position = Integer.valueOf(matcher.group(1));
+                } catch (NumberFormatException e) {
+                    Log.e(LogTag, e.getMessage(), e);
+                }
             }
-        }
-        if (position < 0 || position >= list.length) {
-            position = ResponseState.OtherFailure.ordinal();
+            if (position < 0 || position >= list.length) {
+                position = ResponseState.OtherFailure.ordinal();
+            }
         }
         return list[position];
     }

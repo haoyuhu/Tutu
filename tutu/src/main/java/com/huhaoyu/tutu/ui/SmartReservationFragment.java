@@ -79,9 +79,11 @@ public class SmartReservationFragment extends BottomSheetFragment
         @Override
         public void onNoMatchedRoom(List<RecommendResv> list) {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+                confirmButton.setText(getContext().getString(R.string.tutu_smart_view_recommendation));
+            }
             available = false;
-            confirmButton.setText(getContext().getString(R.string.tutu_smart_view_recommendation));
             recommendation = list;
             SnackbarManager snackbar = new SnackbarManager(titleTv);
             snackbar.setContent(R.string.tutu_smart_no_match_reservation).show();
@@ -90,7 +92,9 @@ public class SmartReservationFragment extends BottomSheetFragment
         @Override
         public void onConflict() {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+            }
             SnackbarManager snackbar = new SnackbarManager(titleTv);
             snackbar.setContent(R.string.tutu_smart_conflict_reservation).show();
         }
@@ -98,7 +102,9 @@ public class SmartReservationFragment extends BottomSheetFragment
         @Override
         public void onNetworkFailure() {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+            }
             SnackbarManager snackbar = new SnackbarManager(titleTv);
             snackbar.setContent(R.string.tutu_reservation_network_failure).show();
             observer.onNetworkError();
@@ -107,8 +113,10 @@ public class SmartReservationFragment extends BottomSheetFragment
         @Override
         public void onSuccess() {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
-            confirmButton.setText(getContext().getString(R.string.tutu_reservation_complete));
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+                confirmButton.setText(getContext().getString(R.string.tutu_reservation_complete));
+            }
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -360,7 +368,9 @@ public class SmartReservationFragment extends BottomSheetFragment
         refresherManager.stop();
         SnackbarManager snackbar = new SnackbarManager(titleTv);
         snackbar.setContent(R.string.tutu_reservation_account_failure).show();
-        confirmButton.setEnabled(false);
+        if (confirmButton != null) {
+            confirmButton.setEnabled(false);
+        }
         observer.onAccountError();
         dismiss();
     }
@@ -370,7 +380,9 @@ public class SmartReservationFragment extends BottomSheetFragment
         refresherManager.stop();
         SnackbarManager snackbar = new SnackbarManager(titleTv);
         snackbar.setContent(R.string.tutu_reservation_account_failure).show();
-        confirmButton.setEnabled(false);
+        if (confirmButton != null) {
+            confirmButton.setEnabled(false);
+        }
         observer.onAccountError();
         dismiss();
     }
