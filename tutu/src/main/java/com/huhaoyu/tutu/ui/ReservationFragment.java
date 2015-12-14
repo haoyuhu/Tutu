@@ -16,7 +16,6 @@ import com.huhaoyu.tutu.entity.ReservationStateDecorator;
 import com.huhaoyu.tutu.utils.RefresherManager;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
-import com.huhaoyu.tutu.widget.BottomSheetFragment;
 import com.huhaoyu.tutu.widget.ReservationObserver;
 import com.rey.material.widget.ProgressView;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
@@ -47,7 +46,7 @@ import mu.lab.thulib.thucab.resvutils.ReservationLoginCallback;
  * Reservation fragment
  * Created by coderhuhy on 15/12/3.
  */
-public class ReservationFragment extends BottomSheetFragment
+public class ReservationFragment extends LeakCanaryBottomFragment
         implements View.OnClickListener, ReservationLoginCallback {
 
     private static final String LogTag = ReservationFragment.class.getCanonicalName();

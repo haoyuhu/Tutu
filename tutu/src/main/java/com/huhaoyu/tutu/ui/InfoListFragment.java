@@ -16,9 +16,11 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.ReservationInfoWrapper;
+import com.huhaoyu.tutu.utils.MemoryWatcher;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
 import com.huhaoyu.tutu.widget.InfoListAdater;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;
 
@@ -224,5 +226,14 @@ public class InfoListFragment extends Fragment
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RefWatcher watcher = MemoryWatcher.getWatcher(getActivity());
+        if (watcher != null) {
+            watcher.watch(this);
+        }
     }
 }

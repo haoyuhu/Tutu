@@ -15,7 +15,6 @@ import com.huhaoyu.tutu.entity.ReservationRecordDecorator;
 import com.huhaoyu.tutu.utils.RefresherManager;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
-import com.huhaoyu.tutu.widget.BottomSheetFragment;
 import com.huhaoyu.tutu.widget.ReservationObserver;
 import com.rey.material.widget.ProgressView;
 
@@ -35,7 +34,7 @@ import mu.lab.thulib.thucab.resvutils.ReservationLoginCallback;
  * Deletion fragment
  * Created by coderhuhy on 15/12/4.
  */
-public class DeletionFragment extends BottomSheetFragment
+public class DeletionFragment extends LeakCanaryBottomFragment
         implements View.OnClickListener, ReservationLoginCallback {
 
     private static final String LogTag = DeletionFragment.class.getCanonicalName();

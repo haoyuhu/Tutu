@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.huhaoyu.tutu.utils.MemoryWatcher;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import mu.lab.common.rx.realm.RealmDatabase;
@@ -32,6 +33,7 @@ public class TUTuApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        MemoryWatcher.initForDebug(this);
         RealmDatabase.init(new RealmConfiguration.Builder(this)
                 .name(REALM_NAME)
                 .schemaVersion(REALM_VERSION)

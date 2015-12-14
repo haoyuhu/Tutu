@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huhaoyu.tutu.R;
+import com.huhaoyu.tutu.utils.MemoryWatcher;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +89,15 @@ public class HelperFragment extends DialogFragment implements View.OnClickListen
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RefWatcher watcher = MemoryWatcher.getWatcher(getActivity());
+        if (watcher != null) {
+            watcher.watch(this);
+        }
     }
 
     @Override
