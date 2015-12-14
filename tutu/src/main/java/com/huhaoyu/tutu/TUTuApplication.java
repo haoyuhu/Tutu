@@ -5,6 +5,10 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.huhaoyu.tutu.utils.MemoryWatcher;
+import com.huhaoyu.tutu.utils.PreferencesUtils;
+import com.huhaoyu.tutu.backend.RegularAlarmManager;
+import com.huhaoyu.tutu.backend.TutuNotificationManager;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import mu.lab.common.rx.realm.RealmDatabase;
@@ -41,6 +45,9 @@ public class TUTuApplication extends Application {
                 .build());
         TUFeedback.init(this);
         ThuLib.init(this);
+        TutuNotificationManager.getInstance().init(this);
+        RegularAlarmManager.getInstance().init(this);
+        PreferencesUtils.init(this);
         Log.i(LogTag, "Application started...");
     }
 
