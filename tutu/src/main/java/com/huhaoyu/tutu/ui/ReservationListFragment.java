@@ -14,8 +14,10 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.ReservationStatesWrapper;
+import com.huhaoyu.tutu.utils.MemoryWatcher;
 import com.huhaoyu.tutu.utils.TutuConstants;
 import com.huhaoyu.tutu.widget.ReservationListAdapter;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,6 +75,15 @@ public class ReservationListFragment extends Fragment
         mAdapter = new RecyclerViewMaterialAdapter(new ReservationListAdapter(mStates, getActivity()));
         mRecyclerView.setAdapter(new AlphaInAnimationAdapter(mAdapter));
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RefWatcher watcher = MemoryWatcher.getWatcher(getActivity());
+        if (watcher != null) {
+            watcher.watch(this);
+        }
     }
 
     public void resetFilter(List<DateTimeUtilities.TimePeriod> periods, int minInterval) {

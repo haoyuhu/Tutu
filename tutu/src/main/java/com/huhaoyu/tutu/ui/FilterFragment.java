@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.huhaoyu.tutu.R;
-import com.huhaoyu.tutu.widget.BottomSheetFragment;
 import com.huhaoyu.tutu.widget.FilterCallback;
 import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.Slider;
@@ -28,7 +27,7 @@ import mu.lab.thulib.thucab.entity.CabFilter;
  * Filter fragment
  * Created by coderhuhy on 15/12/1.
  */
-public class FilterFragment extends BottomSheetFragment
+public class FilterFragment extends LeakCanaryBottomFragment
         implements View.OnClickListener, Slider.OnPositionChangeListener {
 
     @Bind({R.id.morning_cb, R.id.afternoon_cb, R.id.evening_cb})

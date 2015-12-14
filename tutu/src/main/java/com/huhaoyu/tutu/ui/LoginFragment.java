@@ -15,9 +15,11 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.huhaoyu.tutu.R;
+import com.huhaoyu.tutu.utils.MemoryWatcher;
 import com.huhaoyu.tutu.utils.TutuConstants;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.rey.material.widget.ProgressView;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.Arrays;
 
@@ -88,6 +90,15 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
         activateButton.setOnClickListener(this);
         loginButton.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RefWatcher watcher = MemoryWatcher.getWatcher(getActivity());
+        if (watcher != null) {
+            watcher.watch(this);
+        }
     }
 
     public static DialogFragment newInstance(LoginStateObserver observer,
