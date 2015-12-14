@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".TUTuApplication"
@@ -63,6 +65,20 @@
             android:name=".ui.AutoReservationActivity"
             android:label="@string/tutu_auto_reservation_settings"
             android:screenOrientation="portrait" />
+
+        <receiver android:name=".backend.TutuAlarmReceiver" />
+
+        <service
+            android:name=".backend.TutuAlarmService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver android:name=".backend.ReservationOperationReceiver" />
+
+        <service
+            android:name=".backend.ReservationOperationService"
+            android:enabled="true"
+            android:exported="false" />
 
         <!-- Umeng -->
         <!-- 监听通知点击或者忽略处理的广播 -->
