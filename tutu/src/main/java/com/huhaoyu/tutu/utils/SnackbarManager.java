@@ -98,19 +98,20 @@ public class SnackbarManager {
         if (callback != null) {
             snackbar.setCallback(callback);
         }
-        if (isFab) {
-            snackbar.setCallback(new Snackbar.Callback() {
-                @Override
-                public void onDismissed(Snackbar snackbar, int event) {
-                    super.onDismissed(snackbar, event);
-                    fabDown(view);
-                }
-            });
-            fabPopup(view);
-        }
+//        if (isFab) {
+//            snackbar.setCallback(new Snackbar.Callback() {
+//                @Override
+//                public void onDismissed(Snackbar snackbar, int event) {
+//                    super.onDismissed(snackbar, event);
+//                    fabDown(view);
+//                }
+//            });
+//            fabPopup(view);
+//        }
         snackbar.show();
     }
 
+    @Deprecated
     private void fabPopup(View fab) {
         final int POPUP_ANIMATION_DURATION = 250;
         final int translate = -80;
@@ -121,6 +122,7 @@ public class SnackbarManager {
         }
     }
 
+    @Deprecated
     private void fabDown(View fab) {
         final int DOWN_ANIMATION_DURATION = 150;
         final int translate = -80;
