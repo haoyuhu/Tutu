@@ -53,8 +53,8 @@ public class UmengFeedbackAdapter extends BaseAdapter {
         }
     };
 
-    public UmengFeedbackAdapter(UmengViewCallback callback) {
-        mContext = (Context) callback;
+    public UmengFeedbackAdapter(Context context, UmengViewCallback callback) {
+        mContext = context;
         mCallback = callback;
         mConversation = FeedbackFactory.getConversation();
         mConversation.setOnChangeListener(mListener);
@@ -201,6 +201,11 @@ public class UmengFeedbackAdapter extends BaseAdapter {
                 }
             }
         });
+    }
+
+    public void clear() {
+        mCallback = null;
+        mContext = null;
     }
 
     public interface UmengViewCallback {
