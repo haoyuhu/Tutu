@@ -32,6 +32,7 @@ import com.huhaoyu.tutu.utils.DrawerManagerImpl;
 import com.huhaoyu.tutu.utils.RefresherManager;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
+import com.huhaoyu.tutu.backend.TutuNotificationManager;
 import com.huhaoyu.tutu.widget.FilterCallback;
 import com.huhaoyu.tutu.widget.ReservationObserver;
 import com.huhaoyu.tutu.widget.TemplateFragment;
@@ -332,7 +333,15 @@ public class ReservationListActivity extends BaseActivity
             @Override
             public void handleMessage(Context context, UMessage uMessage) {
                 if (!TUFeedback.isFeedbackMessage(getApplicationContext(), uMessage.custom)) {
-                    // TODO: handle custom messages
+                    boolean light = uMessage.play_lights;
+                    boolean sound = uMessage.play_sound;
+                    boolean vibrate = uMessage.play_vibrate;
+                    String ticker = uMessage.ticker;
+                    String content = uMessage.text;
+                    String type = uMessage.after_open;
+                    String custom = uMessage.custom;
+                    TutuNotificationManager.getInstance().notifyMessage(light, vibrate, sound,
+                            ticker, content, type, custom);
                 }
             }
         };
