@@ -90,11 +90,12 @@ public class ResvRecordStore {
         }).subscribeOn(Schedulers.io()).subscribe(emptyObserver);
     }
 
-    protected static Observable<List<ReservationRecord>> getResvRecords(StudentAccount account, final boolean update) {
+    protected static Observable<List<ReservationRecord>> getResvRecords(final StudentAccount account, final boolean update) {
         return CabUtilities.getReservationRecords(account, 10, update)
                 .map(new Func1<List<RealmReservationRecord>, List<ReservationRecord>>() {
                     @Override
                     public List<ReservationRecord> call(List<RealmReservationRecord> records) {
+                        clear(account);
                         List<ReservationRecord> ret = new ArrayList<>();
                         for (RealmReservationRecord record : records) {
                             if (update) {

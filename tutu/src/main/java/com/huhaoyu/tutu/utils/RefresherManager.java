@@ -30,7 +30,9 @@ public class RefresherManager {
         synchronized (RefresherManager.this) {
             refreshing = true;
             if (++count == 1) {
-                progress.start();
+                if (progress != null) {
+                    progress.start();
+                }
                 return true;
             }
             return false;
@@ -42,7 +44,9 @@ public class RefresherManager {
         synchronized (RefresherManager.this) {
             if (--count == 0) {
                 refreshing = false;
-                progress.stop();
+                if (progress != null) {
+                    progress.stop();
+                }
                 return true;
             } else if (count < 0) {
                 count = 0;
