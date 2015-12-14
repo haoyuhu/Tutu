@@ -82,7 +82,9 @@ public class ReservationFragment extends BottomSheetFragment
         @Override
         public void onConflict() {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+            }
             SnackbarManager snackbar = new SnackbarManager(titleTv);
             snackbar.setContent(R.string.tutu_reservation_conflict).show();
         }
@@ -90,7 +92,9 @@ public class ReservationFragment extends BottomSheetFragment
         @Override
         public void onNetworkFailure() {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+            }
             SnackbarManager snackbar = new SnackbarManager(titleTv);
             snackbar.setContent(R.string.tutu_reservation_network_failure).show();
             observer.onNetworkError();
@@ -99,8 +103,10 @@ public class ReservationFragment extends BottomSheetFragment
         @Override
         public void onSuccess() {
             refresherManager.stop();
-            confirmButton.setEnabled(true);
-            confirmButton.setText(getContext().getString(R.string.tutu_reservation_complete));
+            if (confirmButton != null) {
+                confirmButton.setEnabled(true);
+                confirmButton.setText(getContext().getString(R.string.tutu_reservation_complete));
+            }
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -350,7 +356,9 @@ public class ReservationFragment extends BottomSheetFragment
         refresherManager.stop();
         SnackbarManager snackbar = new SnackbarManager(titleTv);
         snackbar.setContent(R.string.tutu_reservation_account_failure).show();
-        confirmButton.setEnabled(false);
+        if (confirmButton != null) {
+            confirmButton.setEnabled(false);
+        }
         observer.onAccountError();
         dismiss();
     }
@@ -360,7 +368,9 @@ public class ReservationFragment extends BottomSheetFragment
         refresherManager.stop();
         SnackbarManager snackbar = new SnackbarManager(titleTv);
         snackbar.setContent(R.string.tutu_reservation_account_failure).show();
-        confirmButton.setEnabled(false);
+        if (confirmButton != null) {
+            confirmButton.setEnabled(false);
+        }
         observer.onAccountError();
         dismiss();
     }
