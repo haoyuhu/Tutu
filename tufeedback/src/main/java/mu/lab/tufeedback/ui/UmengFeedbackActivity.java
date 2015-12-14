@@ -78,7 +78,7 @@ public class UmengFeedbackActivity extends AppCompatActivity {
                 conversationList.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
             }
         };
-        mFeedbackAdapter = new UmengFeedbackAdapter(callback);
+        mFeedbackAdapter = new UmengFeedbackAdapter(this, callback);
     }
 
     protected final void findView() {
@@ -355,6 +355,12 @@ public class UmengFeedbackActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFeedbackAdapter.syncToUmeng();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFeedbackAdapter.clear();
     }
 
     @Override
