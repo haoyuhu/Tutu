@@ -24,6 +24,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+import com.huhaoyu.tutu.BuildConfig;
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.ReservationRecordDecorator;
 import com.huhaoyu.tutu.entity.ReservationStateDecorator;
@@ -328,6 +329,7 @@ public class ReservationListActivity extends BaseActivity
         TUFeedback.start();
         PushAgent pushAgent = PushAgent.getInstance(this);
         pushAgent.enable();
+        pushAgent.setDebugMode(BuildConfig.DEBUG);
         addUmengAlias();
         UmengMessageHandler handler = new UmengMessageHandler() {
             @Override

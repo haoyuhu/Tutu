@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
+import com.huhaoyu.tutu.BuildConfig;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -16,13 +17,8 @@ public class MemoryWatcher {
     private static Application application;
     private static RefWatcher watcher;
 
-    public static void initForDebug(Application app) {
-        watcher = LeakCanary.install(app);
-        application = app;
-    }
-
-    public static void initForRealise(Application app) {
-        watcher = RefWatcher.DISABLED;
+    public static void init(Application app) {
+        watcher = BuildConfig.DEBUG ? LeakCanary.install(app) : RefWatcher.DISABLED;
         application = app;
     }
 

@@ -37,7 +37,7 @@ public class TUTuApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        MemoryWatcher.initForDebug(this);
+        MemoryWatcher.init(this);
         RealmDatabase.init(new RealmConfiguration.Builder(this)
                 .name(REALM_NAME)
                 .schemaVersion(REALM_VERSION)
