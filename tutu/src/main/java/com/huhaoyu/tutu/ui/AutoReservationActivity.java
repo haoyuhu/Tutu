@@ -31,7 +31,7 @@ import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.UserAccountManager;
 import mu.lab.thulib.thucab.entity.AutoReservationItem;
 import mu.lab.thulib.thucab.entity.StudentAccount;
-import mu.lab.tufeedback.utils.SystemBarTintManager;
+import com.huhaoyu.tutu.utils.SystemBarTintManager;
 import rx.Observer;
 
 public class AutoReservationActivity extends BaseActivity

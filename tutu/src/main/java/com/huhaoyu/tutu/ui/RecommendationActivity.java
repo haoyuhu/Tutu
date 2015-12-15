@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
@@ -25,7 +24,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.RecommendResv;
-import mu.lab.tufeedback.utils.SystemBarTintManager;
+import com.huhaoyu.tutu.utils.SystemBarTintManager;
 
 public class RecommendationActivity extends BaseActivity {
 

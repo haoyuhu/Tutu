@@ -27,7 +27,7 @@ import mu.lab.thulib.thucab.CabConstants;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thuseat.SeatState;
 import mu.lab.thulib.thuseat.SeatUtilities;
-import mu.lab.tufeedback.utils.SystemBarTintManager;
+import com.huhaoyu.tutu.utils.SystemBarTintManager;
 import rx.Observer;
 
 public class SeatStateActivity extends BaseActivity implements Observer<SeatState> {
