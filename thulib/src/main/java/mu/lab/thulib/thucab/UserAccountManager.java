@@ -35,11 +35,13 @@ public class UserAccountManager implements Observer<List<AutoReservationItem>> {
     protected StudentAccount account;
     protected StudentDetails details;
     protected List<AutoReservationItem> settings;
+    private Context context;
 
     public void init(Context context) {
         PreferenceUtilities.init(context);
+        this.context = context;
         try {
-            this.account = PreferenceUtilities.getStudentAccount();
+            this.account = PreferenceUtilities.getStudentAccount(context);
         } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
             Log.e(LogTag, error.toString(), error);
         }
@@ -70,7 +72,7 @@ public class UserAccountManager implements Observer<List<AutoReservationItem>> {
     public boolean save(@NonNull StudentAccount account) {
         this.account = account;
         return PreferenceUtilities.saveStudenId(account.getStudentId())
-                && PreferenceUtilities.savePassword(account.getPassword());
+                && PreferenceUtilities.savePassword(account.getPassword(), context);
     }
 
     public boolean save(@NonNull StudentDetails details) {

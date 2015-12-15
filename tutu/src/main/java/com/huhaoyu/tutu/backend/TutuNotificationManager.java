@@ -273,7 +273,7 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
             Intent intent = new Intent(context, ReservationOperationReceiver.class);
             intent.putExtra(operation.getKey(), id);
             intent.setAction(ReservationOperationService.class.getCanonicalName());
-            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         }
 
         PendingIntent createModification(String id) {
@@ -281,7 +281,7 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
             int requestCode = operation.ordinal();
             Intent intent = new Intent(context, ReservationOperationReceiver.class);
             intent.putExtra(operation.getKey(), id);
-            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         }
 
         PendingIntent createPostpone(String id) {
@@ -290,7 +290,7 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
             Intent intent = new Intent(context, ReservationOperationReceiver.class);
             intent.putExtra(operation.getKey(), id);
             intent.setAction(ReservationOperationService.class.getCanonicalName());
-            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            return PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         }
 
     }
