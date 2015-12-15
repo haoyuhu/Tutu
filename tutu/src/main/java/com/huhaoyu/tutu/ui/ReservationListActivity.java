@@ -63,7 +63,7 @@ import mu.lab.thulib.thucab.entity.StudentDetails;
 import mu.lab.thulib.thucab.httputils.CabHttpClient;
 import mu.lab.thulib.thucab.httputils.LoginStateObserver;
 import mu.lab.tufeedback.common.TUFeedback;
-import mu.lab.tufeedback.utils.SystemBarTintManager;
+import com.huhaoyu.tutu.utils.SystemBarTintManager;
 import mu.lab.util.Log;
 
 public class ReservationListActivity extends BaseActivity

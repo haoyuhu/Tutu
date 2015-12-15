@@ -15,8 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -29,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.model.Reply;
 import com.umeng.fb.model.UserInfo;
@@ -38,7 +37,6 @@ import java.util.Map;
 
 import mu.lab.tufeedback.R;
 import mu.lab.tufeedback.common.FeedbackFactory;
-import mu.lab.tufeedback.utils.SystemBarTintManager;
 import mu.lab.tufeedback.widget.SwipeRefreshLayout;
 import mu.lab.tufeedback.widget.UmengFeedbackAdapter;
 import mu.lab.util.Log;
@@ -163,18 +161,6 @@ public class UmengFeedbackActivity extends AppCompatActivity {
         conversationList.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
-    protected void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
-
     protected final void setToolbar() {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -183,13 +169,16 @@ public class UmengFeedbackActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(getResources().getColor(R.color.WHITE));
         toolbar.setBackgroundColor(getResources().getColor(R.color.action_bar_color));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
+            // create our manager instance after the content view is set
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            // enable status bar tint
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.primary_black_transparent);
+            tintManager.setTintColor(getResources().getColor(R.color.primary_dark_red));
+            // enable navigation bar tint
+            tintManager.setNavigationBarTintEnabled(true);
+            // set status bar height
             SystemBarTintManager.SystemBarConfig config = tintManager.getConfig();
-            toolbar.setPadding(0, config.getPixelInsetTop(false), 0, config.getPixelInsetBottom());
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+            toolbar.setPadding(0, 0, 0, config.getPixelInsetBottom());
         }
     }
 
