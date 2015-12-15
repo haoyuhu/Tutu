@@ -9,6 +9,7 @@ import mu.lab.thulib.thucab.CabConstants;
 public class TutuConstants {
 
     public interface Constants {
+        //reservation constants
         int DEFAULT_SMART_RESERVATION_INTERVAL_IN_HOUR = 2;
         long DEFAULT_PRIORITY_FILTER_VALUE = 950l * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
@@ -17,11 +18,21 @@ public class TutuConstants {
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE;
         long DELAY_DURATION = CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         int DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT = 2;
+
+        // regular task interval
         long DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS = 30 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
-        long ALARM_INTERVAL_IN_MILLIS = 15 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+        long ALARM_INTERVAL_IN_MILLIS = 20 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+                * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
+        long ALARM_INTERVAL_VALIDATE_IN_MILLIS = 15 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         int DEFAULT_POSTPONE_INTERVAL_IN_MINUTE = 10;
+        int DEFAULT_REGULAR_TASK_MUTE_START_HOUR = 0;
+        int DEFAULT_REGULAR_TASK_MUTE_START_MINUTE = 30;
+        int DEFAULT_REGULAR_TASK_MUTE_END_HOUR = 7;
+        int DEFAULT_REGULAR_TASK_MUTE_END_MINUTE = 30;
+
+        // notification id
         int TUTU_RESERVATION_NOTIFICATION_ID = 100;
         int TUTU_MESSAGE_NOTIFICATION_ID = 101;
         int TUTU_TEST_NOTIFICATION_ID = 102;
