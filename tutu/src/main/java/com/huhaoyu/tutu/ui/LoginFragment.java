@@ -21,8 +21,6 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import com.rey.material.widget.ProgressView;
 import com.squareup.leakcanary.RefWatcher;
 
-import java.util.Arrays;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mu.lab.thulib.thucab.CabUtilities;
