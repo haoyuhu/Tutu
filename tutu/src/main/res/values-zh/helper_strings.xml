@@ -25,7 +25,7 @@
         <item>可能是小图的后台进程被系统或其他第三方软件清理导致的，建议将小图列为白名单保证后台运行，就可以在预约开始前通知您啦。</item>
         <item>点击悬浮小球，就能看到筛选预约功能。可以按时段和最小时间间隔来筛选出你需要的研读间。</item>
         <item>当然是去用户反馈中找小图的开发者了，必要的话请说明bug出现的条件并附上截图。</item>
-        <item>Flipboard(bottomsheet)\nflorent37(MaterialViewPager)\nrey5137(material)\nwdullaer(MaterialDateTimePicker)\n
+        <item>mulab(rx-realm)\nFlipboard(bottomsheet)\nflorent37(MaterialViewPager)\nrey5137(material)\nwdullaer(MaterialDateTimePicker)\n
             rengwuxian(MaterialEditText)\n
             futuresimple(android-floating-action-button)\n当然还有我啦:D</item>
     </string-array>
