@@ -180,9 +180,7 @@
 }
 
 # temporarily disable obfuscation for all 3rd party libs
--keep class !mu.lab.** { *; }
 -keep class !com.huhaoyu.tutu.** { *; }
--keepclasseswithmembernames class !mu.lab.** { *; }
 -keepclasseswithmembernames class !com.huhaoyu.tutu.** { *; }
 
 -keep class butterknife.** { *; }
