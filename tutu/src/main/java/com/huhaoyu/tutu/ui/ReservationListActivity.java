@@ -537,7 +537,7 @@ public class ReservationListActivity extends BaseActivity
 
                     @Override
                     public void onRightButtonClicked(View view) {
-                        String url = "http://www.huhaoyu.com";
+                        String url = "http://www.huhaoyu.com/tsinghua-tutu/";
                         Uri uri = Uri.parse(url);
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
