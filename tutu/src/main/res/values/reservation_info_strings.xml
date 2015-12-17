@@ -8,9 +8,9 @@
     <string name="tutu_info_phone">Phone:</string>
     <string name="tutu_info_email">Email:</string>
     <string name="tutu_info_tutu">Tutu</string>
-    <string name="tutu_info_default_id">2014210130</string>
+    <string name="tutu_info_default_id">Student ID</string>
     <string name="tutu_info_default_department">Tsinghua</string>
-    <string name="tutu_info_default_phone">15201524605</string>
+    <string name="tutu_info_default_phone">@string/tutu_info_no_phone</string>
     <string name="tutu_info_no_phone">No Phone Number</string>
     <string name="tutu_info_default_demail">im@huhaoyu.com</string>
     <string name="tutu_info_no_email">No Email</string>
