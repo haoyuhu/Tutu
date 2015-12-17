@@ -31,8 +31,15 @@ public class TutuAlarmService extends IntentService {
         if (accountManager.hasAccount()) {
             try {
                 StudentAccount account = accountManager.getAccount();
-                executor.refresh(account);
-                notificationManager.check(account);
+                RegularAlarmManager manager = RegularAlarmManager.getInstance();
+                if (manager.shouldAutoReservation()) {
+                    executor.refresh(account);
+                    manager.updateAutoResvTimeStamp();
+                }
+                if (manager.shouldNotify()) {
+                    notificationManager.check(account);
+                    manager.updateNotifyTimeStamp();
+                }
             } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
                 Log.e(LogTag, error.toString(), error);
             }

@@ -27,9 +27,10 @@ public class TutuAlarmReceiver extends WakefulBroadcastReceiver {
         Log.i(LogTag, "Tutu alarm receiver awake on " + dateTime);
 
         RegularAlarmManager manager = RegularAlarmManager.getInstance();
-        if (manager.shouldExcuteTasks()) {
+        if (manager.shouldExecuteTasks()) {
             if (BuildConfig.DEBUG) {
-                TutuNotificationManager.getInstance().testNotification();
+                TutuNotificationManager.getInstance().testNotification(manager.shouldAutoReservation(),
+                        manager.shouldNotify());
             }
             manager.updateTimeStamp();
             ComponentName name = new ComponentName(context.getPackageName(), TutuAlarmService.class.getName());
