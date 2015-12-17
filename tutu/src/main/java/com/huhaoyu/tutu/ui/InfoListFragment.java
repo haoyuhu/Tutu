@@ -121,7 +121,7 @@ public class InfoListFragment extends Fragment
     }
 
     private void getDataFromRealm() {
-        if (mManager.hasAccount()) {
+        if (mManager != null && mManager.hasAccount()) {
             try {
                 StudentAccount account = mManager.getAccount();
                 ResvRecordStore.getResvRecordsFromRealm(account)
