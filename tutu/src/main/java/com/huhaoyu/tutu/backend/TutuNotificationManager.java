@@ -220,11 +220,15 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
         manager.notify(TutuConstants.Constants.TUTU_MESSAGE_NOTIFICATION_ID, notification);
     }
 
-    public void testNotification() {
+    public void testNotification(boolean auto, boolean notify) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(context);
+        String pattern = "yyyy-MM-dd HH:mm";
+        String dt = DateTimeUtilities.formatReservationDate(Calendar.getInstance(), pattern);
+        String autoStr = "auto: " + String.valueOf(auto);
+        String notifyStr = "notify: " + String.valueOf(notify);
         String title = "test title";
-        String content = "test content";
+        String content = dt + " " + autoStr + " " + notifyStr;
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setContentTitle(title);
         builder.setContentText(content);

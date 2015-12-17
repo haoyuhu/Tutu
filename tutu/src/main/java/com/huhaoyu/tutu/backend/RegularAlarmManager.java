@@ -20,6 +20,8 @@ public class RegularAlarmManager {
     private static final String LogTag = RegularAlarmManager.class.getCanonicalName();
 
     private long timeStamp = 0;
+    private long notifyTimeStamp = 0;
+    private long autoResvTimeStamp = 0;
     private final HourMinute muteStart;
     private final HourMinute muteEnd;
 
@@ -55,13 +57,31 @@ public class RegularAlarmManager {
                 TutuConstants.Constants.ALARM_INTERVAL_IN_MILLIS, pendingIntent);
     }
 
-    public boolean shouldExcuteTasks() {
+    public boolean shouldExecuteTasks() {
         long current = System.currentTimeMillis();
         return current - timeStamp >= TutuConstants.Constants.ALARM_INTERVAL_VALIDATE_IN_MILLIS && !inMutePeriod();
     }
 
+    public boolean shouldNotify() {
+        long current = System.currentTimeMillis();
+        return current - notifyTimeStamp >= TutuConstants.Constants.ALARM_INTERVAL_VALIDATE_IN_MILLIS;
+    }
+
+    public boolean shouldAutoReservation() {
+        long current = System.currentTimeMillis();
+        return current - autoResvTimeStamp >= TutuConstants.Constants.DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS;
+    }
+
     public void updateTimeStamp() {
         this.timeStamp = System.currentTimeMillis();
+    }
+
+    public void updateNotifyTimeStamp() {
+        this.notifyTimeStamp = System.currentTimeMillis();
+    }
+
+    public void updateAutoResvTimeStamp() {
+        this.autoResvTimeStamp = System.currentTimeMillis();
     }
 
 
