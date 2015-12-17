@@ -22,7 +22,6 @@ import com.squareup.leakcanary.RefWatcher;
 import java.util.Arrays;
 import java.util.List;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import mu.lab.thulib.thucab.CabUtilities;
 import mu.lab.thulib.thucab.DateTimeUtilities;
 import mu.lab.thulib.thucab.entity.CabFilter;
@@ -73,7 +72,7 @@ public class ReservationListFragment extends Fragment
         mRecyclerView.setHasFixedSize(true);
 
         mAdapter = new RecyclerViewMaterialAdapter(new ReservationListAdapter(mStates, getActivity()));
-        mRecyclerView.setAdapter(new AlphaInAnimationAdapter(mAdapter));
+        mRecyclerView.setAdapter(mAdapter);
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
     }
 
