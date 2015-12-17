@@ -26,7 +26,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import mu.lab.thulib.thucab.PreferenceUtilities;
 import mu.lab.thulib.thucab.ResvRecordStore;
 import mu.lab.thulib.thucab.UserAccountManager;
@@ -87,7 +86,7 @@ public class InfoListFragment extends Fragment
         mRecyclerView.setHasFixedSize(true);
 
         mAdapter = new RecyclerViewMaterialAdapter(new InfoListAdater(mInfos, getActivity()));
-        mRecyclerView.setAdapter(new AlphaInAnimationAdapter(mAdapter));
+        mRecyclerView.setAdapter(mAdapter);
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
 
         realmSubscriber = new Observer<List<ReservationRecord>>() {
