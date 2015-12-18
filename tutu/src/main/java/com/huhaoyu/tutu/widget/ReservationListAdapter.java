@@ -38,7 +38,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemCount() {
-        return states.size();
+        return states != null ? states.size() : 0;
     }
 
     @Override
