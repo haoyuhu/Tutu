@@ -138,8 +138,6 @@ public class DrawerManagerImpl extends DrawerManager
         reservationInfo.setEnabled(false);
         logout.setEnabled(false);
         switchAccount.setEnabled(false);
-
-        context.refreshFab();
     }
 
     @Override

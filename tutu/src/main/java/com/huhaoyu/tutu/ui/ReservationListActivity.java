@@ -429,6 +429,7 @@ public class ReservationListActivity extends BaseActivity
     private void refreshInfo() {
         final int myInfoPos = 3;
         fragments.get(myInfoPos).refresh(true, refreshObserver);
+        drawerManager.onResume();
     }
 
     public void openLoginFragment() {
