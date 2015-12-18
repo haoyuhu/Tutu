@@ -22,9 +22,9 @@ public class TutuConstants {
         // regular task interval
         long DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS = 30 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
-        long ALARM_INTERVAL_IN_MILLIS = 20 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+        long ALARM_INTERVAL_IN_MILLIS = 15 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
-        long ALARM_INTERVAL_VALIDATE_IN_MILLIS = 15 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+        long ALARM_INTERVAL_VALIDATE_IN_MILLIS = 10 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         long DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS = CabConstants.DateTimeConstants.MINUTE_OF_HOUR
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
