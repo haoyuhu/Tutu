@@ -148,7 +148,7 @@ public class ReservationListActivity extends BaseActivity
                     int myInfoPos = fragments.size() - 1;
                     if (index >= 0 && index < myInfoPos) {
                         refresh(index);
-                        refresh(myInfoPos);
+                        refreshInfo();
                     }
                     break;
             }
