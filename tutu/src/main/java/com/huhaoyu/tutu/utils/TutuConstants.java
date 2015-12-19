@@ -28,8 +28,8 @@ public class TutuConstants {
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         long ALARM_INTERVAL_VALIDATE_IN_MILLIS = 10 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
-        long DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS = CabConstants.DateTimeConstants.MINUTE_OF_HOUR
-                * CabConstants.DateTimeConstants.SECOND_OF_MINUTE * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
+        long DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS = 55 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+                * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         int DEFAULT_POSTPONE_INTERVAL_IN_MINUTE =30;
         int DEFAULT_REGULAR_TASK_MUTE_START_HOUR = 0;
         int DEFAULT_REGULAR_TASK_MUTE_START_MINUTE = 30;
