@@ -20,7 +20,9 @@ public class TutuConstants {
         int DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT = 2;
 
         // regular task interval
-        long DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS = 30 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+        long DEFAULT_NOTIFICATION_BOTTOM_BOUND_IN_MILLIS = 20 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
+                * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
+        long DEFAULT_NOTIFICATION_UPPER_BOUND_IN_MILLIS = 50 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         long ALARM_INTERVAL_IN_MILLIS = 15 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
@@ -28,7 +30,7 @@ public class TutuConstants {
                 * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
         long DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS = CabConstants.DateTimeConstants.MINUTE_OF_HOUR
                 * CabConstants.DateTimeConstants.SECOND_OF_MINUTE * CabConstants.DateTimeConstants.MILLIS_OF_SECOND;
-        int DEFAULT_POSTPONE_INTERVAL_IN_MINUTE = 10;
+        int DEFAULT_POSTPONE_INTERVAL_IN_MINUTE =30;
         int DEFAULT_REGULAR_TASK_MUTE_START_HOUR = 0;
         int DEFAULT_REGULAR_TASK_MUTE_START_MINUTE = 30;
         int DEFAULT_REGULAR_TASK_MUTE_END_HOUR = 7;

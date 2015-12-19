@@ -5,7 +5,7 @@
     <string name="tutu_notification_content">Reservation from %1$s to %2$s will start
         in %3$d minutes, please prepare to goto reading room in time.</string>
     <string name="tutu_notification_deletion">Delete</string>
-    <string name="tutu_notification_delay">Delay 10mins</string>
+    <string name="tutu_notification_delay">Delay 30mins</string>
     <string name="tutu_notification_modification">Modify</string>
 
 </resources>
