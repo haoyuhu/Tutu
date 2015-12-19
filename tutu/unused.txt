@@ -11,10 +11,9 @@ com.huhaoyu.tutu.backend.TutuNotificationManager:
     private static final int NOTIFICATION_LIGHT
     private static final int NOTIFICATION_VIBRATE
     private static final int NOTIFICATION_SOUND
-    224:240:public void testNotification(boolean,boolean)
-    261:262:public void setLight(boolean)
-    265:266:public void setVibrate(boolean)
-    269:270:public void setSound(boolean)
+    262:263:public void setLight(boolean)
+    266:267:public void setVibrate(boolean)
+    270:271:public void setSound(boolean)
 com.huhaoyu.tutu.backend.TutuNotificationManager$NotificationManagerHolder:
     109:109:private TutuNotificationManager$NotificationManagerHolder()
 com.huhaoyu.tutu.entity.AutoResvItemDecorator:
@@ -99,7 +98,7 @@ com.huhaoyu.tutu.utils.SystemBarTintManager$SystemBarConfig:
     474:474:public int getActionBarHeight()
     535:538:public int getPixelInsetRight()
 com.huhaoyu.tutu.utils.TutuConstants:
-    9:55:public TutuConstants()
+    9:57:public TutuConstants()
 com.huhaoyu.tutu.utils.TutuConstants$BundleKey
 com.huhaoyu.tutu.utils.TutuConstants$Constants:
     public static final int DEFAULT_SMART_RESERVATION_INTERVAL_IN_HOUR
@@ -107,7 +106,8 @@ com.huhaoyu.tutu.utils.TutuConstants$Constants:
     public static final long REFRESH_INTERVAL
     public static final long DELAY_DURATION
     public static final int DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT
-    public static final long DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS
+    public static final long DEFAULT_NOTIFICATION_BOTTOM_BOUND_IN_MILLIS
+    public static final long DEFAULT_NOTIFICATION_UPPER_BOUND_IN_MILLIS
     public static final long ALARM_INTERVAL_IN_MILLIS
     public static final long ALARM_INTERVAL_VALIDATE_IN_MILLIS
     public static final long DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS
