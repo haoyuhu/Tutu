@@ -136,7 +136,8 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
                 if (DateTimeUtilities.isTheSameDay(record.getDate(), current)) {
                     Calendar start = record.getStartDateTime();
                     long interval = DateTimeUtilities.calculateInterval(start, current);
-                    if (interval >= 0 && interval <= TutuConstants.Constants.DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS) {
+                    if (interval >= TutuConstants.Constants.DEFAULT_NOTIFICATION_BOTTOM_BOUND_IN_MILLIS
+                            && interval < TutuConstants.Constants.DEFAULT_NOTIFICATION_UPPER_BOUND_IN_MILLIS) {
                         notifyReservation(record);
                         break;
                     }
@@ -168,8 +169,8 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
         final String end = DateTimeUtilities.formatReservationDate(ec, patternTime);
         String room = record.getRoomName();
         long millis = DateTimeUtilities.calculateInterval(sc, Calendar.getInstance());
-        if (millis <= 0 || millis > TutuConstants.Constants.DEFAULT_NOTIFICATION_INTERVAL_IN_MILLIS) return;
-        int minutes = (int) (millis / CabConstants.DateTimeConstants.MILLIS_OF_SECOND / CabConstants.DateTimeConstants.SECOND_OF_MINUTE);
+        int minutes = (int) (millis / CabConstants.DateTimeConstants.MILLIS_OF_SECOND
+                / CabConstants.DateTimeConstants.SECOND_OF_MINUTE);
         String title = String.format(context.getString(R.string.tutu_notification_title), room);
         String content = String.format(context.getString(R.string.tutu_notification_content), start, end, minutes);
         String id = record.getReservationId();
