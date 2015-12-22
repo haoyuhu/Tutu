@@ -19,7 +19,7 @@ import com.huhaoyu.tutu.entity.ReservationInfoWrapper;
 import com.huhaoyu.tutu.utils.MemoryWatcher;
 import com.huhaoyu.tutu.utils.SnackbarManager;
 import com.huhaoyu.tutu.utils.TutuConstants;
-import com.huhaoyu.tutu.widget.InfoListAdater;
+import com.huhaoyu.tutu.widget.InfoListAdapter;
 import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;
@@ -85,7 +85,7 @@ public class InfoListFragment extends Fragment
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new RecyclerViewMaterialAdapter(new InfoListAdater(mInfos, getActivity()));
+        mAdapter = new RecyclerViewMaterialAdapter(new InfoListAdapter(mInfos, getActivity()));
         mRecyclerView.setAdapter(mAdapter);
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
 
