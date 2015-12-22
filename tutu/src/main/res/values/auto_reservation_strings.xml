@@ -19,7 +19,7 @@
     <string name="tutu_auto_confirm">Confirm</string>
     <string name="tutu_auto_warning">Terms and Conditions</string>
     <string name="tutu_auto_warning_details">Reading room is a scarce resource, please make a reservation on-demand.
-    In order to ensure a fair, reasonable and efficient atmosphere of usage, Tsinghua Tutu allowed only two automatic
+    In order to ensure a fair, reasonable and efficient atmosphere of usage, Tsinghua Tutu allowed only %1$d automatic
         reservations to avoid unnecessary looting.</string>
 
 </resources>

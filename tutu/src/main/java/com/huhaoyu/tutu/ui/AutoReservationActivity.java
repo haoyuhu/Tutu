@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.huhaoyu.tutu.BuildConfig;
 import com.huhaoyu.tutu.R;
 import com.huhaoyu.tutu.entity.AutoResvItemDecorator;
 import com.huhaoyu.tutu.utils.SnackbarManager;
@@ -156,14 +157,16 @@ public class AutoReservationActivity extends BaseActivity
                 ++count;
             }
         }
-        return count <= TutuConstants.Constants.DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT;
+        return count <= BuildConfig.DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT;
     }
 
     private void showWarning() {
+        int limit = BuildConfig.DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT;
+        String content = String.format(getString(R.string.tutu_auto_warning_details), limit);
         TemplateFragment.TutuFragmentBuilder builder = new TemplateFragment.TutuFragmentBuilder(this);
         builder.title(R.string.tutu_auto_warning)
                 .titleBackground(R.drawable.shape_warning_background)
-                .content(R.string.tutu_auto_warning_details)
+                .content(content)
                 .rightButton(R.string.tutu_auto_confirm)
                 .rightButtonBackground(R.drawable.selector_orange_clickable_button);
         builder.show();
@@ -197,7 +200,7 @@ public class AutoReservationActivity extends BaseActivity
                             ret.add(decorator.toItem());
                         }
                     }
-                    AutoResvStore.saveAutoResvItemsToRealm(ret, account);
+                    manager.save(ret);
                     finish();
                 } else {
                     showWarning();
