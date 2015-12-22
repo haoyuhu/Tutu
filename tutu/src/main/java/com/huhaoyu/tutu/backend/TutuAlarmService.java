@@ -28,6 +28,7 @@ public class TutuAlarmService extends IntentService {
         CabCommandExecutor executor = CabCmdExecutorImpl.getInstance();
         TutuNotificationManager notificationManager = TutuNotificationManager.getInstance();
         UserAccountManager accountManager = UserAccountManager.getInstance();
+        accountManager.load(getBaseContext());
         if (accountManager.hasAccount()) {
             try {
                 StudentAccount account = accountManager.getAccount();
