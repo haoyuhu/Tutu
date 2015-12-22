@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_seat">Seat State Inquiry</string>
+    <string name="tutu_seat_loading">Loading Seat States</string>
+    <string name="tutu_seat_load_failure">Failed to refresh</string>
+    <string name="tutu_seat_refresh_pattern">yyyy-MM-dd HH:mm</string>
+    <string name="tutu_seat_refresh" >Refreshed on</string>
+    <string name="tutu_seat_load_snackbar_failure">Load failure, please try again.</string>
+    <string name="tutu_seat_state_idle">Unwanted</string>
+    <string name="tutu_seat_state_well">Well</string>
+    <string name="tutu_seat_state_busy">Busy</string>
+    <string name="tutu_seat_unknown_state">Unknown</string>
+    <string name="tutu_seat_area">Seat Area</string>
+    <string name="tutu_seat_occupied_count">Used</string>
+    <string name="tutu_seat_rest_count">Rest</string>
+
+</resources>

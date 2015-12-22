@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.flipboard.bottomsheet.BottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.florent37.materialviewpager.MaterialViewPager
+                android:id="@+id/material_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/md_blue_grey_50"
+                app:viewpager_animatedHeaderImage="true"
+                app:viewpager_color="@color/colorPrimary"
+                app:viewpager_displayToolbarWhenSwipe="true"
+                app:viewpager_enableToolbarElevation="true"
+                app:viewpager_headerAdditionalHeight="20dp"
+                app:viewpager_headerAlpha="1.0"
+                app:viewpager_headerHeight="200dp"
+                app:viewpager_hideLogoWithFade="false"
+                app:viewpager_hideToolbarAndTitle="true"
+                app:viewpager_imageHeaderDarkLayerAlpha="0.2"
+                app:viewpager_logo="@layout/header_logo"
+                app:viewpager_logoMarginTop="100dp"
+                app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
+                app:viewpager_parallaxHeaderFactor="1.5"
+                app:viewpager_transparentToolbar="false" />
+
+            <com.getbase.floatingactionbutton.FloatingActionsMenu
+                android:id="@+id/fab_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                fab:fab_addButtonColorNormal="@color/md_purple_500"
+                fab:fab_addButtonColorPressed="@color/md_purple_600"
+                fab:fab_addButtonPlusIconColor="@color/md_grey_100"
+                fab:fab_addButtonSize="normal"
+                fab:fab_addButtonStrokeVisible="false"
+                fab:fab_expandDirection="up"
+                fab:fab_labelStyle="@style/menu_labels_style">
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_icon="@mipmap/ic_refresh_white_24dp"
+                    app:fab_size="mini"
+                    app:fab_title="@string/tutu_fab_refresh"
+                    fab:fab_colorNormal="@color/md_pink_400"
+                    fab:fab_colorPressed="@color/md_pink_500" />
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_icon="@mipmap/ic_filter_list_white"
+                    app:fab_size="mini"
+                    app:fab_title="@string/tutu_fab_filter"
+                    fab:fab_colorNormal="@color/md_pink_400"
+                    fab:fab_colorPressed="@color/md_pink_500" />
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_auto_reservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_icon="@mipmap/ic_alarm_add_white"
+                    app:fab_title="@string/tutu_fab_auto_reservation"
+                    fab:fab_colorNormal="@color/md_pink_400"
+                    fab:fab_colorPressed="@color/md_pink_500"
+                    fab:fab_size="mini" />
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_smart_reservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_icon="@mipmap/ic_stars_white"
+                    app:fab_title="@string/tutu_fab_smart_reservation"
+                    fab:fab_colorNormal="@color/md_pink_400"
+                    fab:fab_colorPressed="@color/md_pink_500"
+                    fab:fab_size="mini" />
+
+            </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+            <com.rey.material.widget.ProgressView
+                android:id="@+id/refresh_progress"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                app:pv_autostart="false"
+                app:pv_circular="false"
+                app:pv_progressMode="indeterminate"
+                app:pv_progressStyle="@style/TutuLinearProgressBarStyle" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:theme="@style/AppTheme.Drawer"
+            app:itemTextColor="@color/md_grey_900"
+            app:menu="@menu/drawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+</com.flipboard.bottomsheet.BottomSheetLayout>

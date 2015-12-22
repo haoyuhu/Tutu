@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_smart_reservation">Smart Reservation</string>
+    <string name="tutu_smart_today">Today</string>
+    <string name="tutu_smart_tomorrow">Tomorrow</string>
+    <string name="tutu_smart_day_after_tomorrow">Day After Tomorrow</string>
+    <string name="tutu_smart_view_recommendation">Recommendation</string>
+    <string name="tutu_smart_conflict_reservation">Reservation conflict, you have a reservation that day!</string>
+    <string name="tutu_smart_no_match_reservation">No reservation matched, you can view the recommendation.</string>
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--personal info-->
+    <string name="tutu_info_header_title">Personal Information Card</string>
+    <string name="tutu_info_name">Name:</string>
+    <string name="tutu_info_department">Department:</string>
+    <string name="tutu_info_phone">Phone:</string>
+    <string name="tutu_info_email">Email:</string>
+    <string name="tutu_info_tutu">Tutu</string>
+    <string name="tutu_info_default_id">Student ID</string>
+    <string name="tutu_info_default_department">Tsinghua</string>
+    <string name="tutu_info_default_phone">@string/tutu_info_no_phone</string>
+    <string name="tutu_info_no_phone">No Phone Number</string>
+    <string name="tutu_info_default_demail">im@huhaoyu.com</string>
+    <string name="tutu_info_no_email">No Email</string>
+
+    <!--reservation info-->
+    <string name="tutu_info_today">Today</string>
+    <string name="tutu_info_tomorrow">Tomorrow</string>
+    <string name="tutu_info_day_after_tomorrow">DAT</string>
+    <string name="tutu_info_started">Started</string>
+    <string name="tutu_info_not_start">notStart</string>
+    <string name="tutu_info_modify">Modify</string>
+    <string name="tutu_info_delete">Delete</string>
+
+    <string name="tutu_info_login_first">You should login at first.</string>
+    <string name="tutu_info_no_info">No Reservation Currently</string>
+
+</resources>

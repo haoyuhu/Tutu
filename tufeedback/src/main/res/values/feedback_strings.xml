@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="feedback_page">Feedback</string>
+    <string name="title_activity_umeng_feedback">@string/feedback_page</string>
+
+    <string name="action_refresh">Refresh</string>
+    <string name="send_message_text">Send</string>
+    <string name="contact_method">Contact Method</string>
+    <string name="feedback_hint">Feedback</string>
+    <string name="contact_hint">Contact Info</string>
+    <string name="save_contact_text">Save</string>
+    <string name="contact_text">Your contact method: </string>
+    <string name="contact_switch_to">Contact method switch to %1$s</string>
+    <string name="update_contact">Update contact success</string>
+    <string name="refresh_success">Refresh success</string>
+    <string name="synchronization_success">Synchronization success</string>
+    <string name="on_head">On head</string>
+    <string name="feedback_reply_notification">You have received %1$d feedback replies from TUTu developers.</string>
+    <string name="feedback_ticker_text">New reply from TUTu</string>
+    <string name="time_format">MMM dd, HH:mm a</string>
+
+    <array name="contact_options">
+        <item>Mobile Number</item>
+        <item>Email</item>
+        <item>QQ</item>
+        <item>Wechat ID</item>
+    </array>
+
+</resources>

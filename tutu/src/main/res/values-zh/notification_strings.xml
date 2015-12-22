@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_notification_title">研读间%1$s即将开始</string>
+    <string name="tutu_notification_content">研读间将于%3$d分钟后开始(%1$s~%2$s)，请准时赴约。</string>
+    <string name="tutu_notification_deletion">删除</string>
+    <string name="tutu_notification_delay">延后30分钟</string>
+    <string name="tutu_notification_modification">修改</string>
+
+    <string name="tutu_notification_result_success_title">操作成功</string>
+    <string name="tutu_notification_result_failure_title">操作失败</string>
+    <string name="tutu_notification_result_success_content">小图已完成操作，请您放心。</string>
+    <string name="tutu_notification_result_failure_content">小图未能帮您完成，请手动修改或删除预约。</string>
+
+</resources>

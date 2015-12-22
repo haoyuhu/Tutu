@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_light_blue_800"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/tutu_filter"
+        android:textColor="@color/md_grey_200"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/round_tag"
+            android:layout_toStartOf="@+id/round_tag"
+            android:background="@color/md_grey_400" />
+
+        <TextView
+            android:id="@+id/round_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.5"
+            android:background="@drawable/shape_drawer_header_tag"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/tutu_filter_time_period"
+            android:textColor="@color/md_white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/round_tag"
+            android:layout_toRightOf="@id/round_tag"
+            android:background="@color/md_grey_400" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.rey.material.widget.CheckBox
+                android:id="@+id/morning_cb"
+                style="@style/tutu_checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/tutu_filter_morning"
+                android:textColor="@color/md_blue_grey_800"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.rey.material.widget.CheckBox
+                android:id="@+id/afternoon_cb"
+                style="@style/tutu_checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/tutu_filter_afternoon"
+                android:textColor="@color/md_blue_grey_800"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <com.rey.material.widget.CheckBox
+                android:id="@+id/evening_cb"
+                style="@style/tutu_checkbox_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/tutu_filter_evening"
+                android:textColor="@color/md_blue_grey_800"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/interval_tag"
+            android:layout_toStartOf="@+id/interval_tag"
+            android:background="@color/md_grey_400" />
+
+        <TextView
+            android:id="@+id/interval_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:alpha="0.5"
+            android:background="@drawable/shape_drawer_header_tag"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/tutu_filter_min_interval"
+            android:textColor="@color/md_white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/interval_tag"
+            android:layout_toRightOf="@id/interval_tag"
+            android:background="@color/md_grey_400" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/picked_interval_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/tutu_filter_interval_picked"
+            android:textColor="@color/md_blue_grey_800"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.rey.material.widget.Slider
+            android:id="@+id/picked_interval_sl"
+            style="@style/tutu_slider_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:sl_maxValue="4"
+            app:sl_minValue="1"
+            app:sl_value="1" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/selector_grey_clickable_button"
+            android:text="@string/tutu_filter_clear"
+            android:textAllCaps="false"
+            android:textColor="@color/md_white"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toEndOf="@id/clear_button"
+            android:layout_toRightOf="@id/clear_button"
+            android:background="@drawable/selector_blue_clickable_button"
+            android:text="@string/tutu_filter_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/md_white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

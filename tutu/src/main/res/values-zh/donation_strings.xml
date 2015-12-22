@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_donation">捐赠开发者</string>
+    <string name="tutu_donate">捐赠</string>
+    <string name="tutu_donation_quit">取消</string>
+    <string name="tutu_donation_details">我吭哧吭哧地开发着清华小图，请你打赏一下我咯:D
+        如果您有好的想法也请通过用户反馈告诉我呐</string>
+
+
+</resources>

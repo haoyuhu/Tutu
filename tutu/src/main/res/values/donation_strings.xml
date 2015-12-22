@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_donation">Donation</string>
+    <string name="tutu_donate">Donate</string>
+    <string name="tutu_donation_quit">Quit</string>
+    <string name="tutu_donation_details">Developers make efforts to develop the Tsinghua Tutu,
+        please reward developers if you want!</string>
+
+</resources>

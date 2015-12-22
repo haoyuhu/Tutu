@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_notification_title">Reservation %1$s is about to begin</string>
+    <string name="tutu_notification_content">Reservation from %1$s to %2$s will start
+        in %3$d minutes, please prepare to goto reading room in time.</string>
+    <string name="tutu_notification_deletion">Delete</string>
+    <string name="tutu_notification_delay">Delay 30mins</string>
+    <string name="tutu_notification_modification">Modify</string>
+
+    <string name="tutu_notification_result_success_title">Operation Success</string>
+    <string name="tutu_notification_result_failure_title">Operation Failure</string>
+    <string name="tutu_notification_result_success_content">Tutu has complete your task.</string>
+    <string name="tutu_notification_result_failure_content">Tutu cannot complete your task, please do it manually.</string>
+
+</resources>

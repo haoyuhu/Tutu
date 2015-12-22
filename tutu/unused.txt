@@ -1,0 +1,151 @@
+com.huhaoyu.tutu.BuildConfig
+com.huhaoyu.tutu.R:
+    10:7148:public R()
+com.huhaoyu.tutu.TUTuApplication:
+    private static final java.lang.String REALM_NAME
+    private static final long REALM_VERSION
+    33:33:public static com.huhaoyu.tutu.TUTuApplication getInstance()
+com.huhaoyu.tutu.backend.RegularAlarmManager$AlarmManagerHolder:
+    36:36:private RegularAlarmManager$AlarmManagerHolder()
+com.huhaoyu.tutu.backend.TutuNotificationManager:
+    private static final int NOTIFICATION_LIGHT
+    private static final int NOTIFICATION_VIBRATE
+    private static final int NOTIFICATION_SOUND
+    248:264:public void testNotification(boolean,boolean)
+    285:286:public void setLight(boolean)
+    289:290:public void setVibrate(boolean)
+    293:294:public void setSound(boolean)
+com.huhaoyu.tutu.backend.TutuNotificationManager$NotificationManagerHolder:
+    109:109:private TutuNotificationManager$NotificationManagerHolder()
+com.huhaoyu.tutu.entity.AutoResvItemDecorator:
+    private static final float DISABLE_ALPHA
+    private static final float ENABLE_ALPHA
+    private static final java.lang.String DEFAULT_START
+    private static final java.lang.String DEFAULT_END
+    32:37:public static com.huhaoyu.tutu.entity.AutoResvItemDecorator from(mu.lab.thulib.thucab.entity.AutoReservationItem)
+com.huhaoyu.tutu.entity.ReservationInfoWrapper:
+    private static final int HEADER_COUNT
+com.huhaoyu.tutu.entity.ReservationStateDecorator:
+    140:140:int getTotalCount()
+    158:158:public mu.lab.thulib.thucab.entity.AbstractState getOrigin()
+    162:162:public long getTotalInterval()
+com.huhaoyu.tutu.entity.ReservationStatesWrapper:
+    protected static final int HEADER_COUNT
+    111:112:public java.lang.String getDate(android.content.Context)
+    117:117:public java.lang.String getDate(java.lang.String)
+    172:172:public java.util.List getRecentReservation()
+com.huhaoyu.tutu.entity.ReservationSummary:
+    public abstract java.lang.String getDate(android.content.Context)
+    public abstract java.lang.String getDate(java.lang.String)
+    public abstract int getTotalAvailableTimeCount(com.huhaoyu.tutu.entity.HsLibFloor)
+    public abstract int getAvailableTimeCountInPeriod(com.huhaoyu.tutu.entity.HsLibFloor,mu.lab.thulib.thucab.DateTimeUtilities$TimePeriod)
+    public abstract long getAvailableTimeIntervalInPeriod(com.huhaoyu.tutu.entity.HsLibFloor,mu.lab.thulib.thucab.DateTimeUtilities$TimePeriod)
+    public abstract java.util.List getRecentReservation()
+com.huhaoyu.tutu.ui.AutoReservationActivity:
+    public static final int RESULT_CODE_DEFAULT_VALUE
+    public static final int RESULT_CODE_ACCOUNT_ERROR_VALUE
+com.huhaoyu.tutu.ui.LoginFragment:
+    115:115:public static android.app.DialogFragment show(android.app.FragmentManager,com.huhaoyu.tutu.ui.ReservationListActivity,mu.lab.thulib.thucab.httputils.LoginStateObserver)
+com.huhaoyu.tutu.ui.RecommendationActivity:
+    public static final int RESULT_CODE_NONE
+    public static final int RESULT_CODE_ACCOUNT_ERROR
+    public static final int RESULT_CODE_SUCCESS
+com.huhaoyu.tutu.ui.ReservationListActivity:
+    415:418:private void refreshAll()
+com.huhaoyu.tutu.ui.ReservationListActivity$UmengAliasThread:
+    private static final java.lang.String ALIAS_TYPE
+com.huhaoyu.tutu.ui.ReservationListFragment:
+    private static final int DEFAULT_MIN_INTERVAL_IN_HOUR
+com.huhaoyu.tutu.ui.SeatStateActivity:
+    private static final long REFRESH_INTERVAL
+com.huhaoyu.tutu.utils.MemoryWatcher:
+    15:15:public MemoryWatcher()
+com.huhaoyu.tutu.utils.PreferencesUtils:
+    private static final java.lang.String TUTU_PREFERENCES
+    45:47:public static void saveAutoNotificaiton(boolean)
+com.huhaoyu.tutu.utils.RefresherManager:
+    59:59:public boolean isRefreshing()
+com.huhaoyu.tutu.utils.SnackbarManager:
+    42:43:public com.huhaoyu.tutu.utils.SnackbarManager setContent(java.lang.String)
+    69:71:public com.huhaoyu.tutu.utils.SnackbarManager setAction(java.lang.String,android.view.View$OnClickListener)
+    81:82:public com.huhaoyu.tutu.utils.SnackbarManager setCallback(android.support.design.widget.Snackbar$Callback)
+    116:123:private void fabPopup(android.view.View)
+    127:134:private void fabDown(android.view.View)
+com.huhaoyu.tutu.utils.SnackbarManager$SnackbarException:
+    146:146:public java.lang.String getDetails()
+com.huhaoyu.tutu.utils.SystemBarTintManager:
+    public static final int DEFAULT_TINT_COLOR
+    private boolean mNavBarTintEnabled
+    130:143:public void setStatusBarDarkMode(boolean,android.app.Activity)
+    155:159:public void setNavigationBarTintEnabled(boolean)
+    167:169:public void setTintColor(int)
+    177:179:public void setTintResource(int)
+    187:189:public void setTintDrawable(android.graphics.drawable.Drawable)
+    197:199:public void setTintAlpha(float)
+    207:210:public void setStatusBarTintColor(int)
+    230:233:public void setStatusBarTintDrawable(android.graphics.drawable.Drawable)
+    242:245:public void setStatusBarAlpha(float)
+    253:256:public void setNavigationBarTintColor(int)
+    264:267:public void setNavigationBarTintResource(int)
+    276:279:public void setNavigationBarTintDrawable(android.graphics.drawable.Drawable)
+    288:291:public void setNavigationBarAlpha(float)
+    308:308:public boolean isStatusBarTintEnabled()
+    317:317:public boolean isNavBarTintEnabled()
+com.huhaoyu.tutu.utils.SystemBarTintManager$SystemBarConfig:
+    private static final java.lang.String STATUS_BAR_HEIGHT_RES_NAME
+    private static final java.lang.String NAV_BAR_HEIGHT_RES_NAME
+    private static final java.lang.String NAV_BAR_HEIGHT_LANDSCAPE_RES_NAME
+    private static final java.lang.String NAV_BAR_WIDTH_RES_NAME
+    474:474:public int getActionBarHeight()
+    535:538:public int getPixelInsetRight()
+com.huhaoyu.tutu.utils.TutuConstants:
+    9:57:public TutuConstants()
+com.huhaoyu.tutu.utils.TutuConstants$BundleKey
+com.huhaoyu.tutu.utils.TutuConstants$Constants:
+    public static final int DEFAULT_SMART_RESERVATION_INTERVAL_IN_HOUR
+    public static final long DEFAULT_PRIORITY_FILTER_VALUE
+    public static final long REFRESH_INTERVAL
+    public static final long DELAY_DURATION
+    public static final long DEFAULT_NOTIFICATION_BOTTOM_BOUND_IN_MILLIS
+    public static final long DEFAULT_NOTIFICATION_UPPER_BOUND_IN_MILLIS
+    public static final long ALARM_INTERVAL_IN_MILLIS
+    public static final long ALARM_INTERVAL_VALIDATE_IN_MILLIS
+    public static final long DEFAULT_AUTO_RESERVATION_TASK_INTERVAL_IN_MILLIS
+    public static final int DEFAULT_POSTPONE_INTERVAL_IN_MINUTE
+    public static final int DEFAULT_REGULAR_TASK_MUTE_START_HOUR
+    public static final int DEFAULT_REGULAR_TASK_MUTE_START_MINUTE
+    public static final int DEFAULT_REGULAR_TASK_MUTE_END_HOUR
+    public static final int DEFAULT_REGULAR_TASK_MUTE_END_MINUTE
+    public static final int TUTU_RESERVATION_NOTIFICATION_ID
+    public static final int TUTU_MESSAGE_NOTIFICATION_ID
+    public static final int TUTU_RESULT_NOTIFICATION_ID
+    public static final int TUTU_TEST_NOTIFICATION_ID
+com.huhaoyu.tutu.utils.TutuConstants$RequestCode
+com.huhaoyu.tutu.utils.Utilities
+com.huhaoyu.tutu.widget.AutoSettingsAdapter:
+    222:224:public void setList(java.util.List)
+com.huhaoyu.tutu.widget.BottomSheetFragment:
+    43:43:public int show(android.support.v4.app.FragmentTransaction,int)
+    59:60:public void dismissAllowingStateLoss()
+com.huhaoyu.tutu.widget.BottomSheetFragmentDelegate:
+    private static final java.lang.String SAVED_SHOWS_BOTTOM_SHEET
+    private static final java.lang.String SAVED_BACK_STACK_ID
+    private static final java.lang.String SAVED_BOTTOM_SHEET_LAYOUT_ID
+    103:109:public int show(android.support.v4.app.FragmentTransaction,int)
+    126:127:public void dismissAllowingStateLoss()
+com.huhaoyu.tutu.widget.BottomSheetFragmentInterface:
+    public abstract void show(android.support.v4.app.FragmentManager,int)
+    public abstract int show(android.support.v4.app.FragmentTransaction,int)
+    public abstract void dismiss()
+    public abstract void dismissAllowingStateLoss()
+com.huhaoyu.tutu.widget.InfoListAdapter:
+    static final int TYPE_HEADER
+    static final int TYPE_CELL
+com.huhaoyu.tutu.widget.ReservationListAdapter:
+    static final int TYPE_HEADER
+    static final int TYPE_CELL
+com.huhaoyu.tutu.widget.SeatAdapter:
+    private static final int HEADER_COUNT
+    private static final int HEADER_TYPE
+    private static final int EVEN_ITEM_TYPE
+    private static final int ODD_ITEM_TYPE
