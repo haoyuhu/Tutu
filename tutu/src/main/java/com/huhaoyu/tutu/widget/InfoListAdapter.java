@@ -13,9 +13,9 @@ import com.huhaoyu.tutu.entity.ReservationInfoWrapper;
  * Personal info list adapter
  * Created by coderhuhy on 15/11/30.
  */
-public class InfoListAdater extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final String LogTag = InfoListAdater.class.getCanonicalName();
+    private static final String LogTag = InfoListAdapter.class.getCanonicalName();
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
@@ -23,7 +23,7 @@ public class InfoListAdater extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private ReservationInfoWrapper infos;
     private Context context;
 
-    public InfoListAdater(ReservationInfoWrapper infos, Context context) {
+    public InfoListAdapter(ReservationInfoWrapper infos, Context context) {
         super();
         this.infos = infos;
         this.context = context;
@@ -70,7 +70,7 @@ public class InfoListAdater extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return infos.size();
+        return infos != null ? infos.size() : 0;
     }
 
 }
