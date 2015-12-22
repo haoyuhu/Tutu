@@ -40,6 +40,10 @@ public class UserAccountManager implements Observer<List<AutoReservationItem>> {
     public void init(Context context) {
         PreferenceUtilities.init(context);
         this.context = context;
+        load(context);
+    }
+
+    public void load(Context context) {
         try {
             this.account = PreferenceUtilities.getStudentAccount(context);
         } catch (PreferenceUtilities.StudentAccountNotFoundError error) {
