@@ -191,6 +191,27 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
         manager.notify(TutuConstants.Constants.TUTU_RESERVATION_NOTIFICATION_ID, notification);
     }
 
+    public void notifyResult(String title, String content, boolean start) {
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification.Builder builder = new Notification.Builder(context);
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setContentTitle(title);
+        builder.setContentText(content);
+        builder.setDefaults(getNotificationDefaults());
+        builder.setAutoCancel(true);
+        if (start) {
+            Intent i = new Intent(context, ReservationListActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pi = PendingIntent.getActivity(context, NotificationOperation.OpenActivity.ordinal(),
+                    i, PendingIntent.FLAG_CANCEL_CURRENT);
+            builder.setContentIntent(pi);
+        }
+
+        Notification notification = builder.build();
+        manager.notify(TutuConstants.Constants.TUTU_RESULT_NOTIFICATION_ID, notification);
+    }
+
     public void notifyMessage(boolean l, boolean v, boolean s, String ticker, String content, String type, String custom) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(context);
@@ -205,6 +226,8 @@ public class TutuNotificationManager implements Observer<List<ReservationRecord>
         switch (push) {
             case OpenApp: {
                 Intent i = new Intent(context, ReservationListActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 PendingIntent pi = PendingIntent.getActivity(context, NotificationOperation.OpenActivity.ordinal(),
                         i, PendingIntent.FLAG_CANCEL_CURRENT);
                 builder.setContentIntent(pi);
