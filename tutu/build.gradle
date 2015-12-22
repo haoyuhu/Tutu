@@ -29,10 +29,12 @@ android {
     buildTypes {
         debug {
             testCoverageEnabled = true
+            buildConfigField "int", "DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT", "7"
         }
         release {
             minifyEnabled true
             shrinkResources true
+            buildConfigField "int", "DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT", "2"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
