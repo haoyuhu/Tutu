@@ -1,6 +1,6 @@
 com.huhaoyu.tutu.BuildConfig
 com.huhaoyu.tutu.R:
-    10:7144:public R()
+    10:7148:public R()
 com.huhaoyu.tutu.TUTuApplication:
     private static final java.lang.String REALM_NAME
     private static final long REALM_VERSION
@@ -11,9 +11,10 @@ com.huhaoyu.tutu.backend.TutuNotificationManager:
     private static final int NOTIFICATION_LIGHT
     private static final int NOTIFICATION_VIBRATE
     private static final int NOTIFICATION_SOUND
-    262:263:public void setLight(boolean)
-    266:267:public void setVibrate(boolean)
-    270:271:public void setSound(boolean)
+    248:264:public void testNotification(boolean,boolean)
+    285:286:public void setLight(boolean)
+    289:290:public void setVibrate(boolean)
+    293:294:public void setSound(boolean)
 com.huhaoyu.tutu.backend.TutuNotificationManager$NotificationManagerHolder:
     109:109:private TutuNotificationManager$NotificationManagerHolder()
 com.huhaoyu.tutu.entity.AutoResvItemDecorator:
@@ -105,7 +106,6 @@ com.huhaoyu.tutu.utils.TutuConstants$Constants:
     public static final long DEFAULT_PRIORITY_FILTER_VALUE
     public static final long REFRESH_INTERVAL
     public static final long DELAY_DURATION
-    public static final int DEFAULT_AUTO_RESERVATION_NUMBER_LIMIT
     public static final long DEFAULT_NOTIFICATION_BOTTOM_BOUND_IN_MILLIS
     public static final long DEFAULT_NOTIFICATION_UPPER_BOUND_IN_MILLIS
     public static final long ALARM_INTERVAL_IN_MILLIS
@@ -118,6 +118,7 @@ com.huhaoyu.tutu.utils.TutuConstants$Constants:
     public static final int DEFAULT_REGULAR_TASK_MUTE_END_MINUTE
     public static final int TUTU_RESERVATION_NOTIFICATION_ID
     public static final int TUTU_MESSAGE_NOTIFICATION_ID
+    public static final int TUTU_RESULT_NOTIFICATION_ID
     public static final int TUTU_TEST_NOTIFICATION_ID
 com.huhaoyu.tutu.utils.TutuConstants$RequestCode
 com.huhaoyu.tutu.utils.Utilities
@@ -137,7 +138,7 @@ com.huhaoyu.tutu.widget.BottomSheetFragmentInterface:
     public abstract int show(android.support.v4.app.FragmentTransaction,int)
     public abstract void dismiss()
     public abstract void dismissAllowingStateLoss()
-com.huhaoyu.tutu.widget.InfoListAdater:
+com.huhaoyu.tutu.widget.InfoListAdapter:
     static final int TYPE_HEADER
     static final int TYPE_CELL
 com.huhaoyu.tutu.widget.ReservationListAdapter:
