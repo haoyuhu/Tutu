@@ -8,4 +8,9 @@
     <string name="tutu_notification_delay">Delay 30mins</string>
     <string name="tutu_notification_modification">Modify</string>
 
+    <string name="tutu_notification_result_success_title">Operation Success</string>
+    <string name="tutu_notification_result_failure_title">Operation Failure</string>
+    <string name="tutu_notification_result_success_content">Tutu has complete your task.</string>
+    <string name="tutu_notification_result_failure_content">Tutu cannot complete your task, please do it manually.</string>
+
 </resources>
