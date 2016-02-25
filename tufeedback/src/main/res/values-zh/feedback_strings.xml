@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="feedback_page">用户反馈</string>
+    <string name="title_activity_umeng_feedback">@string/feedback_page</string>
+
+    <string name="action_refresh">刷新</string>
+    <string name="send_message_text">发送</string>
+    <string name="contact_method">联系方式</string>
+    <string name="feedback_hint">反馈</string>
+    <string name="contact_hint">联系信息</string>
+    <string name="save_contact_text">保存</string>
+    <string name="contact_text">您的联系方式: </string>
+    <string name="contact_switch_to">联系方式切换到%1$s</string>
+    <string name="update_contact">同步联系方式成功</string>
+    <string name="refresh_success">刷新成功</string>
+    <string name="synchronization_success">同步成功</string>
+    <string name="on_head">已到最前</string>
+    <string name="feedback_reply_notification">您已经收到%1$d条来自清华小图的反馈回复。</string>
+    <string name="feedback_ticker_text">来自清华小图的回复</string>
+    <string name="time_format">MM月dd日 HH:mm a</string>
+
+    <array name="contact_options">
+        <item>手机号码</item>
+        <item>Email</item>
+        <item>QQ</item>
+        <item>微信ID</item>
+    </array>
+
+</resources>

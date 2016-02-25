@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_welcome">Let\'s Enjoy Reading</string>
+    <string name="tutu_username">Name</string>
+    <string name="tutu_student_id">Student ID</string>
+
+    <string-array name="tutu_resv_tab_title_array">
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>The Day After Tomorrow</item>
+        <item>My Reservation</item>
+    </string-array>
+
+    <string name="tutu_morning">Morning</string>
+    <string name="tutu_afternoon">Afternoon</string>
+    <string name="tutu_evening">Evening</string>
+
+    <string name="tutu_max_interval_for_reservation">Max %1$dh %2$dm</string>
+    <string name="tutu_max_interval_for_reservation_without_mins">Max for %1$dh</string>
+
+    <string name="tutu_reservation_summary">Reservation Summary Overview</string>
+    <string name="tutu_refresh_time">Refreshed on</string>
+    <string name="tutu_second_floor">2F</string>
+    <string name="tutu_third_floor">3F</string>
+    <string name="tutu_reservation_count">All Count %1$d</string>
+
+    <!-- Umeng Update Snackbars -->
+    <string name="tutu_already_up_to_date">Everything is up-to-date</string>
+    <string name="tutu_please_connect_wifi">Please connect to WiFi to update TUTu</string>
+    <string name="tutu_update_timeout">Operation timeout</string>
+    <string name="tutu_snackbar_reset_wifi">Settings</string>
+
+    <string name="tutu_refresh_reservation_success">Refresh Success</string>
+    <string name="tutu_refresh_reservation_failure">Failed to refresh, please check your network</string>
+
+    <string name="tutu_no_available_reservation">No Available Reservation Currently</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">清华小图</string>
+
+    <string name="tutu_date_pattern">yyyy年MM月dd日</string>
+    <string name="tutu_refresh">刷新</string>
+
+</resources>

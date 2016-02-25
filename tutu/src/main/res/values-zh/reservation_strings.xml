@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_reservation">预约研读间</string>
+    <string name="tutu_reservation_quit">取消</string>
+    <string name="tutu_reservation_confirm">确认</string>
+    <string name="tutu_reservation_base_tag">基础设置</string>
+    <string name="tutu_reservation_more_tag">更多设置</string>
+    <string name="tutu_reservation_start">开始时间</string>
+    <string name="tutu_reservation_end">结束时间</string>
+    <string name="tutu_reservation_reason">预约理由</string>
+    <string name="tutu_reservation_complete">已完成</string>
+    <string name="tutu_reservation_network_failure">网络错误导致预约失败，请重试</string>
+    <string name="tutu_reservation_conflict">预约冲突，请刷新后再进行预约</string>
+    <string name="tutu_reservation_unknown_failure">发生未知错误，请联系开发者</string>
+    <string name="tutu_reservation_account_failure">账号密码有误，请重新登录</string>
+
+</resources>

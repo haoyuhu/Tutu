@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_login_background"
+        android:padding="20dp"
+        android:text="@string/tutu_login_tsinghua_tu"
+        android:textColor="@color/md_grey_200"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.rey.material.widget.ProgressView
+        android:id="@+id/refresh_progress"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/login_title"
+        app:pv_autostart="false"
+        app:pv_circular="false"
+        app:pv_progressMode="indeterminate"
+        app:pv_progressStyle="@style/TutuLinearProgressBarStyle" />
+
+    <LinearLayout
+        android:id="@+id/login_input_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/login_title"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/ic_assignment_ind_grey600"
+                android:tint="@color/md_light_blue_800" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/student_id_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tutu_login_username"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/shape_cursor_cyan"
+                android:textSize="18sp"
+                app:met_baseColor="@color/md_light_blue_800"
+                app:met_floatingLabel="highlight"
+                app:met_helperText="@string/tutu_login_username_helper"
+                app:met_minCharacters="5"
+                app:met_maxCharacters="10"
+                app:met_primaryColor="@color/md_light_blue_600" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/ic_dashboard_grey600"
+                android:tint="@color/md_light_blue_800" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tutu_login_password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/shape_cursor_cyan"
+                android:textSize="18sp"
+                app:met_baseColor="@color/md_light_blue_800"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_light_blue_600" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/login_input_ll"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <Button
+            android:id="@+id/activate_button"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/tutu_activate"
+            android:textAllCaps="false"
+            android:textColor="@drawable/selector_activate_button"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:background="@drawable/selector_blue_clickable_button"
+            android:gravity="center"
+            android:text="@string/tutu_login"
+            android:textAllCaps="false"
+            android:textColor="@color/md_white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_header_rl"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@mipmap/wallpaper_header_background_2"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/user_header_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/user_header" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="10dp"
+        android:gravity="start|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/username_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/student_id_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/md_grey_300"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/department_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/shape_drawer_header_grey_stroke"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/md_grey_300"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/drawer_header_tags_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/clickable_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/selector_header_background"
+        android:clickable="true" />
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_modification">Modify Reservation</string>
+    <string name="tutu_deletion">Delete Reservation</string>
+
+</resources>

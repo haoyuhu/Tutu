@@ -1,0 +1,90 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light" />
+
+    <style name="AppTheme" parent="AppBaseTheme">
+
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="21">true</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Toolbar Theme / Apply white arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
+
+        <!-- Material Theme -->
+        <item name="colorPrimary">@color/md_light_blue_800</item>
+        <item name="colorPrimaryDark">@color/md_light_blue_800</item>
+        <item name="colorAccent">@color/md_light_blue_800</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/navigationBarColor
+        </item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+
+    </style>
+
+    <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- White arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/drawerArrowColor</item>
+    </style>
+    
+    <style name="AppTheme.Drawer" parent="Material.Drawable.NavigationDrawer.Light">
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    <style name="TutuLinearProgressBarStyle" parent="Material.Drawable.LinearProgress">
+        <item name="lpd_strokeSize">5dp</item>
+        <item name="lpd_strokeColor">@color/md_light_blue_800</item>
+        <item name="lpd_strokeSecondaryColor">@color/md_light_blue_100</item>
+        <item name="lpd_strokeColors">@array/linear_progress_colors</item>
+        <item name="lpd_travelDuration">1500</item>
+        <item name="lpd_transformDuration">800</item>
+        <item name="lpd_keepDuration">300</item>
+    </style>
+
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/shape_fab_title</item>
+        <item name="android:textColor">@color/md_grey_50</item>
+    </style>
+
+    <style name="tutu_checkbox_style" parent="Material.Drawable.CheckBox">
+        <item name="cbd_width">30dp</item>
+        <item name="cbd_height">30dp</item>
+        <item name="cbd_boxSize">18dp</item>
+        <item name="cbd_cornerRadius">2dp</item>
+        <item name="cbd_strokeSize">2dp</item>
+        <item name="cbd_strokeColor">@color/tutu_blue_transparent</item>
+    </style>
+
+    <style name="tutu_slider_style" parent="Material.Widget.Slider">
+        <item name="sl_trackSize">2dp</item>
+        <item name="sl_trackCap">square</item>
+        <item name="sl_thumbBorderSize">2dp</item>
+        <item name="sl_thumbRadius">12dp</item>
+        <item name="sl_thumbFocusRadius">16dp</item>
+        <item name="sl_primaryColor">@color/tutu_blue_transparent</item>
+        <item name="sl_secondaryColor">@color/md_grey_400</item>
+        <item name="sl_travelAnimDuration">@android:integer/config_mediumAnimTime</item>
+        <item name="sl_transformAnimDuration">@android:integer/config_shortAnimTime</item>
+        <item name="sl_interpolator">@android:anim/decelerate_interpolator</item>
+        <item name="sl_minValue">60</item>
+        <item name="sl_maxValue">240</item>
+        <item name="sl_stepValue">10</item>
+        <item name="sl_value">60</item>
+        <item name="sl_discreteMode">false</item>
+        <item name="sl_textSize">12sp</item>
+        <item name="sl_textColor">@color/md_white</item>
+        <item name="sl_alwaysFillThumb">false</item>
+    </style>
+
+</resources>

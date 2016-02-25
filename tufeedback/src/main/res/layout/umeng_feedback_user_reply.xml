@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/user_head_imageView"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/tufeedback_user_header" />
+
+    <RelativeLayout
+        android:id="@+id/user_msg_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toLeftOf="@id/user_head_imageView">
+
+        <TextView
+            android:id="@+id/user_textMsg_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/umeng_feedback_user_reply"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/umeng_fb_white"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/photo_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/umeng_feedback_user_reply"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/msg_error_imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@id/user_textMsg_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/umeng_fb_msg_error_icon" />
+
+        <ImageView
+            android:id="@+id/photo_msg_error_imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@id/photo_imageView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/umeng_fb_msg_error_icon" />
+
+        <ProgressBar
+            android:id="@+id/msg_progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@id/user_textMsg_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="7dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/photo_msg_progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@id/photo_imageView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="7dp"
+            android:layout_marginRight="10dp"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/message_time_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_msg_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/TU_DARK_GRAY"
+        android:textScaleX="1"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

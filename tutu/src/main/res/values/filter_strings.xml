@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_filter">Reservation Filter</string>
+    <string name="tutu_filter_time_period">Time Period</string>
+    <string name="tutu_filter_morning">Morning</string>
+    <string name="tutu_filter_afternoon">Afternoon</string>
+    <string name="tutu_filter_evening">Evening</string>
+    <string name="tutu_filter_min_interval">Min Interval</string>
+    <string name="tutu_filter_interval_picked">Picked %1$d hours</string>
+    <string name="tutu_filter_clear">Clear</string>
+    <string name="tutu_filter_confirm">Confirm</string>
+
+</resources>

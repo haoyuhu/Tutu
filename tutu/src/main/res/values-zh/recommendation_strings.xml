@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tutu_recommendation">推荐预约列表</string>
+    <string name="tutu_recommendation_unknown_error">发生未知错误，请联系开发者，谢谢</string>
+    <string name="tutu_recommendation_deviation">偏差值</string>
+    <string name="tutu_recommendation_load_more">加载更多</string>
+    <string name="tutu_recommendation_no_more">当前无更多推荐预约</string>
+
+</resources>

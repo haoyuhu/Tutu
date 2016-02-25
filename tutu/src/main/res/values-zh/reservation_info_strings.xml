@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--personal info-->
+    <string name="tutu_info_header_title">个人信息卡片</string>
+    <string name="tutu_info_name">姓名：</string>
+    <string name="tutu_info_department">院系：</string>
+    <string name="tutu_info_phone">手机：</string>
+    <string name="tutu_info_email">邮箱：</string>
+    <string name="tutu_info_tutu">小图</string>
+    <string name="tutu_info_default_id">学生证学号</string>
+    <string name="tutu_info_default_department">清华大学</string>
+    <string name="tutu_info_default_phone">@string/tutu_info_no_phone</string>
+    <string name="tutu_info_no_phone">无手机号码</string>
+    <string name="tutu_info_default_demail">im@huhaoyu.com</string>
+    <string name="tutu_info_no_email">无电子邮箱</string>
+
+    <!--reservation info-->
+    <string name="tutu_info_today">今天</string>
+    <string name="tutu_info_tomorrow">明天</string>
+    <string name="tutu_info_day_after_tomorrow">后天</string>
+    <string name="tutu_info_started">已开始</string>
+    <string name="tutu_info_not_start">未开始</string>
+    <string name="tutu_info_modify">修改</string>
+    <string name="tutu_info_delete">删除</string>
+
+    <string name="tutu_info_login_first">请登录后再刷新个人信息页面</string>
+    <string name="tutu_info_no_info">当前没有您的预约</string>
+
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@drawable/shape_warning_background"
+        android:textColor="@color/md_grey_50"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="@color/md_blue_grey_600"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/content_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <Button
+            android:id="@+id/left_button"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/tutu_activate"
+            android:textAllCaps="false"
+            android:textColor="@drawable/selector_activate_button"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/right_button"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:background="@drawable/shape_warning_background"
+            android:textAllCaps="false"
+            android:textColor="@color/md_white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
